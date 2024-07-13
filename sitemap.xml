@@ -2,7 +2,8 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>https://whale.github.io/</loc><lastmod>2024-07-13T19:33:08&#43;08:00</lastmod></url><url>
-            <loc>https://whale.github.io/posts/</loc><lastmod>2024-07-13T19:33:08&#43;08:00</lastmod></url><url>
-            <loc>https://whale.github.io/categories/</loc></url><url>
-            <loc>https://whale.github.io/tags/</loc></url></urlset>
+            <loc>http://localhost:1313/</loc><lastmod>2024-07-13T19:33:08&#43;08:00</lastmod></url><url>
+            <loc>http://localhost:1313/posts/</loc><lastmod>2024-07-13T19:33:08&#43;08:00</lastmod></url><url>
+            <loc>http://localhost:1313/posts/test/</loc><lastmod>2024-07-13T19:33:08&#43;08:00</lastmod></url><url>
+            <loc>http://localhost:1313/categories/</loc></url><url>
+            <loc>http://localhost:1313/tags/</loc></url></urlset>
