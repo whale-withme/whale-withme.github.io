@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="en">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>All Categories - Alian&#39;s Site</title><meta name="Description" content="This is my cool site"><meta property="og:title" content="Categories" />
-<meta property="og:description" content="This is my cool site" />
+        <title>All Categories - Alian&#39;s Site</title><meta name="Description" content=""><meta property="og:title" content="Categories" />
+<meta property="og:description" content="" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="http://localhost:1313/categories/" /><meta property="og:site_name" content="My cool site" />
 <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Categories"/>
-<meta name="twitter:description" content="This is my cool site"/>
+<meta name="twitter:description" content=""/>
 <meta name="application-name" content="My cool site">
 <meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -22,11 +22,14 @@
         <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="Alian&#39;s Site">My cool site</a>
+            <a href="/" title="Alian&#39;s Site">Alian&#39;s site</a>
         </div>
         <div class="menu">
-            <div class="menu-inner"><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item active" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
                     <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a><a href="javascript:void(0);" class="menu-item language" title="Select Language">
+                    <i class="fa fa-globe" aria-hidden="true"></i>                      
+                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/categories/" selected>English</option><option value="/zh-cn/categories/">简体中文</option></select>
                 </a></div>
         </div>
     </div>
@@ -34,15 +37,18 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="Alian&#39;s Site">My cool site</a>
+                <a href="/" title="Alian&#39;s Site">Alian&#39;s site</a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
             </div>
         </div>
-        <div class="menu" id="menu-mobile"><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
                 <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
-            </a></div>
+            </a><a href="javascript:void(0);" class="menu-item" title="Select Language">
+                    <i class="fa fa-globe fa-fw" aria-hidden="true"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/categories/" selected>English</option><option value="/zh-cn/categories/">简体中文</option></select>
+                </a></div>
     </div>
 </header><main class="main">
                 <div class="container"><div class="page archive"><h2 class="single-title animate__animated animate__pulse animate__faster">All Categories</h2><div class="categories-card"></div></div></div>
