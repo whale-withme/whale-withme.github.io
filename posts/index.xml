@@ -1,16 +1,17 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>All Posts - My New Hugo Site</title>
+        <title>All Posts - Alian&#39;s Site</title>
         <link>http://localhost:1313/posts/</link>
-        <description>All Posts | My New Hugo Site</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 13 Jul 2024 19:33:08 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/posts/" rel="self" type="application/rss+xml" /><item>
+        <description>All Posts | Alian&#39;s Site</description>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><managingEditor>huamu298@gmail.com (Alian)</managingEditor>
+            <webMaster>huamu298@gmail.com (Alian)</webMaster><lastBuildDate>Sat, 13 Jul 2024 19:33:08 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/posts/" rel="self" type="application/rss+xml" /><item>
     <title>Test</title>
     <link>http://localhost:1313/posts/test/</link>
     <pubDate>Sat, 13 Jul 2024 19:33:08 &#43;0800</pubDate>
-    <author>Author</author>
+    <author>Alian</author>
     <guid>http://localhost:1313/posts/test/</guid>
-    <description><![CDATA[Hugo 搭建博客 Slips random content
-This is a test for Hugo Blog.]]></description>
+    <description><![CDATA[Hugo 搭建博客 Slips random conten
+为什么不支持早期版本的 Hugo? 由于 Markdown 渲染钩子函数 在 Hugo 圣诞节版本 中被引入, 本主题只支持高于 0.62.0 的 Hugo 版本. 推荐使用 Hugo extended 版本 由于这个主题的一些特性需要将 <i class="fab fa-sass fa-fw" aria-hidden="true"></i>&nbsp;SCSS 转换为 <i class="fab fa-css3 fa-fw" aria-hidden="true"></i>&nbsp;CSS, 推荐使用 Hugo extended 版本来获得更好的使用体验. This is a test for Hugo Blog.]]></description>
 </item>
 </channel>
 </rss>
