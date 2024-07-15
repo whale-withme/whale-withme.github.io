@@ -10,17 +10,7 @@
     <pubDate>Mon, 15 Jul 2024 20:18:24 &#43;0800</pubDate>
     <author>Alian</author>
     <guid>http://localhost:1313/posts/config/docker/</guid>
-    <description><![CDATA[docker介绍 https://docker-practice.github.io/zh-cn/
-关于docker的原理 传统虚拟机技术是虚拟出一套硬件后，在其上运行一个完整操作系统，在该系统上再运行所需应用进程； 而容器内的应用进程直接运行于宿主的内核，容器内没有自己的内核，而且也没有进行硬件虚拟。 因此容器要比传统虚拟机更为轻便。
-更高效的利用系统资源 更快速的启动时间 一致的运行环境
-docker 镜像 Docker 镜像是一个特殊的文件系统，除了提供容器运行时所需的程序、库、资源、配置等文件外， 还包含了一些为运行时准备的一些配置参数（如匿名卷、环境变量、用户等）。镜像不包含任何动态数据，其内容在构建之后也不会被改变
-分层存储 严格来说，镜像并非是像一个 ISO 那样的打包文件，镜像只是一个虚拟的概念，其实际体现并非由一个文件组成，而是由一组文件系统组成，或者说，由多层文件系统联合组成。
-拉取镜像文件时也能看到是一组文件，是用了这个技术
-分层存储的特征还使得镜像的复用、定制变的更为容易。甚至可以用之前构建好的镜像作为基础层，然后进一步添加新的层， 以定制自己所需的内容，构建新的镜像
-docker 容器 每一个容器运行时，是以镜像为基础层，在其上创建一个当前容器的存储层，我们可以称这个为容器运行时读写而准备的存储层为 容器存储层
-按照 Docker 最佳实践的要求，容器不应该向其存储层内写入任何数据，容器存储层要保持 无状态化。所有的文件写入操作，都应该使用 数据卷（Volume）、或者 绑定宿主目录，在这些位置的读写会跳过容器存储层，直接对宿主（或网络存储）发生读写，其性能和稳定性更高。
-docker 常用命令 docker pull docker pull [image_name] 用来拉取镜像，如果出现pull failed, 考虑更换镜像源
-docker image # 查看本地镜像信息 docker images # 删除镜像 docker rmi [image_name] # --name 方便exec进入 docker run [-it] image_name/id [-d] [--name container_name] # /bin/bash param 启动一个bash shell docker exec -it contaioner_name/id /bin/bash 建议使用这种方式进入镜像，-d参数后台启动进入交互终端，退出时不会删除容器。加上--rm参数退出时自动删除容器]]></description>
+    <description><![CDATA[docker 环境部署和常用命令]]></description>
 </item>
 </channel>
 </rss>
