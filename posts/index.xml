@@ -4,7 +4,7 @@
         <link>http://localhost:1313/posts/</link>
         <description>All Posts | Alian&#39;s Site</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>huamu298@gmail.com (Alian)</managingEditor>
-            <webMaster>huamu298@gmail.com (Alian)</webMaster><lastBuildDate>Mon, 15 Jul 2024 20:18:24 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>huamu298@gmail.com (Alian)</webMaster><lastBuildDate>Tue, 16 Jul 2024 19:27:33 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/posts/" rel="self" type="application/rss+xml" /><item>
     <title>适时怀念（一）</title>
     <link>http://localhost:1313/posts/memories/high_school/ref1/</link>
     <pubDate>Sun, 14 Jul 2024 19:22:20 &#43;0800</pubDate>
@@ -21,6 +21,14 @@
     <description><![CDATA[我在合肥八中的三年时间]]></description>
 </item>
 <item>
+    <title>Ref4</title>
+    <link>http://localhost:1313/posts/memories/high_school/ref4/</link>
+    <pubDate>Tue, 16 Jul 2024 19:27:33 &#43;0800</pubDate>
+    <author>Alian</author>
+    <guid>http://localhost:1313/posts/memories/high_school/ref4/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
     <title>Docker</title>
     <link>http://localhost:1313/posts/config/docker/</link>
     <pubDate>Mon, 15 Jul 2024 20:18:24 &#43;0800</pubDate>
@@ -29,22 +37,12 @@
     <description><![CDATA[docker 环境部署和常用命令]]></description>
 </item>
 <item>
-    <title>Slips</title>
-    <link>http://localhost:1313/posts/slips/</link>
-    <pubDate>Sun, 14 Jul 2024 15:25:02 &#43;0800</pubDate>
+    <title>适时怀念（三）</title>
+    <link>http://localhost:1313/posts/memories/high_school/ref3/</link>
+    <pubDate>Sun, 14 Jul 2024 19:40:30 &#43;0800</pubDate>
     <author>Alian</author>
-    <guid>http://localhost:1313/posts/slips/</guid>
-    <description><![CDATA[尝试图片的插入 kks kko kkp 使用shortcode可以简化图片的插入或者横幅，横幅在hugo里面是
-example of admonition this is a tip of admonition ]]></description>
-</item>
-<item>
-    <title>My second blog</title>
-    <link>http://localhost:1313/posts/adain/</link>
-    <pubDate>Sun, 14 Jul 2024 00:00:00 &#43;0000</pubDate>
-    <author>Alian</author>
-    <guid>http://localhost:1313/posts/adain/</guid>
-    <description><![CDATA[show me the title test for hugo post content
-hope for success]]></description>
+    <guid>http://localhost:1313/posts/memories/high_school/ref3/</guid>
+    <description><![CDATA[我在合肥八中的三年时间]]></description>
 </item>
 </channel>
 </rss>
