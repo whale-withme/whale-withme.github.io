@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Linux - Alian&#39;s Site</title><meta name="Description" content=""><meta property="og:title" content="Linux" />
+<meta property="og:description" content="记录使用linux的一些工具和技巧" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/posts/config/linux/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-07-18T11:24:49+08:00" />
+<meta property="article:modified_time" content="2024-07-18T11:24:49+08:00" /><meta property="og:site_name" content="My cool site" />
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Linux"/>
+<meta name="twitter:description" content="记录使用linux的一些工具和技巧"/>
+<meta name="application-name" content="My cool site">
+<meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/images/web_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://localhost:1313/posts/config/linux/" /><link rel="prev" href="http://localhost:1313/posts/config/docker/" /><link rel="next" href="http://localhost:1313/posts/memories/high_school/ref3/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Linux",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/localhost:1313\/posts\/config\/linux\/"
+        },"genre": "posts","keywords": "linux, kali","wordcount":  227 ,
+        "url": "http:\/\/localhost:1313\/posts\/config\/linux\/","datePublished": "2024-07-18T11:24:49+08:00","dateModified": "2024-07-18T11:24:49+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Alian"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Alian&#39;s Site">Alian&#39;s site</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a><a href="javascript:void(0);" class="menu-item language" title="Select Language">
+                    <i class="fa fa-globe" aria-hidden="true"></i>                      
+                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/posts/config/linux/" selected>English</option></select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Alian&#39;s Site">Alian&#39;s site</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="Select Language">
+                    <i class="fa fa-globe fa-fw" aria-hidden="true"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/posts/config/linux/" selected>English</option></select>
+                </a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Linux</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Alian</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-07-18">2024-07-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;227 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#tmux">tmux</a>
+      <ul>
+        <li><a href="#基本使用">基本使用</a></li>
+        <li><a href="#无法使用鼠标">无法使用鼠标</a></li>
+      </ul>
+    </li>
+    <li><a href="#kali攻击机">Kali攻击机</a>
+      <ul>
+        <li><a href="#arp-scan">arp-scan</a></li>
+        <li><a href="#nmap-端口扫描">nmap 端口扫描</a></li>
+        <li><a href="#ddos攻击和slowlories">DDOS攻击和slowlories</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="tmux">tmux</h2>
+<h3 id="基本使用">基本使用</h3>
+<h3 id="无法使用鼠标">无法使用鼠标</h3>
+<p>本人在服务器centos7环境下使用tmux, 遇到了鼠标点击无法切换窗格和不能使用鼠标滚轮查看之前的信息，
+查询资料后找到以下资料.</p>
+<ul>
+<li>修改<code>~/.tmux.conf</code>文件配置</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>setw -g mouse-resize-pane on
+</span></span><span style="display:flex;"><span>setw -g mouse-select-pane on
+</span></span><span style="display:flex;"><span>setw -g mouse-select-window on
+</span></span><span style="display:flex;"><span>setw -g mode-mouse on
+</span></span></code></pre></div><p>把上面内容加上去，再启动tmux session, ctrl+b进入命令模式，<code>:source ~/.tmux.conf</code>即可生效.</p>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>Tip<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">这个配置文件里面还可以加其他有关tmux的操作，以后留着.</div>
+        </div>
+    </div>
+<h2 id="kali攻击机">Kali攻击机</h2>
+<h3 id="arp-scan">arp-scan</h3>
+<p><code>arp-scan</code>是对局域网中的主机进行arp扫描，也可以用于指定的网段. 通过发送ARP请求来发现同一子网中的所有设备，列出它们的IP地址和MAC地址.
+常用参数如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># -f 	从指定文件中读取主机名或地址</span>
+</span></span><span style="display:flex;"><span>arp-scan -f ip.txt
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># -l  从网络接口配置生成地址（扫描本地的局域网）</span>
+</span></span><span style="display:flex;"><span>arp-scan -l
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># -i  各扫描之间的时间差，单位ms</span>
+</span></span><span style="display:flex;"><span>arp-scan -l -i <span style="color:#ae81ff">1000</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># -r  重复扫描的次数</span>
+</span></span><span style="display:flex;"><span>arp-scan -l -r <span style="color:#ae81ff">5</span>
+</span></span></code></pre></div><div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw" aria-hidden="true"></i>nmap together<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">网上有提到可以搭配nmap使用，可以研究一下</div>
+        </div>
+    </div>
+<h3 id="nmap-端口扫描">nmap 端口扫描</h3>
+<p>Nmap的核心是一个网络发现和安全审计工具。它用于发现网络上运行的设备，并检测它们正在运行的服务和操作系统。
+功能有主机发现，端口扫描(<strong>TCP SYN扫描</strong>，TCP CONNECT)，操作系统检测(OS)，服务识别.</p>
+<p><strong>Discovering Devices on a Network</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># -PR arp发现，使用arp数据包查找活动主机</span>
+</span></span><span style="display:flex;"><span>nmap -PR 192.168.0.1/24  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># -sn 不扫描端口，只用ping</span>
+</span></span><span style="display:flex;"><span>nmap -sn 192.168.0.1/24
+</span></span></code></pre></div><p><strong>Port Scanning Techniques</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># -sS SYN扫描 -sU UDP扫描</span>
+</span></span><span style="display:flex;"><span>nmap -sS -sU -p 1-1000 192.168.0.1  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 扫描所有端口</span>
+</span></span><span style="display:flex;"><span>nmap -p- <span style="color:#f92672">[</span>ip<span style="color:#f92672">]</span>
+</span></span></code></pre></div><p><strong>Service and Version Detection</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># 执行中等强度的服务版本检测</span>
+</span></span><span style="display:flex;"><span>nmap -sV --version-intensity <span style="color:#ae81ff">5</span> 192.168.0.105
+</span></span></code></pre></div><h3 id="ddos攻击和slowlories">DDOS攻击和slowlories</h3>
+<blockquote>
+<p>The SlowHTTPTest is a highly configurable tool that simulates some Application Layer Denial of Service attacks by prolonging HTTP connections in different ways.</p>
+</blockquote>
+<p>攻击机向服务器缓慢发送<code>http header</code>，那么此时服务器不会拒绝连接，等待攻击机发送接下来的数据，由此占用服务器资源.</p>
+<div class="details admonition warnning open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw" aria-hidden="true"></i>low bandwidth in slowlories<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">To this day, Slowloris is used around the world by hacktivists to thwart governments, as it uses <strong>very low bandwidth requirements</strong> to achieve its goal of service denial.</div>
+        </div>
+    </div>
+<p>以<code>slowlories</code>为例，使用方法如下</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>-p, --port
+</span></span><span style="display:flex;"><span>Port of webserver, usually <span style="color:#ae81ff">80</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>-s, --sockets
+</span></span><span style="display:flex;"><span>Number of sockets to use in the test
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>-v, --verbose
+</span></span><span style="display:flex;"><span>Increases logging <span style="color:#f92672">(</span>output on terminal<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>-ua, --randuseragents
+</span></span><span style="display:flex;"><span>Randomizes user-agents with each request
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>-x, --useproxy
+</span></span><span style="display:flex;"><span>Use a SOCKS5 proxy <span style="color:#66d9ef">for</span> connecting
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>--https
+</span></span><span style="display:flex;"><span>Use HTTPS <span style="color:#66d9ef">for</span> the requests
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>--sleeptime
+</span></span><span style="display:flex;"><span>Time to sleep between each header sent
+</span></span></code></pre></div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-07-18</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://localhost:1313/posts/config/linux/" data-title="Linux" data-hashtags="linux,kali"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://localhost:1313/posts/config/linux/" data-hashtag="linux"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://localhost:1313/posts/config/linux/" data-title="Linux"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://localhost:1313/posts/config/linux/" data-title="Linux"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://localhost:1313/posts/config/linux/" data-title="Linux"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">Linux</a>,&nbsp;<a href="/tags/kali/">Kali</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/config/docker/" class="prev" rel="prev" title="Docker"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Docker</a>
+            <a href="/posts/memories/high_school/ref3/" class="next" rel="next" title="适时怀念（三）">适时怀念（三）<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.124.1">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Alian</a></span></div>
+    
+        
+        <script async src=" //busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js "></script>
+    
+
+    
+        
+            <section>
+                
+                    <span id="busuanzi_container_value_site_pv"><i class="far fa-eye fa-fw"></i>
+                        
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+
+                
+                    &nbsp;|&nbsp;              
+                
+
+                
+                    <span id="busuanzi_container_value_site_uv"><i class="fa fa-user"></i>
+                        
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+            </section>
+        
+
+        
+        
+    
+
+</div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

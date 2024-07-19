@@ -4,7 +4,7 @@
         <link>http://localhost:1313/posts/</link>
         <description>All Posts | Alian&#39;s Site</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>huamu298@gmail.com (Alian)</managingEditor>
-            <webMaster>huamu298@gmail.com (Alian)</webMaster><lastBuildDate>Tue, 16 Jul 2024 19:27:33 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>huamu298@gmail.com (Alian)</webMaster><lastBuildDate>Fri, 19 Jul 2024 10:19:39 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/posts/" rel="self" type="application/rss+xml" /><item>
     <title>适时怀念（一）</title>
     <link>http://localhost:1313/posts/memories/high_school/ref1/</link>
     <pubDate>Sun, 14 Jul 2024 19:22:20 &#43;0800</pubDate>
@@ -27,6 +27,22 @@
     <author>Alian</author>
     <guid>http://localhost:1313/posts/memories/high_school/ref3/</guid>
     <description><![CDATA[我在合肥八中的三年时间]]></description>
+</item>
+<item>
+    <title>Hugo</title>
+    <link>http://localhost:1313/posts/config/hugo/</link>
+    <pubDate>Fri, 19 Jul 2024 10:19:39 &#43;0800</pubDate>
+    <author>Alian</author>
+    <guid>http://localhost:1313/posts/config/hugo/</guid>
+    <description><![CDATA[ attention please 一个 注意 横幅 Tip 一个 技巧 横幅 Info 一个 信息 横幅 Success 一个 成功 横幅 Question 一个 问题 横幅 Warning 一个 警告 横幅 ]]></description>
+</item>
+<item>
+    <title>Linux技巧</title>
+    <link>http://localhost:1313/posts/config/linux/</link>
+    <pubDate>Thu, 18 Jul 2024 11:24:49 &#43;0800</pubDate>
+    <author>Alian</author>
+    <guid>http://localhost:1313/posts/config/linux/</guid>
+    <description><![CDATA[记录使用linux的一些工具和技巧]]></description>
 </item>
 <item>
     <title>Docker</title>
