@@ -29,15 +29,7 @@
     <description><![CDATA[我在合肥八中的三年时间]]></description>
 </item>
 <item>
-    <title>Hugo</title>
-    <link>http://localhost:1313/posts/config/hugo/</link>
-    <pubDate>Fri, 19 Jul 2024 10:19:39 &#43;0800</pubDate>
-    <author>Alian</author>
-    <guid>http://localhost:1313/posts/config/hugo/</guid>
-    <description><![CDATA[ attention please 一个 注意 横幅 Tip 一个 技巧 横幅 Info 一个 信息 横幅 Success 一个 成功 横幅 Question 一个 问题 横幅 Warning 一个 警告 横幅 ]]></description>
-</item>
-<item>
-    <title>Linux技巧</title>
+    <title>Linux</title>
     <link>http://localhost:1313/posts/config/linux/</link>
     <pubDate>Thu, 18 Jul 2024 11:24:49 &#43;0800</pubDate>
     <author>Alian</author>

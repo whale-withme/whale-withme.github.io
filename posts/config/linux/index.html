@@ -24,7 +24,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/localhost:1313\/posts\/config\/linux\/"
-        },"genre": "posts","keywords": "linux, kali","wordcount":  227 ,
+        },"genre": "posts","keywords": "linux, kali","wordcount":  231 ,
         "url": "http:\/\/localhost:1313\/posts\/config\/linux\/","datePublished": "2024-07-18T11:24:49+08:00","dateModified": "2024-07-18T11:24:49+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -72,7 +72,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Linux</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Alian</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-07-18">2024-07-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;227 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-07-18">2024-07-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;231 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
@@ -141,8 +141,9 @@
         </div>
     </div>
 <h3 id="nmap-端口扫描">nmap 端口扫描</h3>
-<p>Nmap的核心是一个网络发现和安全审计工具。它用于发现网络上运行的设备，并检测它们正在运行的服务和操作系统。
-功能有主机发现，端口扫描(<strong>TCP SYN扫描</strong>，TCP CONNECT)，操作系统检测(OS)，服务识别.</p>
+<p>Nmap的核心是一个网络发现和安全审计工具.它用于发现网络上运行的设备，并检测它们正在运行的服务和操作系统.
+功能有主机发现，端口扫描(<strong>TCP SYN扫描</strong>，TCP CONNECT)，操作系统检测(OS)，服务识别.
+<strong>最主要的功能还是发现指定的IP上有哪些端口仍然是active</strong></p>
 <p><strong>Discovering Devices on a Network</strong></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># -PR arp发现，使用arp数据包查找活动主机</span>
 </span></span><span style="display:flex;"><span>nmap -PR 192.168.0.1/24  
@@ -162,7 +163,9 @@
 <blockquote>
 <p>The SlowHTTPTest is a highly configurable tool that simulates some Application Layer Denial of Service attacks by prolonging HTTP connections in different ways.</p>
 </blockquote>
-<p>攻击机向服务器缓慢发送<code>http header</code>，那么此时服务器不会拒绝连接，等待攻击机发送接下来的数据，由此占用服务器资源.</p>
+<p>攻击机向服务器缓慢发送<code>http header</code>，那么此时服务器不会拒绝连接，等待攻击机发送接下来的数据，由此占用服务器资源.
+slowloris将尝试创建尽可能多的HTTP GET请求，以占用Web服务器允许的所有剩余连接.这些基于线程的Web服务器只有在完成这些GET请求后才会关闭它们的线程.
+只要攻击者在超时之前向服务器提供数据，HTTP请求将保持打开状态.通过发送部分，而不是畸形的数据包，Slowloris可以很容易地通过传统的指令检测系统.</p>
 <div class="details admonition warnning open">
         <div class="details-summary admonition-title">
             <i class="icon fas fa-pencil-alt fa-fw" aria-hidden="true"></i>low bandwidth in slowlories<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
