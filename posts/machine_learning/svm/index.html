@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>SVM - Alian&#39;s Site</title><meta name="Description" content=""><meta property="og:title" content="SVM" />
+<meta property="og:description" content="在线学习算法与支持向量机(SVM)" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/posts/machine_learning/svm/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-07-24T10:06:17+08:00" />
+<meta property="article:modified_time" content="2024-07-24T10:06:17+08:00" /><meta property="og:site_name" content="My cool site" />
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="SVM"/>
+<meta name="twitter:description" content="在线学习算法与支持向量机(SVM)"/>
+<meta name="application-name" content="My cool site">
+<meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/images/web_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://localhost:1313/posts/machine_learning/svm/" /><link rel="prev" href="http://localhost:1313/posts/skill/metasploit/" /><link rel="next" href="http://localhost:1313/posts/memories/high_school/ref3/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "SVM",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/localhost:1313\/posts\/machine_learning\/svm\/"
+        },"genre": "posts","wordcount":  77 ,
+        "url": "http:\/\/localhost:1313\/posts\/machine_learning\/svm\/","datePublished": "2024-07-24T10:06:17+08:00","dateModified": "2024-07-24T10:06:17+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Alian"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Alian&#39;s Site">Alian&#39;s site</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a><a href="javascript:void(0);" class="menu-item language" title="Select Language">
+                    <i class="fa fa-globe" aria-hidden="true"></i>                      
+                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/posts/machine_learning/svm/" selected>English</option></select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Alian&#39;s Site">Alian&#39;s site</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="Select Language">
+                    <i class="fa fa-globe fa-fw" aria-hidden="true"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/posts/machine_learning/svm/" selected>English</option></select>
+                </a></div>
+    </div>
+</header><script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">SVM</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Alian</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-07-24">2024-07-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;77 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;One minute&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#什么是在线学习算法">什么是在线学习算法</a></li>
+    <li><a href="#lingear-svm-工作原理">Lingear SVM 工作原理</a></li>
+    <li><a href="#svm的几个概念">SVM的几个概念</a></li>
+    <li><a href="#svm约束方程">SVM约束方程</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#软间隔与硬间隔">软间隔与硬间隔</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="svm-introduction">SVM introduction</h1>
+<h2 id="什么是在线学习算法">什么是在线学习算法</h2>
+<p>在线学习算法指的是能够随着数据的到来不断更新自己模型的算法，特点是<strong>逐步处理数据，每次处理少量数据点</strong>。
+而离线学习算法一次性处理大量数据，训练完毕后进行测试。</p>
+<table>
+<thead>
+<tr>
+<th>特点</th>
+<th>在线学习算法</th>
+<th>离线学习算法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数据处理</td>
+<td>逐步、持续、少量</td>
+<td>一次性训练处理数据集</td>
+</tr>
+<tr>
+<td>计算和存储需求</td>
+<td>低(只存有模型和少量数据)</td>
+<td>高</td>
+</tr>
+<tr>
+<td>应用场景</td>
+<td>快速响应、处理实时数据</td>
+<td>大量数据</td>
+</tr>
+</tbody>
+</table>
+<h2 id="lingear-svm-工作原理">Lingear SVM 工作原理</h2>
+<p>支持向量机用来对数据点进行分类，通过找到一个 <em><strong>最佳超平面</strong></em> 使得两个类别之间的距离最大。
+选择这样的超平面，可以保持和任意一类的数据点都有最大的距离，分类器的泛化能力越好。SVM的目标就是找到一个最佳超平面，
+这是一个优化问题。</p>
+<div class="details admonition info open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-info-circle fa-fw" aria-hidden="true"></i>什么是分类器的泛化能力<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p>分类器的泛化能力（Generalization Ability）是指分类器在新数据或未见过的数据上的表现能力。
+它衡量的是模型对未知数据的预测准确性，即模型是否能够有效地从训练数据中学习到普遍性的规律，并将其应用于新的数据集。</p>
+<p>&ndash;chatgpt</p>
+</div>
+        </div>
+    </div>
+<p>二维的数据点用直线分类，$p$维向量用$p-1$维超平面来分类。</p>
+<h2 id="svm的几个概念">SVM的几个概念</h2>
+<ul>
+<li><code>support vector</code>(支持向量)： 距离超平面近的数据点，能够很大程度上影响超平面的位置和方向</li>
+<li><code>margin</code>(间距)：两个不同分类数据点相邻最近的超平面，<strong>两个特殊超平面之间的距离</strong>即为margin。 间距越大，泛化能力越强</li>
+<li><code>向量的点积</code>：SVM中经常用到$n$维数据点和超平面的法向量做点积，并加上一个偏置项$b$, 点积即<strong>向量的投影长度</strong></li>
+</ul>
+<p>可以参考这张图片理解，来自<em>medium</em>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/svm_concept.png"
+        data-srcset="/images/svm_concept.png, /images/svm_concept.png 1.5x, /images/svm_concept.png 2x"
+        data-sizes="auto"
+        alt="/images/svm_concept.png"
+        title="svm_concept" /></p>
+<h2 id="svm约束方程">SVM约束方程</h2>
+<p>SVM需要将数据点正确分类，每一个数据点都有$(x_{ni}, y_i)$。 每一个数据点都要在margin间隔之外，
+即需要满足<br>
+$$\vec{w}\cdot\vec{x}_i-b\geq1$,若$y_i=1$$<br>
+或是<br>
+$$\vec{w}\cdot\vec{x}_i-b\leq-1$,若$y_i=-1。$$</p>
+<p>这里的$\vec{w}\cdot\vec{x}_i$是数据点和法向量做点积，对于最佳超平面有<br>
+$$\vec{w}\cdot\vec{x}_i=0$$<br>
+而边界超平面的方程如下</p>
+<p>$$w_{1}x_{1}+w_{2}x_{2}+b=c $$<br>
+$$w_{1}x_{1}+w_{2}x_{2}+b=-c$$</p>
+<p>两边对等式同时除以$c$，即得到判断数据点的边界。 这里的$x_1, x_2$写成的都是点积的展开形式。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/margin%e4%bc%98%e5%8c%96.png"
+        data-srcset="/images/margin%e4%bc%98%e5%8c%96.png, /images/margin%e4%bc%98%e5%8c%96.png 1.5x, /images/margin%e4%bc%98%e5%8c%96.png 2x"
+        data-sizes="auto"
+        alt="/images/margin优化.png"
+        title="svm约束" /><br>
+图中选取的数据点是支持向量</p>
+<blockquote>
+<p>于是我们综合以上式子，有
+$$y_i(\vec{w}\cdot\vec{x}_i-b)\geq1,\quad\text{for all }1\leq i\leq n。$$
+可以用这个式子一起来得到优化问题：<br>
+<strong>$$在y_i(\vec{w}\cdot\overrightarrow{x_i}-b)\geq1条件下，最小化|\vec{w}|,对于i=1,\ldots,n$$</strong></p>
+</blockquote>
+<h1 id="优化方法">优化方法</h1>
+<h2 id="软间隔与硬间隔">软间隔与硬间隔</h2>
+<p>当数据点分布聚类特征不明显时，在支持向量附近可能会有异常点。 这些异常点可能位于间隔之内,
+<strong>如果将这些异常点也作为正常数据求解约束方程，那么间隔一定会变小，这叫做硬间隔。</strong>
+<strong>而软间隔并非完全不算入异常点，而是引入<em>损失因子</em>这个概念，同时折合计算margin的收益</strong><br>
+对应的铰链损失函数<br>
+$$\max\left(0,1-y_{i}\left(\vec{w}\cdot\overrightarrow{x_{i}}-b\right)\right).$$</p>
+<p>对于正确分类的数据点来说，$y_{i}\left(\vec{w}\cdot\overrightarrow{x_{i}}-b\right)$
+值越大，说明数据点的分类越可信(向量在法向量上的投影越长)。值在0-1之间的即为异常点，注意，
+这里的标签已经被贴上，所以所有的数据点计算值都是大于0。异常点有损失而正常点没有。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-07-24</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://localhost:1313/posts/machine_learning/svm/" data-title="SVM"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://localhost:1313/posts/machine_learning/svm/"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://localhost:1313/posts/machine_learning/svm/" data-title="SVM"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://localhost:1313/posts/machine_learning/svm/" data-title="SVM"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://localhost:1313/posts/machine_learning/svm/" data-title="SVM"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/skill/metasploit/" class="prev" rel="prev" title="Metasploit工具"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Metasploit工具</a>
+            <a href="/posts/memories/high_school/ref3/" class="next" rel="next" title="适时怀念（三）">适时怀念（三）<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.124.1">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Alian</a></span></div>
+    
+        
+        <script async src=" //busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js "></script>
+    
+
+    
+        
+            <section>
+                
+                    <span id="busuanzi_container_value_site_pv"><i class="far fa-eye fa-fw"></i>
+                        
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+
+                
+                    &nbsp;|&nbsp;              
+                
+
+                
+                    <span id="busuanzi_container_value_site_uv"><i class="fa fa-user"></i>
+                        
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+            </section>
+        
+
+        
+        
+    
+
+</div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

@@ -13,7 +13,7 @@
 <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Metasploit工具"/>
 <meta name="twitter:description" content="metasploit"/>
 <meta name="application-name" content="My cool site">
-<meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/images/web_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://localhost:1313/posts/skill/metasploit/" /><link rel="prev" href="http://localhost:1313/posts/config/linux/" /><link rel="next" href="http://localhost:1313/posts/memories/high_school/ref3/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/images/web_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://localhost:1313/posts/skill/metasploit/" /><link rel="prev" href="http://localhost:1313/posts/config/linux/" /><link rel="next" href="http://localhost:1313/posts/machine_learning/svm/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -24,7 +24,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/localhost:1313\/posts\/skill\/metasploit\/"
-        },"genre": "posts","wordcount":  348 ,
+        },"genre": "posts","keywords": "kali","wordcount":  354 ,
         "url": "http:\/\/localhost:1313\/posts\/skill\/metasploit\/","datePublished": "2024-07-22T09:15:46+08:00","dateModified": "2024-07-22T09:15:46+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -66,13 +66,49 @@
                     <select class="language-select" onchange="location = this.value;"><option value="/posts/skill/metasploit/" selected>English</option></select>
                 </a></div>
     </div>
-</header><main class="main">
+</header><script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+
+<main class="main">
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Metasploit工具</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Alian</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-07-22">2024-07-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;348 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-07-22">2024-07-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;354 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
@@ -81,7 +117,8 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#basic-command">Basic Command</a>
+    <li><a href="#basic-command">Basic Command</a></li>
+    <li><a href="#show-options">show options</a>
       <ul>
         <li><a href="#help">help</a></li>
         <li><a href="#search">search</a></li>
@@ -89,47 +126,57 @@
     </li>
     <li><a href="#module">Module</a></li>
     <li><a href="#encoder">Encoder</a></li>
+    <li><a href="#payload">Payload</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h1 id="metasploit-concepts">Metasploit Concepts</h1>
 <p>metasploit模块分为exploit, auxiliary, post-exploitation 模块. 首先是利用漏洞阶段，这一部分可能需要辅助模块的帮助，
 比如端口、服务开启等信息. 若成功在目标机上建立了漏洞利用，即创建了一个与目标机之间的<code>session</code>, 之后就能进行进一步的攻击<code>payload</code>.
 官方文档地址<a href="https://docs.metasploit.com/" target="_blank" rel="noopener noreffer ">docs_metasploit</a></p>
+<p>有一些概念需要澄清.</p>
+<ul>
+<li>payload:  是指在成功利用目标系统的漏洞后，实际在目标系统上执行的代码</li>
+<li>session:  攻击者与受害者系统之间已经建立的活动连接</li>
+<li>exploit:  选择特定模块后，设置相应的参数，对目标机进行漏洞利用, 以执行<code>payload</code></li>
+</ul>
 <h2 id="basic-command">Basic Command</h2>
+<h2 id="show-options">show options</h2>
+<p>查看框架各个模块正确运行所需要的一些requirement(需要进入模块后查看)，未进入模块使用<code>show (type)</code>
+查看类型的所有模块信息.</p>
 <h3 id="help">help</h3>
 <p>metasploit提供help命令，例如<code>help search</code>会给出</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>Usage: search <span style="color:#f92672">[</span>&lt;options&gt;<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>&lt;keywords&gt;:&lt;value&gt;<span style="color:#f92672">]</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>Prepending a value with <span style="color:#e6db74">&#39;-&#39;</span> will exclude any matching results.
-</span></span><span style="display:flex;"><span>If no options or keywords are provided, cached results are displayed.
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>OPTIONS:
-</span></span><span style="display:flex;"><span>  -h                   Show this help information
-</span></span><span style="display:flex;"><span>  -o &lt;file&gt;            Send output to a file in csv format
-</span></span><span style="display:flex;"><span>  -S &lt;string&gt;          Regex pattern used to filter search results
-</span></span><span style="display:flex;"><span>  -u                   Use module <span style="color:#66d9ef">if</span> there is one result
-</span></span><span style="display:flex;"><span>  -s &lt;search_column&gt;   Sort the research results based on &lt;search_column&gt; in ascending order
-</span></span><span style="display:flex;"><span>  -r                   Reverse the search results order to descending order
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>Keywords:
-</span></span><span style="display:flex;"><span>  aka              :  Modules with a matching AKA <span style="color:#f92672">(</span>also-known-as<span style="color:#f92672">)</span> name
-</span></span><span style="display:flex;"><span>  author           :  Modules written by this author
-</span></span><span style="display:flex;"><span>  arch             :  Modules affecting this architecture
-</span></span><span style="display:flex;"><span>  bid              :  Modules with a matching Bugtraq ID
-</span></span><span style="display:flex;"><span>  cve              :  Modules with a matching CVE ID
-</span></span><span style="display:flex;"><span>  edb              :  Modules with a matching Exploit-DB ID
-</span></span><span style="display:flex;"><span>  check            :  Modules that support the <span style="color:#e6db74">&#39;check&#39;</span> method
-</span></span><span style="display:flex;"><span>  date             :  Modules with a matching disclosure date
-</span></span><span style="display:flex;"><span>  description      :  Modules with a matching description
-</span></span><span style="display:flex;"><span>  fullname         :  Modules with a matching full name
-</span></span><span style="display:flex;"><span>  mod_time         :  Modules with a matching modification date
-</span></span><span style="display:flex;"><span>  name             :  Modules with a matching descriptive name
-</span></span><span style="display:flex;"><span>  path             :  Modules with a matching path
-</span></span><span style="display:flex;"><span>·····
-</span></span><span style="display:flex;"><span>·····
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">Usage: search <span class="o">[</span>&lt;options&gt;<span class="o">]</span> <span class="o">[</span>&lt;keywords&gt;:&lt;value&gt;<span class="o">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Prepending a value with <span class="s1">&#39;-&#39;</span> will exclude any matching results.
+</span></span><span class="line"><span class="cl">If no options or keywords are provided, cached results are displayed.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">OPTIONS:
+</span></span><span class="line"><span class="cl">  -h                   Show this <span class="nb">help</span> information
+</span></span><span class="line"><span class="cl">  -o &lt;file&gt;            Send output to a file in csv format
+</span></span><span class="line"><span class="cl">  -S &lt;string&gt;          Regex pattern used to filter search results
+</span></span><span class="line"><span class="cl">  -u                   Use module <span class="k">if</span> there is one result
+</span></span><span class="line"><span class="cl">  -s &lt;search_column&gt;   Sort the research results based on &lt;search_column&gt; in ascending order
+</span></span><span class="line"><span class="cl">  -r                   Reverse the search results order to descending order
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Keywords:
+</span></span><span class="line"><span class="cl">  aka              :  Modules with a matching AKA <span class="o">(</span>also-known-as<span class="o">)</span> name
+</span></span><span class="line"><span class="cl">  author           :  Modules written by this author
+</span></span><span class="line"><span class="cl">  arch             :  Modules affecting this architecture
+</span></span><span class="line"><span class="cl">  bid              :  Modules with a matching Bugtraq ID
+</span></span><span class="line"><span class="cl">  cve              :  Modules with a matching CVE ID
+</span></span><span class="line"><span class="cl">  edb              :  Modules with a matching Exploit-DB ID
+</span></span><span class="line"><span class="cl">  check            :  Modules that support the <span class="s1">&#39;check&#39;</span> method
+</span></span><span class="line"><span class="cl">  date             :  Modules with a matching disclosure date
+</span></span><span class="line"><span class="cl">  description      :  Modules with a matching description
+</span></span><span class="line"><span class="cl">  fullname         :  Modules with a matching full name
+</span></span><span class="line"><span class="cl">  mod_time         :  Modules with a matching modification date
+</span></span><span class="line"><span class="cl">  name             :  Modules with a matching descriptive name
+</span></span><span class="line"><span class="cl">  path             :  Modules with a matching path
+</span></span><span class="line"><span class="cl">·····
+</span></span><span class="line"><span class="cl">·····
 </span></span></code></pre></div><h3 id="search">search</h3>
 <p>module的目录组织结构是</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>&lt;No.&gt; &lt;type&gt;/&lt;os&gt;/&lt;service&gt;/&lt;name&gt;
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">&lt;No.&gt; &lt;type&gt;/&lt;os&gt;/&lt;service&gt;/&lt;name&gt;
 </span></span></code></pre></div><p><code>No.</code>是利用漏洞的编号，在熟悉之后可以省去查找路径直接使用<code>use No</code>进入到<code>exploit</code>目录，<code>type</code>可选项如下module描述，
 <code>os</code>是漏洞利用对应的操作系统，如Linu, windows, <code>service</code>是使用的服务种类，可以用<code>nmap</code>在不同的端口看到，比如80的web等等</p>
 <div class="details admonition note open">
@@ -178,12 +225,6 @@
 </div>
         </div>
     </div>
-<p>有一些概念需要澄清.</p>
-<ul>
-<li>payload:  是指在成功利用目标系统的漏洞后，实际在目标系统上执行的代码</li>
-<li>session:  攻击者与受害者系统之间已经建立的活动连接</li>
-<li>exploit:  选择特定模块后，设置相应的参数，对目标机进行漏洞利用, 以执行<code>payload</code></li>
-</ul>
 <h2 id="module">Module</h2>
 <p>metasploit的各个模块都组织到文件夹下，我们需要</p>
 <h2 id="encoder">Encoder</h2>
@@ -195,6 +236,7 @@
             <div class="admonition-content">Encoders transform the original payload, which is typically shellcode or other forms of malicious code, into an altered form that still accomplishes the same objective but is no longer easily recognizable by signature-based security systems.</div>
         </div>
     </div>
+<h2 id="payload">Payload</h2>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
@@ -204,20 +246,20 @@
         <div class="post-info-line">
             <div class="post-info-md"></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://localhost:1313/posts/skill/metasploit/" data-title="Metasploit工具"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://localhost:1313/posts/skill/metasploit/"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://localhost:1313/posts/skill/metasploit/" data-title="Metasploit工具"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://localhost:1313/posts/skill/metasploit/" data-title="Metasploit工具"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://localhost:1313/posts/skill/metasploit/" data-title="Metasploit工具"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://localhost:1313/posts/skill/metasploit/" data-title="Metasploit工具" data-hashtags="kali"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://localhost:1313/posts/skill/metasploit/" data-hashtag="kali"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://localhost:1313/posts/skill/metasploit/" data-title="Metasploit工具"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://localhost:1313/posts/skill/metasploit/" data-title="Metasploit工具"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://localhost:1313/posts/skill/metasploit/" data-title="Metasploit工具"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
             </div>
         </div>
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/kali/">Kali</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
         </section>
     </div>
 
     <div class="post-nav"><a href="/posts/config/linux/" class="prev" rel="prev" title="Linux"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Linux</a>
-            <a href="/posts/memories/high_school/ref3/" class="next" rel="next" title="适时怀念（三）">适时怀念（三）<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+            <a href="/posts/machine_learning/svm/" class="next" rel="next" title="SVM">SVM<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 </article></div>
             </main><footer class="footer">

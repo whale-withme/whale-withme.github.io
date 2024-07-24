@@ -48,7 +48,43 @@
                     <select class="language-select" onchange="location = this.value;"><option value="/tags/env_deploy/" selected>English</option></select>
                 </a></div>
     </div>
-</header><main class="main">
+</header><script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+
+<main class="main">
                 <div class="container"><div class="page archive"><h2 class="single-title animate__animated animate__pulse animate__faster"><i class="fas fa-tag fa-fw" aria-hidden="true"></i>&nbsp;Env_deploy</h2><h3 class="group-title">2024</h3><article class="archive-item">
                         <a href="/posts/config/docker/" class="archive-item-link">Docker</a>
                         <span class="archive-item-date">07-15</span>

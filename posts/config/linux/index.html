@@ -66,7 +66,43 @@
                     <select class="language-select" onchange="location = this.value;"><option value="/posts/config/linux/" selected>English</option></select>
                 </a></div>
     </div>
-</header><main class="main">
+</header><script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+
+<main class="main">
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content" id="toc-content-auto"></div>
@@ -104,10 +140,10 @@
 <ul>
 <li>修改<code>~/.tmux.conf</code>文件配置</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>setw -g mouse-resize-pane on
-</span></span><span style="display:flex;"><span>setw -g mouse-select-pane on
-</span></span><span style="display:flex;"><span>setw -g mouse-select-window on
-</span></span><span style="display:flex;"><span>setw -g mode-mouse on
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">setw -g mouse-resize-pane on
+</span></span><span class="line"><span class="cl">setw -g mouse-select-pane on
+</span></span><span class="line"><span class="cl">setw -g mouse-select-window on
+</span></span><span class="line"><span class="cl">setw -g mode-mouse on
 </span></span></code></pre></div><p>把上面内容加上去，再启动tmux session, ctrl+b进入命令模式，<code>:source ~/.tmux.conf</code>即可生效.</p>
 <div class="details admonition tip open">
         <div class="details-summary admonition-title">
@@ -121,17 +157,17 @@
 <h3 id="arp-scan">arp-scan</h3>
 <p><code>arp-scan</code>是对局域网中的主机进行arp扫描，也可以用于指定的网段. 通过发送ARP请求来发现同一子网中的所有设备，列出它们的IP地址和MAC地址.
 常用参数如下：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># -f 	从指定文件中读取主机名或地址</span>
-</span></span><span style="display:flex;"><span>arp-scan -f ip.txt
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># -l  从网络接口配置生成地址（扫描本地的局域网）</span>
-</span></span><span style="display:flex;"><span>arp-scan -l
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># -i  各扫描之间的时间差，单位ms</span>
-</span></span><span style="display:flex;"><span>arp-scan -l -i <span style="color:#ae81ff">1000</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># -r  重复扫描的次数</span>
-</span></span><span style="display:flex;"><span>arp-scan -l -r <span style="color:#ae81ff">5</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># -f 	从指定文件中读取主机名或地址</span>
+</span></span><span class="line"><span class="cl">arp-scan -f ip.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># -l  从网络接口配置生成地址（扫描本地的局域网）</span>
+</span></span><span class="line"><span class="cl">arp-scan -l
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># -i  各扫描之间的时间差，单位ms</span>
+</span></span><span class="line"><span class="cl">arp-scan -l -i <span class="m">1000</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># -r  重复扫描的次数</span>
+</span></span><span class="line"><span class="cl">arp-scan -l -r <span class="m">5</span>
 </span></span></code></pre></div><div class="details admonition note open">
         <div class="details-summary admonition-title">
             <i class="icon fas fa-pencil-alt fa-fw" aria-hidden="true"></i>nmap together<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
@@ -145,20 +181,20 @@
 功能有主机发现，端口扫描(<strong>TCP SYN扫描</strong>，TCP CONNECT)，操作系统检测(OS)，服务识别.
 <strong>最主要的功能还是发现指定的IP上有哪些端口仍然是active</strong></p>
 <p><strong>Discovering Devices on a Network</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># -PR arp发现，使用arp数据包查找活动主机</span>
-</span></span><span style="display:flex;"><span>nmap -PR 192.168.0.1/24  
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># -sn 不扫描端口，只用ping</span>
-</span></span><span style="display:flex;"><span>nmap -sn 192.168.0.1/24
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># -PR arp发现，使用arp数据包查找活动主机</span>
+</span></span><span class="line"><span class="cl">nmap -PR 192.168.0.1/24  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># -sn 不扫描端口，只用ping</span>
+</span></span><span class="line"><span class="cl">nmap -sn 192.168.0.1/24
 </span></span></code></pre></div><p><strong>Port Scanning Techniques</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># -sS SYN扫描 -sU UDP扫描</span>
-</span></span><span style="display:flex;"><span>nmap -sS -sU -p 1-1000 192.168.0.1  
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 扫描所有端口</span>
-</span></span><span style="display:flex;"><span>nmap -p- <span style="color:#f92672">[</span>ip<span style="color:#f92672">]</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># -sS SYN扫描 -sU UDP扫描</span>
+</span></span><span class="line"><span class="cl">nmap -sS -sU -p 1-1000 192.168.0.1  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 扫描所有端口</span>
+</span></span><span class="line"><span class="cl">nmap -p- <span class="o">[</span>ip<span class="o">]</span>
 </span></span></code></pre></div><p><strong>Service and Version Detection</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># 执行中等强度的服务版本检测</span>
-</span></span><span style="display:flex;"><span>nmap -sV --version-intensity <span style="color:#ae81ff">5</span> 192.168.0.105
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 执行中等强度的服务版本检测</span>
+</span></span><span class="line"><span class="cl">nmap -sV --version-intensity <span class="m">5</span> 192.168.0.105
 </span></span></code></pre></div><h3 id="ddos攻击和slowlories">DDOS攻击和slowlories</h3>
 <blockquote>
 <p>The SlowHTTPTest is a highly configurable tool that simulates some Application Layer Denial of Service attacks by prolonging HTTP connections in different ways.</p>
@@ -175,26 +211,26 @@ slowloris将尝试创建尽可能多的HTTP GET请求，以占用Web服务器允
         </div>
     </div>
 <p>以<code>slowlories</code>为例，使用方法如下</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>-p, --port
-</span></span><span style="display:flex;"><span>Port of webserver, usually <span style="color:#ae81ff">80</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>-s, --sockets
-</span></span><span style="display:flex;"><span>Number of sockets to use in the test
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>-v, --verbose
-</span></span><span style="display:flex;"><span>Increases logging <span style="color:#f92672">(</span>output on terminal<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>-ua, --randuseragents
-</span></span><span style="display:flex;"><span>Randomizes user-agents with each request
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>-x, --useproxy
-</span></span><span style="display:flex;"><span>Use a SOCKS5 proxy <span style="color:#66d9ef">for</span> connecting
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>--https
-</span></span><span style="display:flex;"><span>Use HTTPS <span style="color:#66d9ef">for</span> the requests
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>--sleeptime
-</span></span><span style="display:flex;"><span>Time to sleep between each header sent
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">-p, --port
+</span></span><span class="line"><span class="cl">Port of webserver, usually <span class="m">80</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">-s, --sockets
+</span></span><span class="line"><span class="cl">Number of sockets to use in the <span class="nb">test</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">-v, --verbose
+</span></span><span class="line"><span class="cl">Increases logging <span class="o">(</span>output on terminal<span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">-ua, --randuseragents
+</span></span><span class="line"><span class="cl">Randomizes user-agents with each request
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">-x, --useproxy
+</span></span><span class="line"><span class="cl">Use a SOCKS5 proxy <span class="k">for</span> connecting
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">--https
+</span></span><span class="line"><span class="cl">Use HTTPS <span class="k">for</span> the requests
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">--sleeptime
+</span></span><span class="line"><span class="cl">Time to sleep between each header sent
 </span></span></code></pre></div></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
