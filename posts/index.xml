@@ -4,7 +4,7 @@
         <link>http://localhost:1313/posts/</link>
         <description>All Posts | Alian&#39;s Site</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>huamu298@gmail.com (Alian)</managingEditor>
-            <webMaster>huamu298@gmail.com (Alian)</webMaster><lastBuildDate>Wed, 24 Jul 2024 10:06:17 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>huamu298@gmail.com (Alian)</webMaster><lastBuildDate>Wed, 24 Jul 2024 21:49:59 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/posts/" rel="self" type="application/rss+xml" /><item>
     <title>适时怀念（一）</title>
     <link>http://localhost:1313/posts/memories/high_school/ref1/</link>
     <pubDate>Sun, 14 Jul 2024 19:22:20 &#43;0800</pubDate>
@@ -30,10 +30,10 @@
 </item>
 <item>
     <title>SVM</title>
-    <link>http://localhost:1313/posts/machine_learning/svm/</link>
+    <link>http://localhost:1313/posts/ml/svm/</link>
     <pubDate>Wed, 24 Jul 2024 10:06:17 &#43;0800</pubDate>
     <author>Alian</author>
-    <guid>http://localhost:1313/posts/machine_learning/svm/</guid>
+    <guid>http://localhost:1313/posts/ml/svm/</guid>
     <description><![CDATA[在线学习算法与支持向量机(SVM)]]></description>
 </item>
 <item>

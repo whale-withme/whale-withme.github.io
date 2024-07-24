@@ -7,13 +7,13 @@
         <title>SVM - Alian&#39;s Site</title><meta name="Description" content=""><meta property="og:title" content="SVM" />
 <meta property="og:description" content="在线学习算法与支持向量机(SVM)" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://localhost:1313/posts/machine_learning/svm/" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="http://localhost:1313/posts/ml/svm/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2024-07-24T10:06:17+08:00" />
 <meta property="article:modified_time" content="2024-07-24T10:06:17+08:00" /><meta property="og:site_name" content="My cool site" />
 <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="SVM"/>
 <meta name="twitter:description" content="在线学习算法与支持向量机(SVM)"/>
 <meta name="application-name" content="My cool site">
-<meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/images/web_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://localhost:1313/posts/machine_learning/svm/" /><link rel="prev" href="http://localhost:1313/posts/skill/metasploit/" /><link rel="next" href="http://localhost:1313/posts/memories/high_school/ref3/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/images/web_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://localhost:1313/posts/ml/svm/" /><link rel="prev" href="http://localhost:1313/posts/skill/metasploit/" /><link rel="next" href="http://localhost:1313/posts/memories/high_school/ref3/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -23,9 +23,9 @@
         "inLanguage": "en",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "http:\/\/localhost:1313\/posts\/machine_learning\/svm\/"
-        },"genre": "posts","wordcount":  80 ,
-        "url": "http:\/\/localhost:1313\/posts\/machine_learning\/svm\/","datePublished": "2024-07-24T10:06:17+08:00","dateModified": "2024-07-24T10:06:17+08:00","publisher": {
+            "@id": "http:\/\/localhost:1313\/posts\/ml\/svm\/"
+        },"genre": "posts","wordcount":  118 ,
+        "url": "http:\/\/localhost:1313\/posts\/ml\/svm\/","datePublished": "2024-07-24T10:06:17+08:00","dateModified": "2024-07-24T10:06:17+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
@@ -45,7 +45,7 @@
                     <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
                 </a><a href="javascript:void(0);" class="menu-item language" title="Select Language">
                     <i class="fa fa-globe" aria-hidden="true"></i>                      
-                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/posts/machine_learning/svm/" selected>English</option></select>
+                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/posts/ml/svm/" selected>English</option></select>
                 </a></div>
         </div>
     </div>
@@ -63,7 +63,7 @@
                 <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
             </a><a href="javascript:void(0);" class="menu-item" title="Select Language">
                     <i class="fa fa-globe fa-fw" aria-hidden="true"></i>
-                    <select class="language-select" onchange="location = this.value;"><option value="/posts/machine_learning/svm/" selected>English</option></select>
+                    <select class="language-select" onchange="location = this.value;"><option value="/posts/ml/svm/" selected>English</option></select>
                 </a></div>
     </div>
 </header><script type="text/javascript"
@@ -101,14 +101,19 @@ code.has-jax {
     color: #515151;
 }
 </style>
+<script src="//yihui.org/js/math-code.js" defer></script>
 
+
+<script defer
+  src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
 <main class="main">
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">SVM</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Alian</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-07-24">2024-07-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;80 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-07-24">2024-07-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;118 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;One minute&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
@@ -124,7 +129,12 @@ code.has-jax {
   </ul>
 
   <ul>
-    <li><a href="#拉格朗日乘数法">拉格朗日乘数法</a></li>
+    <li><a href="#拉格朗日乘数法">拉格朗日乘数法</a>
+      <ul>
+        <li><a href="#问题介绍">问题介绍</a></li>
+        <li><a href="#求解方法">求解方法</a></li>
+      </ul>
+    </li>
     <li><a href="#软间隔与硬间隔">软间隔与硬间隔</a></li>
     <li><a href="#对偶型">对偶型</a></li>
     <li><a href="#核技巧">核技巧</a></li>
@@ -220,6 +230,32 @@ $$y_i(\vec{w}\cdot\vec{x}_i-b)\geq1,\quad\text{for all }1\leq i\leq n。$$
 </blockquote>
 <h1 id="优化方法">优化方法</h1>
 <h2 id="拉格朗日乘数法">拉格朗日乘数法</h2>
+<h3 id="问题介绍">问题介绍</h3>
+<p>拉格朗日乘数法是在数学中的最优化问题中，一种寻找<strong>多元函数(n维向量)<strong>在其变量受到</strong>一个或多个条件的约束时的局部极值</strong>的方法。
+如果没有约束条件，利用高数的知识，可以通过求偏导数和梯度等于0的方法，找到函数的极值，
+再比较各个极值，得到想要的最小值和最大值。但是在约束条件之下，我们找的点可能不属于范围。
+拉格朗日乘数法就是利用这种<strong>将约束条件和目标函数用一个表达式来表述</strong>，对这个表达式求梯度和偏导的方法。</p>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>什么是梯度<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">给出多元函数梯度的表达式(以三维为例)<br>
+$$\nabla f=\left(\frac{\partial f}{\partial x},\frac{\partial f}{\partial y},\frac{\partial f}{\partial z}\right)=\frac{\partial f}{\partial x}\mathbf{i}+\frac{\partial f}{\partial y}\mathbf{j}+\frac{\partial f}{\partial z}\mathbf{k}$$<br>
+在$p$点的梯度方向是<strong>该点变化最大的方向</strong><br>
+$$\nabla_x\overset{\mathrm{def}}{\operatorname*{=}}\left[\frac\partial{\partial x_1},\frac\partial{\partial x_2},\cdots,\frac\partial{\partial x_n}\right]^T=\frac\partial{\partial\boldsymbol{x}}$$</div>
+        </div>
+    </div>
+<h3 id="求解方法">求解方法</h3>
+<p>把约束方程和目标函数统一到一个式子下，我们接着就要求新式子的梯度。下面例子<br>
+<div class="details admonition info open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-info-circle fa-fw" aria-hidden="true"></i>线性区域的求解例子<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><code>$$\operatorname*{min}f\left(\boldsymbol{x}\right),\boldsymbol{x}\in\mathbb{R}^{n}\\s.t. g_{i}\left(\boldsymbol{x}\right)=\boldsymbol{a}_{i}^{T}\cdot\boldsymbol{x}+b_{i}\leq0 \text{其中i}=1,2,3 ...\mathrm{m},\boldsymbol{a}_{i}\in\mathbb{R}^{n},b_{i} \in\mathbb{R}\\L(\boldsymbol{x},\boldsymbol{\lambda})=f(\boldsymbol{x})+\sum\lambda_{i} g_{i}\left(\boldsymbol{x}\right)\\\nabla L(\boldsymbol{x},\boldsymbol{\lambda})=0\\-\nabla f(\boldsymbol{x})=\sum\lambda_{i}\cdot\nabla g_{i}\left(\boldsymbol{x}\right)$$</code></div>
+        </div>
+    </div></p>
 <h2 id="软间隔与硬间隔">软间隔与硬间隔</h2>
 <p>当数据点分布聚类特征不明显时，在支持向量附近可能会有异常点。 这些异常点可能位于间隔之内,
 <strong>如果将这些异常点也作为正常数据求解约束方程，那么间隔一定会变小，这叫做硬间隔。</strong>
@@ -240,7 +276,7 @@ $$\max\left(0,1-y_{i}\left(\vec{w}\cdot\overrightarrow{x_{i}}-b\right)\right).$$
         <div class="post-info-line">
             <div class="post-info-md"></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://localhost:1313/posts/machine_learning/svm/" data-title="SVM"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://localhost:1313/posts/machine_learning/svm/"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://localhost:1313/posts/machine_learning/svm/" data-title="SVM"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://localhost:1313/posts/machine_learning/svm/" data-title="SVM"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://localhost:1313/posts/machine_learning/svm/" data-title="SVM"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://localhost:1313/posts/ml/svm/" data-title="SVM"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://localhost:1313/posts/ml/svm/"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://localhost:1313/posts/ml/svm/" data-title="SVM"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://localhost:1313/posts/ml/svm/" data-title="SVM"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://localhost:1313/posts/ml/svm/" data-title="SVM"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
             </div>
         </div>
     </div>
