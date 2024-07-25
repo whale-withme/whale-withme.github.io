@@ -24,7 +24,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/localhost:1313\/posts\/ml\/svm\/"
-        },"genre": "posts","wordcount":  118 ,
+        },"genre": "posts","wordcount":  128 ,
         "url": "http:\/\/localhost:1313\/posts\/ml\/svm\/","datePublished": "2024-07-24T10:06:17+08:00","dateModified": "2024-07-24T10:06:17+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -113,7 +113,7 @@ code.has-jax {
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">SVM</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Alian</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-07-24">2024-07-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;118 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-07-24">2024-07-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;128 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;One minute&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
@@ -247,13 +247,26 @@ $$\nabla_x\overset{\mathrm{def}}{\operatorname*{=}}\left[\frac\partial{\partial 
         </div>
     </div>
 <h3 id="求解方法">求解方法</h3>
-<p>把约束方程和目标函数统一到一个式子下，我们接着就要求新式子的梯度。下面例子<br>
+<p>把约束方程和目标函数统一到一个式子下，我们接着就要求新式子的梯度。拉格朗日函数<br>
+$$L(\boldsymbol{x},\boldsymbol{\lambda},\boldsymbol{v})=f_{0} (\boldsymbol{x})+\sum\lambda_{i} f_{i} (\boldsymbol{x})+\sum\nu_{i} h_{i} (\boldsymbol{x})$$</p>
+<p>下面例子<br>
 <div class="details admonition info open">
         <div class="details-summary admonition-title">
             <i class="icon fas fa-info-circle fa-fw" aria-hidden="true"></i>线性区域的求解例子<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
         </div>
         <div class="details-content">
-            <div class="admonition-content"><code>$$\operatorname*{min}f\left(\boldsymbol{x}\right),\boldsymbol{x}\in\mathbb{R}^{n}\\s.t. g_{i}\left(\boldsymbol{x}\right)=\boldsymbol{a}_{i}^{T}\cdot\boldsymbol{x}+b_{i}\leq0 \text{其中i}=1,2,3 ...\mathrm{m},\boldsymbol{a}_{i}\in\mathbb{R}^{n},b_{i} \in\mathbb{R}\\L(\boldsymbol{x},\boldsymbol{\lambda})=f(\boldsymbol{x})+\sum\lambda_{i} g_{i}\left(\boldsymbol{x}\right)\\\nabla L(\boldsymbol{x},\boldsymbol{\lambda})=0\\-\nabla f(\boldsymbol{x})=\sum\lambda_{i}\cdot\nabla g_{i}\left(\boldsymbol{x}\right)$$</code></div>
+            <div class="admonition-content">目标函数<code>$f(x)$</code>求最小值，同时受到<code>$g(x)$</code>的约束<br>
+<code>$$\operatorname*{min}f\left(\boldsymbol{x}\right),\boldsymbol{x}\in\mathbb{R}^{n}\\s.t. g_{i}\left(\boldsymbol{x}\right)=\boldsymbol{a}_{i}^{T}\cdot\boldsymbol{x}+b_{i}\leq0 \text{其中i}=1,2,3 ...\mathrm{m},\boldsymbol{a}_{i}\in\mathbb{R}^{n},b_{i} \in\mathbb{R}\\L(\boldsymbol{x},\boldsymbol{\lambda})=f(\boldsymbol{x})+\sum\lambda_{i} g_{i}\left(\boldsymbol{x}\right)\\\nabla L(\boldsymbol{x},\boldsymbol{\lambda})=0\\-\nabla f(\boldsymbol{x})=\sum\lambda_{i}\cdot\nabla g_{i}\left(\boldsymbol{x}\right)$$</code><br>
+要想让拉格朗日函数梯度等于零，就要让目标函数<code>$f(x)$</code>梯度方向和在<code>${\lambda}$</code>作用下的约束梯度方向相反。<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/lambda%e7%ba%a6%e6%9d%9f.png"
+        data-srcset="/images/lambda%e7%ba%a6%e6%9d%9f.png, /images/lambda%e7%ba%a6%e6%9d%9f.png 1.5x, /images/lambda%e7%ba%a6%e6%9d%9f.png 2x"
+        data-sizes="auto"
+        alt="/images/lambda约束.png"
+        title="lambda_ge_0" /><br>
+对于线上的点，要求<code>${\lambda}$</code>作用必须大于0，内部点都要等于0.</div>
         </div>
     </div></p>
 <h2 id="软间隔与硬间隔">软间隔与硬间隔</h2>
