@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Analysis_for_botnet_rnn - Alian&#39;s Site</title><meta name="Description" content=""><meta property="og:title" content="Analysis_for_botnet_rnn" />
+<meta property="og:description" content="背景介绍 僵尸网络是一个远程控制的网络，受感染的计算机进行恶意的活动，例如分布式拒绝攻击(DDOS)，包含恶意软件的垃圾邮件、钓鱼网站等等。 通过各种中介手段使目标主机接收到恶意文件，并且打开时，bot即被启动，用于控制和执行命令。 bots的controller还可以不断更新bot程序来调整恶意行为的目标。针对逐渐兴起的，具有内存小、计算能力低的物联网设备， 僵尸网络攻击在这些设备的攻击更流行。
+僵尸网络的生命周期包括扫描受害者，连接到命令和控制服务器，接受命令，执行攻击，更新。 而在这些阶段中，连接到命令和控制服务器是最薄弱的一环，它用来bot 和bot controller进行连接的阶段。 这一部分的流量称之为cc流量。Botnet 检测方法的困难性其中一个关键点就是网络协议众多， 基于签名规则的检测方法只能检测出一小部分(对未知协议的检测能力弱)，以及攻击目的众多，手段丰富，p2p模式等等原因 让僵尸网络的检测非常困难。
+作者提出一种基于行为的botnet检测方法。分析botnet最基本的特征，按照这些特征对网络流量进行时间上的切片分析，聚类得到botnet的网络流量。
+介绍 基于作者先前提出的一种将网络流量按照大小，持续时间，周期性进行分类标记的一种可视序列化的模型方法， 提出的RNN循环神经网络应用于随时间变化的状态序列，经验证是可行的方法。作者提出想要解决的两个问题： 网络的不平衡性和用以处理的序列的最优长度。
+作者提出的模型如图所示
+上面已经提到，作者利用botnet的最基本特征进行检测分析，分别对网络流量的大小、持续时间、周期性进行不同强度等级的分类。 其中最关键的是周期性，，并且对不同长度的时间片进行了额外的标记，超过1h记为无效。至此，网络流量可以得到一串包含数字和字母的字符串。 例如 $$\boxed{2.4.\mathbf{R}^*\mathbf{R}.\mathbf{R}.\mathbf{R}^*\mathbf{a}^*\mathbf{b}^*\mathbf{a}^*\mathbf{a}^*\mathbf{b}^*\mathbf{b}^*\mathbf{a}^*\mathbf{R}.\mathbf{R}^*\mathbf{R}.\mathbf{R}^*\mathbf{a}^*\mathbf{a}^*\mathbf{b}^*\mathbf{a}^*\mathbf{a}^*\mathbf{a}^*\mathbf{a}^*}$$ 对模型的50个特征进行编码，出现的特征标记为1，未出现记为0，即可对每一个字符得到一个包含50特征的行向量。 将这些向量一行一行送入RNN模型中分析，行向量的数量取决于网络流量编码。
+什么是RNN和LSTM 递归神经网络（RNN）是深度学习中用于处理序列数据的基本概念。与传统的神经网络不同，RNN具有允许信息持久化的循环. RNN擅长处理不同长度的文本。它们可以在长序列中维护上下文，使其适合语言建模和文本生成等任务。
+LSTM是长短期记忆，属于RNN的一种，专门用于长时间记忆信息。
+处理不平衡数据 欠采样和过采样技术技术 作者选取的数据集有两种；A僵尸连接数量超过正常连接；B的情况相反。
+两种采样技术都应用于数据集A。使用分层k-fold交叉验证训练LSTM网络，k = 10。
+训练结果如图所示。对于过采样和欠采样，再比对正常采样的结果相差并不大，选择欠采样可以让处理的数据更少。 只是在误报率上，过采样比欠采样表现更好。
+模型的最优长度分析 RNN模型的输入连接数在欠采样技术下计算准确率、误报率
+可以观察到，在25个连接状态的情况下，ADR的平均值更好。超过这个点，平均值下降。在FAR的情况下，这种改进是在50个连接状态的情况下观察到的。
+在25个连接之前，大多数的僵尸网络都能够表示出来，特别是10个链接左右大多数都被标记为botnet。 50个连接之后的准确率平均值不断下降，botnet出现的频率也极少。 对于LSTM模型来说，只考虑前6个连接是准确的，其余即可抛弃。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/posts/ml/analysis_for_botnet_rnn/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-07-29T09:46:38+08:00" />
+<meta property="article:modified_time" content="2024-07-29T09:46:38+08:00" /><meta property="og:site_name" content="My cool site" />
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Analysis_for_botnet_rnn"/>
+<meta name="twitter:description" content="背景介绍 僵尸网络是一个远程控制的网络，受感染的计算机进行恶意的活动，例如分布式拒绝攻击(DDOS)，包含恶意软件的垃圾邮件、钓鱼网站等等。 通过各种中介手段使目标主机接收到恶意文件，并且打开时，bot即被启动，用于控制和执行命令。 bots的controller还可以不断更新bot程序来调整恶意行为的目标。针对逐渐兴起的，具有内存小、计算能力低的物联网设备， 僵尸网络攻击在这些设备的攻击更流行。
+僵尸网络的生命周期包括扫描受害者，连接到命令和控制服务器，接受命令，执行攻击，更新。 而在这些阶段中，连接到命令和控制服务器是最薄弱的一环，它用来bot 和bot controller进行连接的阶段。 这一部分的流量称之为cc流量。Botnet 检测方法的困难性其中一个关键点就是网络协议众多， 基于签名规则的检测方法只能检测出一小部分(对未知协议的检测能力弱)，以及攻击目的众多，手段丰富，p2p模式等等原因 让僵尸网络的检测非常困难。
+作者提出一种基于行为的botnet检测方法。分析botnet最基本的特征，按照这些特征对网络流量进行时间上的切片分析，聚类得到botnet的网络流量。
+介绍 基于作者先前提出的一种将网络流量按照大小，持续时间，周期性进行分类标记的一种可视序列化的模型方法， 提出的RNN循环神经网络应用于随时间变化的状态序列，经验证是可行的方法。作者提出想要解决的两个问题： 网络的不平衡性和用以处理的序列的最优长度。
+作者提出的模型如图所示
+上面已经提到，作者利用botnet的最基本特征进行检测分析，分别对网络流量的大小、持续时间、周期性进行不同强度等级的分类。 其中最关键的是周期性，，并且对不同长度的时间片进行了额外的标记，超过1h记为无效。至此，网络流量可以得到一串包含数字和字母的字符串。 例如 $$\boxed{2.4.\mathbf{R}^*\mathbf{R}.\mathbf{R}.\mathbf{R}^*\mathbf{a}^*\mathbf{b}^*\mathbf{a}^*\mathbf{a}^*\mathbf{b}^*\mathbf{b}^*\mathbf{a}^*\mathbf{R}.\mathbf{R}^*\mathbf{R}.\mathbf{R}^*\mathbf{a}^*\mathbf{a}^*\mathbf{b}^*\mathbf{a}^*\mathbf{a}^*\mathbf{a}^*\mathbf{a}^*}$$ 对模型的50个特征进行编码，出现的特征标记为1，未出现记为0，即可对每一个字符得到一个包含50特征的行向量。 将这些向量一行一行送入RNN模型中分析，行向量的数量取决于网络流量编码。
+什么是RNN和LSTM 递归神经网络（RNN）是深度学习中用于处理序列数据的基本概念。与传统的神经网络不同，RNN具有允许信息持久化的循环. RNN擅长处理不同长度的文本。它们可以在长序列中维护上下文，使其适合语言建模和文本生成等任务。
+LSTM是长短期记忆，属于RNN的一种，专门用于长时间记忆信息。
+处理不平衡数据 欠采样和过采样技术技术 作者选取的数据集有两种；A僵尸连接数量超过正常连接；B的情况相反。
+两种采样技术都应用于数据集A。使用分层k-fold交叉验证训练LSTM网络，k = 10。
+训练结果如图所示。对于过采样和欠采样，再比对正常采样的结果相差并不大，选择欠采样可以让处理的数据更少。 只是在误报率上，过采样比欠采样表现更好。
+模型的最优长度分析 RNN模型的输入连接数在欠采样技术下计算准确率、误报率
+可以观察到，在25个连接状态的情况下，ADR的平均值更好。超过这个点，平均值下降。在FAR的情况下，这种改进是在50个连接状态的情况下观察到的。
+在25个连接之前，大多数的僵尸网络都能够表示出来，特别是10个链接左右大多数都被标记为botnet。 50个连接之后的准确率平均值不断下降，botnet出现的频率也极少。 对于LSTM模型来说，只考虑前6个连接是准确的，其余即可抛弃。"/>
+<meta name="application-name" content="My cool site">
+<meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/images/web_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://localhost:1313/posts/ml/analysis_for_botnet_rnn/" /><link rel="prev" href="http://localhost:1313/posts/slips/rnn_model/" /><link rel="next" href="http://localhost:1313/posts/memories/high_school/ref3/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Analysis_for_botnet_rnn",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/localhost:1313\/posts\/ml\/analysis_for_botnet_rnn\/"
+        },"genre": "posts","wordcount":  43 ,
+        "url": "http:\/\/localhost:1313\/posts\/ml\/analysis_for_botnet_rnn\/","datePublished": "2024-07-29T09:46:38+08:00","dateModified": "2024-07-29T09:46:38+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Alian"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Alian&#39;s Site">Alian&#39;s site</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a><a href="javascript:void(0);" class="menu-item language" title="Select Language">
+                    <i class="fa fa-globe" aria-hidden="true"></i>                      
+                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/posts/ml/analysis_for_botnet_rnn/" selected>English</option></select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Alian&#39;s Site">Alian&#39;s site</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="Select Language">
+                    <i class="fa fa-globe fa-fw" aria-hidden="true"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/posts/ml/analysis_for_botnet_rnn/" selected>English</option></select>
+                </a></div>
+    </div>
+</header><script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+<script src="//yihui.org/js/math-code.js" defer></script>
+
+
+<script defer
+  src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Analysis_for_botnet_rnn</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Alian</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-07-29">2024-07-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;43 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;One minute&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#欠采样和过采样技术技术">欠采样和过采样技术技术</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="背景介绍">背景介绍</h1>
+<p>僵尸网络是一个远程控制的网络，受感染的计算机进行恶意的活动，例如<em>分布式拒绝攻击(DDOS)，包含恶意软件的垃圾邮件、钓鱼网站</em>等等。
+通过各种中介手段使目标主机接收到恶意文件，并且打开时，bot即被启动，用于控制和执行命令。
+bots的controller还可以不断更新bot程序来调整恶意行为的目标。针对逐渐兴起的，具有内存小、计算能力低的<em>物联网设备</em>，
+僵尸网络攻击在这些设备的攻击更流行。</p>
+<p>僵尸网络的生命周期包括扫描受害者，连接到命令和控制服务器，接受命令，执行攻击，更新。
+而在这些阶段中，连接到命令和控制服务器是最薄弱的一环，它用来bot 和bot controller进行连接的阶段。
+这一部分的流量称之为cc流量。Botnet 检测方法的困难性其中一个关键点就是网络协议众多，
+基于签名规则的检测方法只能检测出一小部分(对未知协议的检测能力弱)，以及攻击目的众多，手段丰富，p2p模式等等原因
+让僵尸网络的检测非常困难。</p>
+<blockquote>
+<p>作者提出一种基于行为的botnet检测方法。分析botnet最基本的特征，按照这些特征对网络流量进行时间上的切片分析，聚类得到botnet的网络流量。</p>
+</blockquote>
+<h1 id="介绍">介绍</h1>
+<p>基于作者先前提出的一种将网络流量按照大小，持续时间，周期性进行分类标记的一种可<strong>视序列化的模型方法</strong>，
+提出的RNN循环神经网络应用于随时间变化的状态序列，经验证是可行的方法。作者提出想要解决的两个问题：
+网络的不平衡性和用以处理的序列的最优长度。</p>
+<p>作者提出的模型如图所示<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/model_botnet.png"
+        data-srcset="/images/model_botnet.png, /images/model_botnet.png 1.5x, /images/model_botnet.png 2x"
+        data-sizes="auto"
+        alt="/images/model_botnet.png"
+        title="botnet_model" /><br>
+上面已经提到，作者利用botnet的最基本特征进行检测分析，分别对网络流量的大小、持续时间、周期性进行不同强度等级的分类。
+其中最关键的是周期性，，并且对不同长度的时间片进行了额外的标记，超过1h记为无效。至此，网络流量可以得到一串包含数字和字母的字符串。 <br>
+<code>例如</code>
+<code>$$\boxed{2.4.\mathbf{R}^*\mathbf{R}.\mathbf{R}.\mathbf{R}^*\mathbf{a}^*\mathbf{b}^*\mathbf{a}^*\mathbf{a}^*\mathbf{b}^*\mathbf{b}^*\mathbf{a}^*\mathbf{R}.\mathbf{R}^*\mathbf{R}.\mathbf{R}^*\mathbf{a}^*\mathbf{a}^*\mathbf{b}^*\mathbf{a}^*\mathbf{a}^*\mathbf{a}^*\mathbf{a}^*}$$</code>
+对模型的50个特征进行编码，出现的特征标记为1，未出现记为0，即可对每一个字符得到一个包含50特征的行向量。
+将这些向量一行一行送入RNN模型中分析，行向量的数量取决于网络流量编码。</p>
+<div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw" aria-hidden="true"></i>什么是RNN和LSTM<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p>递归神经网络（RNN）是深度学习中用于<strong>处理序列数据</strong>的基本概念。与传统的神经网络不同，RNN具有允许信息持久化的循环.
+RNN擅长<strong>处理不同长度的文本</strong>。它们可以在长序列中维护上下文，使其适合语言建模和文本生成等任务。</p>
+<p>LSTM是长短期记忆，属于RNN的一种，专门用于长时间记忆信息。</p>
+</div>
+        </div>
+    </div>
+<h1 id="处理不平衡数据">处理不平衡数据</h1>
+<h2 id="欠采样和过采样技术技术">欠采样和过采样技术技术</h2>
+<p>作者选取的数据集有两种；A僵尸连接数量超过正常连接；B的情况相反。<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/dataset_a.png"
+        data-srcset="/images/dataset_a.png, /images/dataset_a.png 1.5x, /images/dataset_a.png 2x"
+        data-sizes="auto"
+        alt="/images/dataset_a.png"
+        title="dataset" /><br>
+两种采样技术都应用于数据集A。使用分层k-fold交叉验证训练LSTM网络，k = 10。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/result_data.png"
+        data-srcset="/images/result_data.png, /images/result_data.png 1.5x, /images/result_data.png 2x"
+        data-sizes="auto"
+        alt="/images/result_data.png"
+        title="result" /><br>
+训练结果如图所示。对于过采样和欠采样，再比对正常采样的结果相差并不大，选择欠采样可以让处理的数据更少。
+只是在误报率上，过采样比欠采样表现更好。</p>
+<h1 id="模型的最优长度分析">模型的最优长度分析</h1>
+<p>RNN模型的输入连接数在欠采样技术下计算准确率、误报率<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/length_model_input.png"
+        data-srcset="/images/length_model_input.png, /images/length_model_input.png 1.5x, /images/length_model_input.png 2x"
+        data-sizes="auto"
+        alt="/images/length_model_input.png"
+        title="connections_input" /><br>
+可以观察到，在25个连接状态的情况下，ADR的平均值更好。超过这个点，平均值下降。在FAR的情况下，这种改进是在50个连接状态的情况下观察到的。</p>
+<p>在25个连接之前，大多数的僵尸网络都能够表示出来，特别是10个链接左右大多数都被标记为botnet。
+50个连接之后的准确率平均值不断下降，botnet出现的频率也极少。
+对于LSTM模型来说，只考虑前6个连接是准确的，其余即可抛弃。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-07-29</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://localhost:1313/posts/ml/analysis_for_botnet_rnn/" data-title="Analysis_for_botnet_rnn"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://localhost:1313/posts/ml/analysis_for_botnet_rnn/"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://localhost:1313/posts/ml/analysis_for_botnet_rnn/" data-title="Analysis_for_botnet_rnn"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://localhost:1313/posts/ml/analysis_for_botnet_rnn/" data-title="Analysis_for_botnet_rnn"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://localhost:1313/posts/ml/analysis_for_botnet_rnn/" data-title="Analysis_for_botnet_rnn"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/slips/rnn_model/" class="prev" rel="prev" title="Rnn_model"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Rnn_model</a>
+            <a href="/posts/memories/high_school/ref3/" class="next" rel="next" title="适时怀念（三）">适时怀念（三）<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.124.1">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Alian</a></span></div>
+    
+        
+        <script async src=" //busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js "></script>
+    
+
+    
+        
+            <section>
+                
+                    <span id="busuanzi_container_value_site_pv"><i class="far fa-eye fa-fw"></i>
+                        
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+
+                
+                    &nbsp;|&nbsp;              
+                
+
+                
+                    <span id="busuanzi_container_value_site_uv"><i class="fa fa-user"></i>
+                        
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+            </section>
+        
+
+        
+        
+    
+
+</div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
