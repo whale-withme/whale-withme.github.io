@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Slips架构与使用方法 - Alian&#39;s Site</title><meta name="Description" content=""><meta property="og:title" content="Slips架构与使用方法" />
+<meta property="og:description" content="StratosphereLinuxIPS的使用方法" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/posts/slips_docs/%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-07-18T10:02:17+08:00" />
+<meta property="article:modified_time" content="2024-07-18T10:02:17+08:00" /><meta property="og:site_name" content="My cool site" />
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Slips架构与使用方法"/>
+<meta name="twitter:description" content="StratosphereLinuxIPS的使用方法"/>
+<meta name="application-name" content="My cool site">
+<meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/images/web_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://localhost:1313/posts/slips_docs/%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" /><link rel="prev" href="http://localhost:1313/posts/config/docker/" /><link rel="next" href="http://localhost:1313/posts/config/linux/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Slips架构与使用方法",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/localhost:1313\/posts\/slips_docs\/%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95\/"
+        },"genre": "posts","wordcount":  418 ,
+        "url": "http:\/\/localhost:1313\/posts\/slips_docs\/%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95\/","datePublished": "2024-07-18T10:02:17+08:00","dateModified": "2024-07-18T10:02:17+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Alian"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Alian&#39;s Site">Alian&#39;s site</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a><a href="javascript:void(0);" class="menu-item language" title="Select Language">
+                    <i class="fa fa-globe" aria-hidden="true"></i>                      
+                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/posts/slips_docs/%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" selected>English</option></select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Alian&#39;s Site">Alian&#39;s site</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="Select Language">
+                    <i class="fa fa-globe fa-fw" aria-hidden="true"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/posts/slips_docs/%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" selected>English</option></select>
+                </a></div>
+    </div>
+</header><script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+<script src="//yihui.org/js/math-code.js" defer></script>
+
+
+<script defer
+  src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Slips架构与使用方法</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Alian</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-07-18">2024-07-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;418 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#flowmldection-module">FlowMLdection Module</a>
+      <ul>
+        <li><a href="#训练方法">训练方法</a></li>
+      </ul>
+    </li>
+    <li><a href="#流量警报">流量警报</a></li>
+    <li><a href="#rnn-cc-detection-module">RNN C&amp;C Detection Module</a></li>
+    <li><a href="#slips输入处理">Slips输入处理</a>
+      <ul>
+        <li><a href="#zeek架构">Zeek架构</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p><strong>Slips是一个模块化的基于行为的Python入侵防御系统，它使用机器学习来检测网络流量中的恶意行为，Slips旨在重点关注有针对性的攻击、命令和控制通道的检测，为分析师提供良好的可视化。Slips能够分析真实的实时流量和以pcap文件、Suricata、Zeek/Bro和Argus流的类型捕获的大型网络，并突出需要深入分析的可疑行为和连接。</strong></p>
+</blockquote>
+<h1 id="slips-architecture">Slips Architecture</h1>
+<p>Slips的架构基本是：接受一些特定类型的文件(pcap, suricata.json, zeek_file)——收集有关流量的信息（这一步主要使用<strong>zeek分析框架</strong>，
+提取有用的信息）——应用检测模块——输出结果.</p>
+<div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw" aria-hidden="true"></i>architecture of slips<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p>手册中两段话概括了slips的工作流程和架构<br>
+As we can see, Slips internally uses <strong>Zeek</strong>, an open source network security monitoring tool. Slips divides flows into profiles and each profile into a <strong>timewindows</strong>.
+(提到了时间窗机制) Slips runs detection modules on each flow and stores all evidence, alerts and features in an appropriate profile structure. All profile info, performed detections, profiles and timewindows’ data, is stored inside a <strong>Redis database</strong>. All flows are read, interpreted by Slips, labeled, and stored in the SQLite database in the output/ dir of each run The output of Slips is a folder with logs (output/ directory) that has alert.json, alerts.log, errors.log. Kalipso, a <strong>terminal graphical user interface. or the Web interface</strong>(提供终端或者web的UI便于开发人员使用).</p>
+<p>Slips works at a <strong>flow level</strong>, instead of a packet level, gaining a high level view of behaviors. Slips creates traffic profiles for each IP that appears in the traffic. A profile contains the complete behavior of an IP address. Each profile is divided into time windows. <strong>Each time window is 1 hour long by default</strong> and contains dozens of features computed for all connections that start in that time window(包含所有的连接). Detections are done in each time window, allowing the profile to be marked as uninfected in the next time window.</p>
+</div>
+        </div>
+    </div>
+<p>slips对输入的流量flow进行划分成单独的IP流对应一个profile, 而这个IP_profile 又划分若干个time_window(默认情况下time_window的长度是1h).
+本人的理解是：slips对pcap文件中的大量流量，先对遇到的ip创建profile, 再按时间窗的长度，比如1h, 在此时间内收集有关此ip的所有信息，
+包括<code>all info about connection and detection label results</code>, 进入下一time_window后，这个IP的evdience又会清空，重新标记为未感染，
+继续收集证据.</p>
+<p>“<em><strong>evidence</strong></em>只在特定IP和特定time_window中收集”，原因上述分析过，使用所有的检测模块来对IP流标记，收集evidence, 超过预设的阈值之后，
+触发alert，并在GUI上标记为红色.</p>
+<div class="details admonition question open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-question-circle fa-fw" aria-hidden="true"></i>alert.log记录确缺失<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">使用<code>arp-scan</code>对靶机扫描时，产生近千条的arp流量，但是alert.log中只记录了两条. 猜测可能是evdience收集积累多条触发，
+或者是在time_window下收集相同的IP, 记录IP的alert. 这和slips的收集警报机制有关</div>
+        </div>
+    </div>
+<h2 id="flowmldection-module">FlowMLdection Module</h2>
+<p>该模块逐个分析流，其格式与 conn.log Zeek 文件中的格式类似。默认情况下，此模块在测试模式下处于启用状态。默认情况下，此模块使用带有线性支持向量机 （SVM） 的 SGDClassifier。之所以决定使用 SVM，是因为它是为数不多的可用于在线学习的算法之一，并且可以使用新数据扩展当前模型。</p>
+<h3 id="训练方法">训练方法</h3>
+<ol>
+<li>编辑配置文件以将Slips设置为训练模式。编辑 <code>config/slips.conf</code> 文件，将Slips设置为训练模式。在 <code>[flowmldetection]</code> 部分搜索单词 <code>train</code>，取消注释 <code>mode = train</code> 并注释掉 <code>mode = test</code>。应该如下所示：</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="k">[flowmldetection]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 模式 &#39;train&#39; 应用于通知flowmldetection模块接收的流量全部用于训练。</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 在 [Parameters] 部分应提供一个标签</span>
+</span></span><span class="line"><span class="cl"><span class="na">mode</span> <span class="o">=</span> <span class="s">train</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 模式 &#39;test&#39; 应在训练模型后使用，以测试未知数据。</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 你应至少使用 &#39;Normal&#39; 数据和 &#39;Malicious&#39; 数据各训练一次，以便测试正常工作。</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#mode = test</span>
+</span></span></code></pre></div><ol start="2">
+<li>设置要重新训练的流量的标签。为要重新训练的所有流量设定通用标签。当前仅支持每个文件一个标签。在 <code>[parameters]</code> 部分搜索并选择将要发送到Slips的流量类型。</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="c1"># 为读取的所有流量设置标签。目前仅支持直接设置为 normal 和 malware。没有通过过滤器设置标签的选项</span>
+</span></span><span class="line"><span class="cl"><span class="na">label</span> <span class="o">=</span> <span class="s">normal</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#label = malicious</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#label = unknown</span>
+</span></span></code></pre></div><ol start="3">
+<li>完成这些编辑后，按通常方式运行Slips，使用任何类型的输入，例如使用Zeek文件夹：</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">./slips.py -c config/slips.conf -f ~/my-computer-normal/
+</span></span></code></pre></div><p>或者使用pcap文件：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">./slips.py -c config/slips.conf -f ~/my-computer-normal2.pcap
+</span></span></code></pre></div><ol start="4">
+<li>
+<p>如果还有恶意流量，首先在 <code>config/slips.conf</code> 中将标签更改为恶意流量：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="c1"># 为读取的所有流量设置标签。目前仅支持直接设置为 normal 和 malware。没有通过过滤器设置标签的选项</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#label = normal</span>
+</span></span><span class="line"><span class="cl"><span class="na">label</span> <span class="o">=</span> <span class="s">malicious</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#label = unknown</span>
+</span></span></code></pre></div><p>然后按通常方式运行Slips，例如使用另一个pcap文件：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">./slips.py -c config/slips.conf -f ~/malware1.pcap
+</span></span></code></pre></div><p>你也可以在接口上运行Slips，并直接用你的数据进行训练：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">./slips.py -c config/slips.conf -i eth0
+</span></span></code></pre></div></li>
+<li>
+<p>最后，使用模型时，将配置文件 <code>config/slips.conf</code> 恢复到测试模式：</p>
+</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="k">[flowmldetection]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 模式 &#39;train&#39; 应用于通知flowmldetection模块接收的流量全部用于训练。</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 在 [Parameters] 部分应提供一个标签</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#mode = train</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 模式 &#39;test&#39; 应在训练模型后使用，以测试未知数据。</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 你应至少使用 &#39;Normal&#39; 数据和 &#39;Malicious&#39; 数据各训练一次，以便测试正常工作。</span>
+</span></span><span class="line"><span class="cl"><span class="na">mode</span> <span class="o">=</span> <span class="s">test</span>
+</span></span></code></pre></div><ol start="6">
+<li>正常使用Slips。在文件或接口中使用Slips：</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">./slips.py -c config/slips.conf -i eth0
+</span></span></code></pre></div><h2 id="流量警报">流量警报</h2>
+<p>流量警报模块具有多种行为技术，通过分析每个流量的内容来检测攻击。</p>
+<h2 id="rnn-cc-detection-module">RNN C&amp;C Detection Module</h2>
+<p>该模块用于通过分析网络流的特征并将其表示为平流层行为信函（Stratoletters）来检测网络中的命令和控制信道。这是通过使用循环神经网络来实现的，该神经网络在这些字母上进行训练，以识别和分类潜在的 C&amp;C 流量。</p>
+<p><strong>僵尸网络</strong>是Stratosphere IPS<strong>重点关注的对象</strong>，他们对此进行了非常深入的研究。
+经过对数据集和其他模型的大量分析，他们发现使用单一的算法模型不能很好的表现复杂且隐蔽的botnet。
+从botnet 流量的<strong>行为特征</strong>入手，他们总结了 <em><strong>流量大小、持续时间、周期性</strong></em> 三个关键要素，并通过提出的基于行为的模型对流量进行一种<strong>字符表示的可视化方法</strong>，
+对复杂的botnet进行标识，很好地反映其基本特征。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/model_botnet.png"
+        data-srcset="/images/model_botnet.png, /images/model_botnet.png 1.5x, /images/model_botnet.png 2x"
+        data-sizes="auto"
+        alt="/images/model_botnet.png"
+        title="model_cc" /></p>
+<div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw" aria-hidden="true"></i>行为模型简介<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">基于流量行为的模型根据不同等级强度的大小、持续时间和周期性对流量进行划分，给予不同的标识符，同时特别关注<strong>时间因素</strong>，
+不同的时间长度也给了不同的标识，超出一定时间的记为无效行为。<strong>每一个给出的标识符都能够写成包含50特征的行向量</strong>，
+这些流量生成的行向量可以作为<strong>RNN模型的输入</strong>，用以训练和测试模型。这是使用神经网络RNN的模型基础。</div>
+        </div>
+    </div>
+<h2 id="slips输入处理">Slips输入处理</h2>
+<p>Slips 使用 Zeek 为大多数输入类型生成文件，此数据用于创建配置文件。例如，Slips 使用此数据为每个时间窗口创建活动的视觉时间线。此时间线包括 Zeek 生成的流程和来自其他日志（如 dns 日志和 http 日志）的其他解释。所以要研究slips的输入和处理模块，我们要先了解zeek的流量包处理逻辑。</p>
+<h3 id="zeek架构">Zeek架构</h3>
+<p>zeek架构的核心是两个组件，分别是<strong>事件引擎(event engine)<strong>和</strong>脚本解释器(script interpreter)</strong><br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/slips/architecture_of_zeek.png"
+        data-srcset="/images/slips/architecture_of_zeek.png, /images/slips/architecture_of_zeek.png 1.5x, /images/slips/architecture_of_zeek.png 2x"
+        data-sizes="auto"
+        alt="/images/slips/architecture_of_zeek.png"
+        title="zeek_architecture" /></p>
+<h1 id="检测方法">检测方法</h1>
+<p>对suricata, snort这样成熟的IDS/IPS，有关的检测围绕着系统的<strong>性能方面</strong>，包括特定配置下的CPU利用率，内存利用情况，
+多线程使用情况，网络处理速度以及丢包率和小部分的误报率。误报率在一篇论文中有特别制作的数据包交给系统检测并比对。</p>
+<p>找到的有利用kali的metasploit模块进行测试准确率，假阳性等数值<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/slips/detect.png"
+        data-srcset="/images/slips/detect.png, /images/slips/detect.png 1.5x, /images/slips/detect.png 2x"
+        data-sizes="auto"
+        alt="/images/slips/detect.png"
+        title="detect_value" /></p>
+<h1 id="heading"></h1>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-07-18</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://localhost:1313/posts/slips_docs/%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" data-title="Slips架构与使用方法"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://localhost:1313/posts/slips_docs/%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://localhost:1313/posts/slips_docs/%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" data-title="Slips架构与使用方法"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://localhost:1313/posts/slips_docs/%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" data-title="Slips架构与使用方法"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://localhost:1313/posts/slips_docs/%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" data-title="Slips架构与使用方法"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/config/docker/" class="prev" rel="prev" title="Docker"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Docker</a>
+            <a href="/posts/config/linux/" class="next" rel="next" title="Linux">Linux<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.124.1">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Alian</a></span></div>
+    
+        
+        <script async src=" //busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js "></script>
+    
+
+    
+        
+            <section>
+                
+                    <span id="busuanzi_container_value_site_pv"><i class="far fa-eye fa-fw"></i>
+                        
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+
+                
+                    &nbsp;|&nbsp;              
+                
+
+                
+                    <span id="busuanzi_container_value_site_uv"><i class="fa fa-user"></i>
+                        
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+            </section>
+        
+
+        
+        
+    
+
+</div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
