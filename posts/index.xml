@@ -5,6 +5,14 @@
         <description>All Posts | Alian&#39;s Site</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>huamu298@gmail.com (Alian)</managingEditor>
             <webMaster>huamu298@gmail.com (Alian)</webMaster><lastBuildDate>Mon, 29 Jul 2024 09:46:38 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>Slips架构与使用方法</title>
+    <link>http://localhost:1313/posts/slips_docs/%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/</link>
+    <pubDate>Thu, 18 Jul 2024 10:02:17 &#43;0800</pubDate>
+    <author>Alian</author>
+    <guid>http://localhost:1313/posts/slips_docs/%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/</guid>
+    <description><![CDATA[StratosphereLinuxIPS的使用方法]]></description>
+</item>
+<item>
     <title>适时怀念（一）</title>
     <link>http://localhost:1313/posts/memories/high_school/ref1/</link>
     <pubDate>Sun, 14 Jul 2024 19:22:20 &#43;0800</pubDate>
@@ -67,14 +75,6 @@
     <author>Alian</author>
     <guid>http://localhost:1313/posts/config/linux/</guid>
     <description><![CDATA[记录使用linux的一些工具和技巧]]></description>
-</item>
-<item>
-    <title>Slips架构与使用方法</title>
-    <link>http://localhost:1313/posts/slips_docs/%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/</link>
-    <pubDate>Thu, 18 Jul 2024 10:02:17 &#43;0800</pubDate>
-    <author>Alian</author>
-    <guid>http://localhost:1313/posts/slips_docs/%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/</guid>
-    <description><![CDATA[StratosphereLinuxIPS的使用方法]]></description>
 </item>
 <item>
     <title>Docker</title>

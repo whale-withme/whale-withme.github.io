@@ -13,7 +13,7 @@
 <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Slips架构与使用方法"/>
 <meta name="twitter:description" content="StratosphereLinuxIPS的使用方法"/>
 <meta name="application-name" content="My cool site">
-<meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/images/web_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://localhost:1313/posts/slips_docs/%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" /><link rel="prev" href="http://localhost:1313/posts/config/docker/" /><link rel="next" href="http://localhost:1313/posts/config/linux/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/images/web_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://localhost:1313/posts/slips_docs/%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" /><link rel="prev" href="http://localhost:1313/posts/memories/high_school/ref1/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -24,7 +24,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/localhost:1313\/posts\/slips_docs\/%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95\/"
-        },"genre": "posts","wordcount":  418 ,
+        },"genre": "posts","wordcount":  535 ,
         "url": "http:\/\/localhost:1313\/posts\/slips_docs\/%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95\/","datePublished": "2024-07-18T10:02:17+08:00","dateModified": "2024-07-18T10:02:17+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -113,8 +113,8 @@ code.has-jax {
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Slips架构与使用方法</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Alian</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-07-18">2024-07-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;418 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-07-18">2024-07-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;535 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -134,6 +134,7 @@ code.has-jax {
         <li><a href="#zeek架构">Zeek架构</a></li>
       </ul>
     </li>
+    <li><a href="#slips输出">Slips输出</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><blockquote>
@@ -235,10 +236,10 @@ As we can see, Slips internally uses <strong>Zeek</strong>, an open source netwo
 <p><img
         class="lazyload"
         src="/svg/loading.min.svg"
-        data-src="/images/model_botnet.png"
-        data-srcset="/images/model_botnet.png, /images/model_botnet.png 1.5x, /images/model_botnet.png 2x"
+        data-src="/images/model_botnet.png#center"
+        data-srcset="/images/model_botnet.png#center, /images/model_botnet.png#center 1.5x, /images/model_botnet.png#center 2x"
         data-sizes="auto"
-        alt="/images/model_botnet.png"
+        alt="/images/model_botnet.png#center"
         title="model_cc" /></p>
 <div class="details admonition note open">
         <div class="details-summary admonition-title">
@@ -257,12 +258,88 @@ As we can see, Slips internally uses <strong>Zeek</strong>, an open source netwo
 <img
         class="lazyload"
         src="/svg/loading.min.svg"
-        data-src="/images/slips/architecture_of_zeek.png"
-        data-srcset="/images/slips/architecture_of_zeek.png, /images/slips/architecture_of_zeek.png 1.5x, /images/slips/architecture_of_zeek.png 2x"
+        data-src="/images/slips/architecture_of_zeek.png#center"
+        data-srcset="/images/slips/architecture_of_zeek.png#center, /images/slips/architecture_of_zeek.png#center 1.5x, /images/slips/architecture_of_zeek.png#center 2x"
         data-sizes="auto"
-        alt="/images/slips/architecture_of_zeek.png"
+        alt="/images/slips/architecture_of_zeek.png#center"
         title="zeek_architecture" /></p>
-<h1 id="检测方法">检测方法</h1>
+<p>事件引擎组件包括多个子组件，特别包括<strong>分组处理流水线</strong>，其包括：输入源、分组分析、会话分析和文件分析。输入源从网络接口接收传入的网络流量。
+数据包分析处理较低级别的协议，从链路层开始。会话分析处理应用层协议，如HTTP、FTP等。文件分析剖析通过会话传输的文件的内容。
+事件引擎提供了一个<strong>插件架构</strong>，用于从核心Zeek代码库外部添加任何这些内容，允许根据需要扩展Zeek的功能。</p>
+<div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw" aria-hidden="true"></i>zeek的包解析<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p>首先，IOSource处理将数据包发送到Zeek。虽然IOSource可用于连接各种捕获机制，但默认源使用libpcap读取PCAP文件或嗅探接口。
+一旦获得，<strong>数据包就被交给数据包分析并逐层处理</strong>。</p>
+<p>数据包协议结构如图<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/slips/protocol.png#center"
+        data-srcset="/images/slips/protocol.png#center, /images/slips/protocol.png#center 1.5x, /images/slips/protocol.png#center 2x"
+        data-sizes="auto"
+        alt="/images/slips/protocol.png#center"
+        title="protocol_layer" /></p>
+<p>协议数据单元PDU由报头和有效载荷组成，有效载荷包括下一层的报头和有效载荷。</p>
+<p>每个数据包分析器根据实现的协议解析数据包的报头，<strong>为封装的协议确定合适的分析器</strong>，并将其有效载荷交给下一个分析器。
+一旦到达IP层，数据包分析就完成了，Zeek继续为观察到的连接构建会话。在会话分析（包括TCP和UDP的处理）之后，
+数据包继续其旅程，进入应用层分析器的领域。在那里，动态协议检测用于确定应用层协议并继续分析。</p>
+</div>
+        </div>
+    </div>
+<h2 id="slips输出">Slips输出</h2>
+<p>输出以日志的形式呈现，包括<code>alert.log</code> <code>error.log</code> <code>slips.log</code> 等。其中<code>alert.log</code> 记录了触发警报的信息，
+根据收集到的evidence区分不同等级的threat。具体威胁分级如下</p>
+  <table>
+	<tbody>
+		<tr>
+			<th>Threat Level</th>
+			<th>Description</th>
+			<th>Example</th>
+		</tr>
+		<tr>
+			<td>lnfo</td>
+			<td>Information, Do nothing</td>
+			<td>SSH login</td>
+		</tr>
+		<tr>
+			<td>Low</td>
+			<td>Interesting activity to consider</td>
+			<td>DNS S without connection</td>
+		</tr>
+		<tr>
+			<td>Medium</td>
+			<td>Suspicious activity that shouldn't happen</td>
+			<td>PING Sweep</td>
+		</tr>
+		<tr>
+			<td>High</td>
+			<td>Malicious activity</td>
+			<td>Password c guessing</td>
+		</tr>
+		<tr>
+			<td>Critical</td>
+			<td>Critical for your tv results s in a direct block</td>
+			<td>Malicious downloaded Files T</td>
+		</tr>
+	</tbody>
+ </table>  
+<p>给出两个<code>alert.log</code>记录例子</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">2023-09-06T19:13:16.590004+00:00 <span class="o">(</span>TW 1<span class="o">)</span>: Src IP 192.168.137.210 . Detected A connection from a private IP <span class="o">(</span>192.168.137.210<span class="o">)</span> outside of the used <span class="nb">local</span> network 10.0.0.0/8. To IP: 54.76.59.244  threat level: low. 
+</span></span><span class="line"><span class="cl">2023-09-06T19:13:16.590004+00:00 <span class="o">(</span>TW 1<span class="o">)</span>: Src IP 192.168.137.210. Detected non-SSL established connection to port 443. destination IP: 54.76.59.244  threat level: medium.   
+</span></span></code></pre></div><p>图形化界面有web和终端模式，每个ip下有时间窗time window可以看到traffic的具体信息<br>
+例如<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/slips/terminal_mode.png"
+        data-srcset="/images/slips/terminal_mode.png, /images/slips/terminal_mode.png 1.5x, /images/slips/terminal_mode.png 2x"
+        data-sizes="auto"
+        alt="/images/slips/terminal_mode.png"
+        title="terminal_mode" /></p>
+<h1 id="性能检测方法">性能检测方法</h1>
 <p>对suricata, snort这样成熟的IDS/IPS，有关的检测围绕着系统的<strong>性能方面</strong>，包括特定配置下的CPU利用率，内存利用情况，
 多线程使用情况，网络处理速度以及丢包率和小部分的误报率。误报率在一篇论文中有特别制作的数据包交给系统检测并比对。</p>
 <p>找到的有利用kali的metasploit模块进行测试准确率，假阳性等数值<br>
@@ -296,8 +373,7 @@ As we can see, Slips internally uses <strong>Zeek</strong>, an open source netwo
         </section>
     </div>
 
-    <div class="post-nav"><a href="/posts/config/docker/" class="prev" rel="prev" title="Docker"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Docker</a>
-            <a href="/posts/config/linux/" class="next" rel="next" title="Linux">Linux<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+    <div class="post-nav"><a href="/posts/memories/high_school/ref1/" class="prev" rel="prev" title="适时怀念（一）"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>适时怀念（一）</a></div>
 </div>
 </article></div>
             </main><footer class="footer">
