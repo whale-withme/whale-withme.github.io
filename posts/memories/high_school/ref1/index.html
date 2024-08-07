@@ -128,14 +128,34 @@ code.has-jax {
     <li><a href="#3">3</a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><div class="details admonition tip open">
+            </div><div class="content" id="content"><p><div class="post-password">
+  
+  
+  <script>
+    (function(){
+      var password = prompt('请输入文章密码');
+      if (password !== 'pp'){
+        alert('密码错误！');
+        if (history.length === 1) {
+          window.opener = null;
+          window.open('', '_self');
+          window.close();
+        } else {
+          history.back();
+        }
+      }
+    })();
+  </script>
+  
+</div>
+<div class="details admonition tip open">
         <div class="details-summary admonition-title">
             <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>回忆<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
         </div>
         <div class="details-content">
             <div class="admonition-content">中学的那段golden days 不断让我往回看，除了夏天、重重的书包，我还认识很多好朋友，那些都是美好的回忆。</div>
         </div>
-    </div>
+    </div></p>
 <h2 id="0">0</h2>
 <p>22年高考结束，两年过去，我发现自己回想起那段时光越来越迟钝。想不起名字、地点，甚至大段的记忆。趁还有回忆，快快记录下来。</p>
 <h2 id="1">1</h2>
