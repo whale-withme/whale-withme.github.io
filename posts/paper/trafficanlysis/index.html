@@ -24,7 +24,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/localhost:1313\/posts\/paper\/trafficanlysis\/"
-        },"genre": "posts","wordcount":  239 ,
+        },"genre": "posts","wordcount":  370 ,
         "url": "http:\/\/localhost:1313\/posts\/paper\/trafficanlysis\/","datePublished": "2024-09-06T19:23:17+08:00","dateModified": "2024-09-06T19:23:17+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -113,7 +113,7 @@ code.has-jax {
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">流量分析论文笔记</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Alian</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-09-06">2024-09-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;239 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-09-06">2024-09-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;370 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
@@ -417,6 +417,68 @@ ML方法一般更可靠，DL更像是黑盒工具</p>
         title="doubleModule" /><br>
 异常检测只是文章中提到的场景之一，介绍的不多，重点是上图展示的使用结合分类器和基于异常检测两种模型的堆叠模型。
 我们之前也找到过类似的文章，但是具体的开源代码实现并没有看到过。优点是技能结合准确率，又能提高未知攻击的检测能力。</p>
+<h1 id="slips丢包率研究">Slips丢包率研究</h1>
+<p>slips生成的<code>conn.log</code>可以显示检测的连接，同时<code>capture_loss.log</code>可以看到为抓取的数据包。例如</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="o">{</span><span class="s2">&#34;ts&#34;</span>:1694027530.784365,<span class="s2">&#34;ts_delta&#34;</span>:60.00147986412048,<span class="s2">&#34;peer&#34;</span>:<span class="s2">&#34;zeek&#34;</span>,<span class="s2">&#34;gaps&#34;</span>:0,<span class="s2">&#34;acks&#34;</span>:0,<span class="s2">&#34;percent_lost&#34;</span>:0.0<span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">{</span><span class="s2">&#34;ts&#34;</span>:1694027700.39306,<span class="s2">&#34;ts_delta&#34;</span>:169.6086950302124,<span class="s2">&#34;peer&#34;</span>:<span class="s2">&#34;zeek&#34;</span>,<span class="s2">&#34;gaps&#34;</span>:18,<span class="s2">&#34;acks&#34;</span>:38,<span class="s2">&#34;percent_lost&#34;</span>:47.36842105263158<span class="o">}</span>
+</span></span></code></pre></div><p>这里还标注了percent_loss，但在手册中没有找到这个数据是怎么给出的。于是尝试在slips的zeek_script模块写脚本，
+zeek本身是带有数据包的检测。编写的脚本文件如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">@load base/bif/stats.bif.zeek  <span class="c1"># 导入base/bif/stats.bif.zeek模块</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">module CustomNetStats<span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 定义一个变量，用于存储最后的包统计信息</span>
+</span></span><span class="line"><span class="cl">    global last_stat: NetStats<span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 事件，用于定期更新netstats信息，并输出到终端</span>
+</span></span><span class="line"><span class="cl">event net_stats_update<span class="o">(</span>last_stat: NetStats<span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 获取当前的网络统计信息</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">local</span> <span class="nv">ns</span> <span class="o">=</span> get_net_stats<span class="o">()</span><span class="p">;</span>  <span class="c1"># 调用base/bif/stats.bif.zeek中的函数获取网络统计数据</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">local</span> <span class="nv">new_dropped</span> <span class="o">=</span> ns<span class="nv">$pkts_dropped</span> - last_stat<span class="nv">$pkts_dropped</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    print fmt<span class="o">(</span><span class="s2">&#34;Packets dropped:%d, received:%d&#34;</span>, ns<span class="nv">$pkts_dropped</span>, ns<span class="nv">$pkts_recvd</span><span class="o">)</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># 如果有丢包，输出丢包数量到终端</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span> new_dropped &gt; <span class="m">0</span> <span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">local</span> <span class="nv">new_recvd</span> <span class="o">=</span> ns<span class="nv">$pkts_recvd</span> - last_stat<span class="nv">$pkts_recvd</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">local</span> <span class="nv">new_link</span> <span class="o">=</span> ns<span class="nv">$pkts_link</span> - last_stat<span class="nv">$pkts_link</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1"># 输出丢包统计信息到终端</span>
+</span></span><span class="line"><span class="cl">        print fmt<span class="o">(</span><span class="s2">&#34;NetStats Update - Packets dropped: %d, Packets received: %d, Link packets: %d&#34;</span>,
+</span></span><span class="line"><span class="cl">                  new_dropped, new_recvd + new_dropped,
+</span></span><span class="line"><span class="cl">                  new_link<span class="o">)</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># 继续调度下一个更新</span>
+</span></span><span class="line"><span class="cl">    schedule 5min <span class="o">{</span> net_stats_update<span class="o">(</span>ns<span class="o">)</span> <span class="o">}</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># zeek初始化时，第一次获取netstats并启动定时任务</span>
+</span></span><span class="line"><span class="cl">event zeek_init<span class="o">()</span>
+</span></span><span class="line"><span class="cl">    <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    print <span class="s2">&#34;drop_loss start&#34;</span><span class="p">;</span>  <span class="c1">#成功输出</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 初始化时获取当前的网络统计信息</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="nv">last_stat</span> <span class="o">=</span> get_net_stats<span class="o">()</span><span class="p">;</span>  <span class="c1"># 调用base/bif/stats.bif.zeek中的函数</span>
+</span></span><span class="line"><span class="cl">    print <span class="s2">&#34;Custom NetStats Output script initialized with BIF stats.&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    schedule 1sec <span class="o">{</span> net_stats_update<span class="o">(</span>last_stat<span class="o">)</span> <span class="o">}</span><span class="p">;</span>  <span class="c1"># 每5分钟调用一次net_stats_update</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></div><p>使用slips的示例文件可以得到一些信息：
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/slips/drop_loss.png"
+        data-srcset="/images/slips/drop_loss.png, /images/slips/drop_loss.png 1.5x, /images/slips/drop_loss.png 2x"
+        data-sizes="auto"
+        alt="/images/slips/drop_loss.png"
+        title="drop_loss" /><br>
+但是结果没进行整理，可能输出到日志文件中更好观察。</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
