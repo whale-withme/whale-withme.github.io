@@ -4,7 +4,7 @@
         <link>http://localhost:1313/</link>
         <description>Alian&#39;s Site</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>huamu298@gmail.com (Alian)</managingEditor>
-            <webMaster>huamu298@gmail.com (Alian)</webMaster><lastBuildDate>Mon, 29 Jul 2024 09:46:38 &#43;0800</lastBuildDate>
+            <webMaster>huamu298@gmail.com (Alian)</webMaster><lastBuildDate>Fri, 06 Sep 2024 19:23:17 &#43;0800</lastBuildDate>
             <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
         <item>
     <title>Slips架构与使用方法</title>
@@ -31,20 +31,20 @@
     <description><![CDATA[我在合肥八中的三年时间]]></description>
 </item>
 <item>
-    <title>Analysis_for_botnet_rnn</title>
+    <title>流量分析论文笔记</title>
+    <link>http://localhost:1313/posts/paper/trafficanlysis/</link>
+    <pubDate>Fri, 06 Sep 2024 19:23:17 &#43;0800</pubDate>
+    <author>Alian</author>
+    <guid>http://localhost:1313/posts/paper/trafficanlysis/</guid>
+    <description><![CDATA[流量分析、入侵检测方面的论文阅读笔记整理]]></description>
+</item>
+<item>
+    <title>Analysis For Botnet RNN</title>
     <link>http://localhost:1313/posts/ml/analysis_for_botnet_rnn/</link>
     <pubDate>Mon, 29 Jul 2024 09:46:38 &#43;0800</pubDate>
     <author>Alian</author>
     <guid>http://localhost:1313/posts/ml/analysis_for_botnet_rnn/</guid>
     <description><![CDATA[slips提出的rnn模型评估分析]]></description>
-</item>
-<item>
-    <title>Rnn_model</title>
-    <link>http://localhost:1313/posts/slips/rnn_model/</link>
-    <pubDate>Fri, 26 Jul 2024 09:53:23 &#43;0800</pubDate>
-    <author>Alian</author>
-    <guid>http://localhost:1313/posts/slips/rnn_model/</guid>
-    <description><![CDATA[]]></description>
 </item>
 <item>
     <title>SVM</title>

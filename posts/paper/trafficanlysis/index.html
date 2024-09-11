@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>流量分析论文笔记 - Alian&#39;s Site</title><meta name="Description" content=""><meta property="og:title" content="流量分析论文笔记" />
+<meta property="og:description" content="流量分析、入侵检测方面的论文阅读笔记整理" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/posts/paper/trafficanlysis/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-09-06T19:23:17+08:00" />
+<meta property="article:modified_time" content="2024-09-06T19:23:17+08:00" /><meta property="og:site_name" content="My cool site" />
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="流量分析论文笔记"/>
+<meta name="twitter:description" content="流量分析、入侵检测方面的论文阅读笔记整理"/>
+<meta name="application-name" content="My cool site">
+<meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/images/web_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://localhost:1313/posts/paper/trafficanlysis/" /><link rel="prev" href="http://localhost:1313/posts/ml/analysis_for_botnet_rnn/" /><link rel="next" href="http://localhost:1313/posts/memories/high_school/ref2/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "流量分析论文笔记",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/localhost:1313\/posts\/paper\/trafficanlysis\/"
+        },"genre": "posts","wordcount":  239 ,
+        "url": "http:\/\/localhost:1313\/posts\/paper\/trafficanlysis\/","datePublished": "2024-09-06T19:23:17+08:00","dateModified": "2024-09-06T19:23:17+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Alian"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Alian&#39;s Site">Alian&#39;s site</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a><a href="javascript:void(0);" class="menu-item language" title="Select Language">
+                    <i class="fa fa-globe" aria-hidden="true"></i>                      
+                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/posts/paper/trafficanlysis/" selected>English</option></select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Alian&#39;s Site">Alian&#39;s site</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="Select Language">
+                    <i class="fa fa-globe fa-fw" aria-hidden="true"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/posts/paper/trafficanlysis/" selected>English</option></select>
+                </a></div>
+    </div>
+</header><script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+<script src="//yihui.org/js/math-code.js" defer></script>
+
+
+<script defer
+  src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">流量分析论文笔记</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Alian</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-09-06">2024-09-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;239 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#知识背景">知识背景</a>
+      <ul>
+        <li><a href="#机器学习与深度学习">机器学习与深度学习</a></li>
+        <li><a href="#加密流量">加密流量</a></li>
+      </ul>
+    </li>
+    <li><a href="#流量表征">流量表征</a></li>
+    <li><a href="#流量分析">流量分析</a></li>
+    <li><a href="#性能分析">性能分析</a>
+      <ul>
+        <li><a href="#性能效率">性能效率</a></li>
+        <li><a href="#泛化能力">泛化能力</a></li>
+      </ul>
+    </li>
+    <li><a href="#异常检测">异常检测</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="slips上性能分析以及导出模块接口">Slips上性能分析以及导出模块接口</h1>
+<h1 id="machine-learning-powered-encrypted-network-traffic-analysis-a-comprehensive-survey笔记">Machine Learning-Powered Encrypted Network Traffic Analysis: A Comprehensive Survey笔记</h1>
+<p><a href="https://ieeexplore.ieee.org/abstract/document/9896143/metrics#metrics" target="_blank" rel="noopener noreffer ">文章</a>主要分析了加密流量分析处理的一般方法流程，是一篇综述性质的文章，用很多篇幅介绍了关于机器学习和深度学习的基本模型，也介绍了加密流量的各种形式。我关注流量的表征、分析部分，并对其余相关拓展做知识补充.<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/slips/workflow.png"
+        data-srcset="/images/slips/workflow.png, /images/slips/workflow.png 1.5x, /images/slips/workflow.png 2x"
+        data-sizes="auto"
+        alt="/images/slips/workflow.png"
+        title="流量分析基本过程" /></p>
+<p>上图展示文章提出的<strong>流量分析步骤：流量收集、流量表征、流量分析、性能评估</strong>。
+流量收集主要介绍linux环境下网络抓包的工具，在各种设备上抓取可用的流量；
+流量表征针对传统机器学习和深度学习的输入要求，<strong>在数据包的流级别和会话级别提取流的特征作为模型的输入特征</strong>；
+流量分析特别介绍了三种智能分析方法，还是<strong>机器学习和深度学习方法为主；最后性能评估对模型的有效性、延迟性、鲁棒性做分析的方法</strong></p>
+<h2 id="知识背景">知识背景</h2>
+<h3 id="机器学习与深度学习">机器学习与深度学习</h3>
+<p>文章重点关注ML和DL方法，开头先对两种常见的模型方法做了总结，ML方法提炼如下：</p>
+<table>
+<thead>
+<tr>
+<th><strong>算法</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>关键特征</strong></th>
+<th><strong>应用</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Markov Model</td>
+<td>随机模型</td>
+<td>基于状态转移概率，当前状态仅依赖于前一状态。</td>
+<td>状态变化建模，概率预测</td>
+</tr>
+<tr>
+<td>k-NN</td>
+<td>监督学习</td>
+<td>通过计算距离（如欧氏距离、曼哈顿距离）寻找目标样本的k个最近邻样本并做出预测。</td>
+<td>分类、回归</td>
+</tr>
+<tr>
+<td>SVM</td>
+<td>监督学习</td>
+<td>使用核函数将低维特征映射到高维，常见的核函数包括线性、多项式、高斯和Sigmoid核。</td>
+<td>分类、回归</td>
+</tr>
+<tr>
+<td>DT</td>
+<td>监督学习</td>
+<td>通过节点和有向边组成决策树，路径从根节点到叶节点代表决策序列。常用算法包括ID3、C4.5、CART。</td>
+<td>分类、回归</td>
+</tr>
+<tr>
+<td>RF</td>
+<td>监督学习</td>
+<td>基于多棵决策树的集成，通过子数据集训练，每棵树投票得出最终结果，解决单一决策树过拟合问题。</td>
+<td>分类、回归</td>
+</tr>
+<tr>
+<td>k-Means</td>
+<td>无监督学习</td>
+<td>基于到簇中心的距离将对象分配到最近的簇，不断更新簇中心，直到收敛为止。</td>
+<td>聚类分析</td>
+</tr>
+</tbody>
+</table>
+<p>DL方法提炼如下:</p>
+<table>
+<thead>
+<tr>
+<th><strong>算法</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>关键特征</strong></th>
+<th><strong>应用</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CNN</td>
+<td>深度学习</td>
+<td>使用卷积操作提取局部特征，通过卷积层和池化层交替处理数据，最终通过全连接层输出结果。</td>
+<td>图像分类、目标检测</td>
+</tr>
+<tr>
+<td>GNN</td>
+<td>深度学习</td>
+<td>处理图结构数据，利用图中节点和边表示数据之间的关系，进行图的特征提取与分析。</td>
+<td>社交网络分析、物理系统建模</td>
+</tr>
+<tr>
+<td>LSTM</td>
+<td>深度学习</td>
+<td>一种特殊的RNN，具有记忆机制，可以有效处理长序列数据，避免普通RNN的梯度消失问题。</td>
+<td>自然语言处理、时间序列预测</td>
+</tr>
+</tbody>
+</table>
+<h3 id="加密流量">加密流量</h3>
+<h2 id="流量表征">流量表征</h2>
+<p>在数据包层面上，基本构成是<em>Flow level</em>，一段数据流可以提供包括平均数据包数量、
+最大数据包长度、最小间隔时间等等特征。这些特征是作为流量分析的重要信息，
+同时更广泛一些还有<em>Session level</em>，主要面向客户端-服务器模式下的数据流，
+除了基本数据流特征外，还考虑端到端之间TCP或UDP连接的一些特性。</p>
+<p>在具体的数据流特征提取上，从机器学习ML或深度学习DL的角度上，从文章中提炼出大体可以分为两类：
+<strong>基于数据包的解析和统计特征、原始数据包</strong><br>
+<div class="details admonition info open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-info-circle fa-fw" aria-hidden="true"></i>ML和DL读取的不同<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p>文章中多处重点强调ML和DL方法的应用，需要注意的是，ML方法和DL在数据输入上有很多的不同</p>
+<table>
+<thead>
+<tr>
+<th>分析方法</th>
+<th>前置知识</th>
+<th>数据输入要求</th>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Machine learning</td>
+<td>需要较强的特征提取能力，对数据中的特征进行清洗、提取工作，处理较复杂</td>
+<td>数据包提取特征</td>
+<td>对训练集和测试集中的数据能够达到比较高的精确度</td>
+<td>泛化能力弱，未出现过的数据识别能力弱</td>
+</tr>
+<tr>
+<td>Deep learning</td>
+<td>弱</td>
+<td>对原始数据包分析</td>
+<td>不需要特征提取工程，可在线学习，有一定泛化能力</td>
+<td>占用资源高、精确度不如ML、对分类处理的数据包要求高</td>
+</tr>
+</tbody>
+</table></div>
+        </div>
+    </div></p>
+<ul>
+<li>基于数据包的特征和统计：从packet的头部提取信息，包括基本的五元组（源/目的 ip，端口和协议），以及存活时间、窗口大小等从TCP头部分析的信息，做深度包解析；以及大量数据流的情况下可以分析期望、方差、平均值、最大/小值等等。</li>
+<li>原始数据包(Raw packet)：深度学习模型接受输入，可以自动提取特征，甚至还可以在图中构建关联</li>
+</ul>
+<h2 id="流量分析">流量分析</h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/slips/ML%20method.jpg"
+        data-srcset="/images/slips/ML%20method.jpg, /images/slips/ML%20method.jpg 1.5x, /images/slips/ML%20method.jpg 2x"
+        data-sizes="auto"
+        alt="/images/slips/ML%20method.jpg"
+        title="ML method" /><br>
+文章中对机器学习和深度学习方法概括得非常全面，注意关注<strong>精确度和模型的可解释性</strong>。
+ML方法一般更可靠，DL更像是黑盒工具</p>
+<h2 id="性能分析">性能分析</h2>
+<div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw" aria-hidden="true"></i>k-fold交叉验证方法<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p>文章提到在ML领域经常使用到的一种对数据集高效利用的方法，还可以减少过拟合的验证方法。查阅资料如下：</p>
+<blockquote>
+<p>“k-fold 交叉验证是一种常用的模型验证方法，用于评估机器学习模型的性能和泛化能力。其核心思想是通过多次划分数据集，并对模型进行多次训练和测试，确保数据集的每个部分都被用于训练和测试，从而最大限度地利用数据，并减少模型对特定训练集划分的依赖。”</p>
+</blockquote>
+<p>训练方法是：每次选择其中一个子集作为测试集，其余 k-1 个子集作为训练集。依次进行 k 次训练和测试，确保每个子集都作为测试集使用一次。
+将 k 次测试的结果（例如准确率、精度、召回率等）进行平均，作为最终模型的评估指标。<br>
+优点：</p>
+<ul>
+<li>最大化数据利用率：每个数据点都会作为训练集和测试集，这样可以充分利用数据，尤其适用于数据量较小的情况。</li>
+<li>降低过拟合风险：由于模型在多个不同的训练/测试集上进行了验证，它能够更好地评估模型在未见数据上的表现，减少过拟合的风险。</li>
+<li>减少训练集选择的偶然性：与单次的训练/测试划分（如hold-out方法）相比，k-fold 交叉验证能更稳定地反映模型的真实性能，因为它消除了某个特定训练集划分可能带来的偏差。</li>
+</ul>
+</div>
+        </div>
+    </div>
+<h3 id="性能效率">性能效率</h3>
+<p>文章提出评估性能指标，用来对包括准确率、误报率、假阳性率等等方面对一个模型系统进行评估。下面是提出的指标集合：</p>
+<table>
+<thead>
+<tr>
+<th><strong>指标</strong></th>
+<th><strong>公式</strong></th>
+<th><strong>含义</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>True Positive (TP)</strong></td>
+<td>N/A</td>
+<td>模型预测为正类且实际为正类的样本数。</td>
+</tr>
+<tr>
+<td><strong>False Positive (FP)</strong></td>
+<td>N/A</td>
+<td>模型预测为正类但实际为负类的样本数。</td>
+</tr>
+<tr>
+<td><strong>True Negative (TN)</strong></td>
+<td>N/A</td>
+<td>模型预测为负类且实际为负类的样本数。</td>
+</tr>
+<tr>
+<td><strong>False Negative (FN)</strong></td>
+<td>N/A</td>
+<td>模型预测为负类但实际为正类的样本数。</td>
+</tr>
+<tr>
+<td><strong>True Positive Rate (TPR)</strong></td>
+<td>TPR = TP / (TP + FN)</td>
+<td>模型正确分类正类样本的能力，表示有多少实际正类样本被模型检测出。</td>
+</tr>
+<tr>
+<td><strong>False Positive Rate (FPR)</strong></td>
+<td>FPR = FP / (FP + TN)</td>
+<td>模型将负类样本误分类为正类的概率，反映模型的误报率。</td>
+</tr>
+<tr>
+<td><strong>Precision (Prec)</strong></td>
+<td>Precision = TP / (TP + FP)</td>
+<td>预测为正类的样本中实际为正类的比例，表示模型在正类预测上的精确性。</td>
+</tr>
+<tr>
+<td><strong>F1 Score</strong></td>
+<td>F1 = 2 * (Precision * Recall) / (Precision + Recall)</td>
+<td>平衡Precision和Recall的指标，特别适合类不平衡数据集的评价。</td>
+</tr>
+<tr>
+<td><strong>ROC Curve</strong></td>
+<td>N/A</td>
+<td>描绘不同阈值下模型的分类性能，用于比较两个模型的优劣。</td>
+</tr>
+<tr>
+<td><strong>AUC (Area Under ROC Curve)</strong></td>
+<td>N/A</td>
+<td>衡量ROC曲线下的面积，数值越大表示模型性能越好，1表示完美分类模型。</td>
+</tr>
+<tr>
+<td><strong>P-R Curve (Precision-Recall)</strong></td>
+<td>N/A</td>
+<td>特别适用于类不平衡数据集的模型评估，在不平衡情况下比ROC曲线更能反映模型性能。</td>
+</tr>
+<tr>
+<td><strong>Mutual Information (MI)</strong></td>
+<td>MI = H(W) - H(W</td>
+<td>F)</td>
+</tr>
+<tr>
+<td><strong>Entropy (H)</strong></td>
+<td>H(X) = -Σ p(x) log p(x)</td>
+<td>衡量数据分布的混乱程度或不确定性，在加密流量分析中用于计算互信息。</td>
+</tr>
+<tr>
+<td><strong>Closed-world Validation</strong></td>
+<td>N/A</td>
+<td>用于验证模型在完全已知类别中的表现，适用于标准分类问题。</td>
+</tr>
+<tr>
+<td><strong>Open-world Validation</strong></td>
+<td>N/A</td>
+<td>模拟现实场景，测试集中包含未知类别样本，评估模型应对未知样本的能力，适用于网络安全等领域。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="泛化能力">泛化能力</h3>
+<p>泛化能力要求分类器能够应对数据不匹配问题，即在训练数据陈旧或训练集和测试集结构不同的情况下，仍能保持良好的性能。为评估模型的泛化能力，
+可以通过重新训练模型所需样本数量来衡量。不同的使用场景下，即使是更换数据集，也能在较小的训练下表现出良好的性能。</p>
+<h2 id="异常检测">异常检测</h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/slips/doubleModule.png"
+        data-srcset="/images/slips/doubleModule.png, /images/slips/doubleModule.png 1.5x, /images/slips/doubleModule.png 2x"
+        data-sizes="auto"
+        alt="/images/slips/doubleModule.png"
+        title="doubleModule" /><br>
+异常检测只是文章中提到的场景之一，介绍的不多，重点是上图展示的使用结合分类器和基于异常检测两种模型的堆叠模型。
+我们之前也找到过类似的文章，但是具体的开源代码实现并没有看到过。优点是技能结合准确率，又能提高未知攻击的检测能力。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-09-06</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://localhost:1313/posts/paper/trafficanlysis/" data-title="流量分析论文笔记"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://localhost:1313/posts/paper/trafficanlysis/"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://localhost:1313/posts/paper/trafficanlysis/" data-title="流量分析论文笔记"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://localhost:1313/posts/paper/trafficanlysis/" data-title="流量分析论文笔记"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://localhost:1313/posts/paper/trafficanlysis/" data-title="流量分析论文笔记"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/ml/analysis_for_botnet_rnn/" class="prev" rel="prev" title="Analysis For Botnet RNN"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Analysis For Botnet RNN</a>
+            <a href="/posts/memories/high_school/ref2/" class="next" rel="next" title="适时怀念（二）">适时怀念（二）<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.124.1">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Alian</a></span></div>
+    
+        
+        <script async src=" //busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js "></script>
+    
+
+    
+        
+            <section>
+                
+                    <span id="busuanzi_container_value_site_pv"><i class="far fa-eye fa-fw"></i>
+                        
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+
+                
+                    &nbsp;|&nbsp;              
+                
+
+                
+                    <span id="busuanzi_container_value_site_uv"><i class="fa fa-user"></i>
+                        
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+            </section>
+        
+
+        
+        
+    
+
+</div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

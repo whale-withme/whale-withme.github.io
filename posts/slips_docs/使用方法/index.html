@@ -24,7 +24,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/localhost:1313\/posts\/slips_docs\/%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95\/"
-        },"genre": "posts","wordcount":  535 ,
+        },"genre": "posts","wordcount":  549 ,
         "url": "http:\/\/localhost:1313\/posts\/slips_docs\/%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95\/","datePublished": "2024-07-18T10:02:17+08:00","dateModified": "2024-07-18T10:02:17+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -113,7 +113,7 @@ code.has-jax {
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Slips架构与使用方法</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Alian</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-07-18">2024-07-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;535 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-07-18">2024-07-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;549 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
@@ -135,6 +135,10 @@ code.has-jax {
       </ul>
     </li>
     <li><a href="#slips输出">Slips输出</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#slips-drop-packets-rate计算">slips drop packets rate计算</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><blockquote>
@@ -351,7 +355,25 @@ As we can see, Slips internally uses <strong>Zeek</strong>, an open source netwo
         data-sizes="auto"
         alt="/images/slips/detect.png"
         title="detect_value" /></p>
-<h1 id="heading"></h1>
+<h2 id="slips-drop-packets-rate计算">slips drop packets rate计算</h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="image.png"
+        data-srcset="image.png, image.png 1.5x, image.png 2x"
+        data-sizes="auto"
+        alt="image.png"
+        title="zeek drop rate" /></p>
+<p>zeek提供了计算drop rate的脚本文件，slips使用zeek作为网络分析的工具，尝试在模块中加入分析的脚本，
+module/zeek_script下应该是可以新添加脚本文件的。待解决的问题：</p>
+<ul>
+<li>检测脚本是否能够工作？输出检测位置？</li>
+<li>检测原理是什么？</li>
+</ul>
+<p>将zeek_script的netstats脚本文件下载到目录中，同时修改<code>_load_script_</code>文件，添加</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">@load ./netstats.zeek
+</span></span></code></pre></div><p>在使用pcap文件测试后，成功load，下一步看如何将脚本文件的结果显示出来。在<code>capture_loss</code>文件中，
+<code>percent_loss</code>一列可以显示丢包百分比。<strong>最后分析完pcap文件会有时间提示，可以作为实时性分析的思路</strong></p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
