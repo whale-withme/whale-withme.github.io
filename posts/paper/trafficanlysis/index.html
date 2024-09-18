@@ -24,7 +24,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/localhost:1313\/posts\/paper\/trafficanlysis\/"
-        },"genre": "posts","wordcount":  370 ,
+        },"genre": "posts","wordcount":  388 ,
         "url": "http:\/\/localhost:1313\/posts\/paper\/trafficanlysis\/","datePublished": "2024-09-06T19:23:17+08:00","dateModified": "2024-09-06T19:23:17+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -113,7 +113,7 @@ code.has-jax {
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">流量分析论文笔记</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Alian</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-09-06">2024-09-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;370 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-09-06">2024-09-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;388 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
@@ -137,6 +137,18 @@ code.has-jax {
       </ul>
     </li>
     <li><a href="#异常检测">异常检测</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#延迟率">延迟率</a>
+      <ul>
+        <li><a href="#方法">方法</a></li>
+        <li><a href="#工具">工具</a></li>
+      </ul>
+    </li>
+    <li><a href="#丢包率">丢包率</a></li>
+    <li><a href="#准确率">准确率</a></li>
+    <li><a href="#cpu-memory使用">CPU Memory使用</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h1 id="slips上性能分析以及导出模块接口">Slips上性能分析以及导出模块接口</h1>
@@ -479,6 +491,29 @@ zeek本身是带有数据包的检测。编写的脚本文件如下：</p>
         alt="/images/slips/drop_loss.png"
         title="drop_loss" /><br>
 但是结果没进行整理，可能输出到日志文件中更好观察。</p>
+<h1 id="性能评估方案">性能评估方案</h1>
+<h2 id="延迟率">延迟率</h2>
+<blockquote>
+<p>延迟率是指系统处理和分析网络流量时产生的延迟。这种延迟可以影响系统的实时性和响应速度。
+检测和评估延迟率可以帮助优化系统性能，确保及时发现潜在的安全威胁。</p>
+</blockquote>
+<h3 id="方法">方法</h3>
+<ol>
+<li>
+<p>使用时间戳比较法：在网络接口上捕获每个数据包时，给数据包打上时间戳，当数据包达到IDS时，
+使用zeek的包检测记录时间戳、或者写脚本记录。比较二者的延迟时间作为延迟，横向比较其他IDS的
+延迟情况。</p>
+</li>
+<li>
+<p>日志比较法：对系统产生的日志文件进行提取时间，包括检测到数据包时间和产生警报的时间，可以借助工具分析。</p>
+</li>
+</ol>
+<h3 id="工具">工具</h3>
+<p>Linux工具：tcpdump、wireshark、ELK（Elasticsearch, Logstash, Kibana）等日志分析工具可用于提取和计算日志中的时间差异</p>
+<h2 id="丢包率">丢包率</h2>
+<p>Slips分别在pcap文件读入和实时检测两方面进行数据包丢包的检测</p>
+<h2 id="准确率">准确率</h2>
+<h2 id="cpu-memory使用">CPU Memory使用</h2>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
