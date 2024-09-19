@@ -24,7 +24,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/localhost:1313\/posts\/paper\/trafficanlysis\/"
-        },"genre": "posts","wordcount":  388 ,
+        },"genre": "posts","wordcount":  496 ,
         "url": "http:\/\/localhost:1313\/posts\/paper\/trafficanlysis\/","datePublished": "2024-09-06T19:23:17+08:00","dateModified": "2024-09-06T19:23:17+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -113,8 +113,8 @@ code.has-jax {
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">流量分析论文笔记</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Alian</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-09-06">2024-09-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;388 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-09-06">2024-09-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;496 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -511,9 +511,38 @@ zeek本身是带有数据包的检测。编写的脚本文件如下：</p>
 <h3 id="工具">工具</h3>
 <p>Linux工具：tcpdump、wireshark、ELK（Elasticsearch, Logstash, Kibana）等日志分析工具可用于提取和计算日志中的时间差异</p>
 <h2 id="丢包率">丢包率</h2>
-<p>Slips分别在pcap文件读入和实时检测两方面进行数据包丢包的检测</p>
+<p>Slips分别在pcap文件读入和实时检测两方面进行数据包丢包的检测，文件读入方面通过drop_loss脚本可以看到检测的丢失包，
+但是在监听网卡上没有出现丢包的检测.pcap文件作为完整的数据包，即使调用脚本检测，丢包率应该也为0，关键是实时检测下
+丢包率的检测。</p>
+<p>脚本在实时检测上没有输出，可能要用slips的zeek_file/capture_loss日志文件来进行分析，里面有percent_lost一列。
+计算方法还需要参考slips的实现手册</p>
 <h2 id="准确率">准确率</h2>
+<p>性能参数定义粗略的有：检测到的流量/数据集中所有流量。尽管可能不反映其中的误报或假阳性流量，这大致反映了IDS的性能表现。
+更细致的流量分析可以参考一般的指标</p>
+<ul>
+<li>TPR (Recall) is the ratio between the number of positive samples correctly classified and the number of actual
+positive samples, ranging between 0 and 1.</li>
+<li>FPR is the ratio between the number of negative samples
+incorrectly classified and the number of actual negative
+samples, ranging between 0 and 1.</li>
+<li>Precision (Prec) is the ratio between the number of
+positive samples correctly classified and the number of
+samples classified as positive, ranging between 0 and 1.</li>
+</ul>
 <h2 id="cpu-memory使用">CPU Memory使用</h2>
+<ul>
+<li>CPU使用情况：如果占用率持续超过 70%，可能意味着 IDS 处理流量或执行规则时需要优化，或者流量非常大。
+记录短时间内 CPU 使用的峰值，评估系统在高峰期的承载能力。</li>
+<li>在不同流量负载下（轻量流量 vs. 高密度流量）分析 CPU 和内存的变化情况</li>
+<li>实时监测通常会占用更多 CPU 和内存资源，特别是在大流量场景下。</li>
+<li>使用 top、htop、free、vmstat 等工具实时监控 CPU 和内存使用。</li>
+</ul>
+<p>评价标准：</p>
+<ol>
+<li>资源消耗稳定性：即使在高负载时，资源消耗也应保持在系统可接受范围内，避免崩溃或过高的延迟。</li>
+<li>可扩展性：系统是否能随着流量和规则集的增加进行有效的扩展，而不会显著增加资源占用。</li>
+<li>实时性：IDS 的实时检测能力是否受到资源消耗的影响。如果高 CPU 或内存占用导致检测延迟或漏报，应考虑进行优化。</li>
+</ol>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
