@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>OS - Tag - Alian&#39;s Site</title>
+        <link>http://localhost:1313/tags/os/</link>
+        <description>OS - Tag - Alian&#39;s Site</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>huamu298@gmail.com (Alian)</managingEditor>
+            <webMaster>huamu298@gmail.com (Alian)</webMaster><lastBuildDate>Tue, 05 Nov 2024 23:40:45 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/os/" rel="self" type="application/rss+xml" /><item>
+    <title>Rust 操作系统笔记 chapter3</title>
+    <link>http://localhost:1313/posts/os/ch3/</link>
+    <pubDate>Tue, 05 Nov 2024 23:40:45 &#43;0800</pubDate>
+    <author>Alian</author>
+    <guid>http://localhost:1313/posts/os/ch3/</guid>
+    <description><![CDATA[针对批处理系统任务切换和时钟中断的代码逻辑分析]]></description>
+</item>
+</channel>
+</rss>
