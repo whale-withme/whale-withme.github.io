@@ -24,7 +24,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/whale.github.io\/posts\/paper\/hydrarpc\/"
-        },"genre": "posts","keywords": "数据存储","wordcount":  217 ,
+        },"genre": "posts","keywords": "数据存储","wordcount":  216 ,
         "url": "https:\/\/whale.github.io\/posts\/paper\/hydrarpc\/","datePublished": "2024-12-21T15:33:19+08:00","dateModified": "2024-12-21T15:33:19+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -107,7 +107,7 @@ color: #515151;
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">HydraRPC</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Alian</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-12-21">2024-12-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;217 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-12-21">2024-12-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;216 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
@@ -116,6 +116,7 @@ color: #515151;
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
+    <li><a href="#数据控制平面">数据控制平面</a></li>
     <li><a href="#绕过缓存的内存共享">绕过缓存的内存共享</a></li>
     <li><a href="#优化的轮询机制">优化的轮询机制</a></li>
     <li><a href="#消息队列">消息队列</a></li>
@@ -160,8 +161,8 @@ color: #515151;
 <h1 id="hydra-设计">Hydra 设计</h1>
 <div align = "center">
 <img src="/images/figure/hydrarpc架构.png" width=70%>
-</div>
-## 数据控制平面  
+</div>  
+<h2 id="数据控制平面">数据控制平面</h2>
 <p>服务器端：</p>
 <ol>
 <li>
