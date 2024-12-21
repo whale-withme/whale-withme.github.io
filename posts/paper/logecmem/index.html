@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>LogECMem - Alian&#39;s Site</title><meta name="Description" content=""><meta property="og:title" content="LogECMem" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/posts/paper/logecmem/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-12-21T15:33:10+08:00" />
+<meta property="article:modified_time" content="2024-12-21T15:33:10+08:00" /><meta property="og:site_name" content="My cool site" />
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="LogECMem"/>
+<meta name="twitter:description" content=""/>
+<meta name="application-name" content="My cool site">
+<meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/images/web_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://localhost:1313/posts/paper/logecmem/" /><link rel="prev" href="http://localhost:1313/posts/tmp/wait/" /><link rel="next" href="http://localhost:1313/posts/paper/hydrarpc/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "LogECMem",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/localhost:1313\/posts\/paper\/logecmem\/"
+        },"genre": "posts","keywords": "数据存储","wordcount":  158 ,
+        "url": "http:\/\/localhost:1313\/posts\/paper\/logecmem\/","datePublished": "2024-12-21T15:33:10+08:00","dateModified": "2024-12-21T15:33:10+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Alian"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Alian&#39;s Site">Alian&#39;s site</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a><a href="javascript:void(0);" class="menu-item language" title="Select Language">
+                    <i class="fa fa-globe" aria-hidden="true"></i>                      
+                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/posts/paper/logecmem/" selected>English</option></select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Alian&#39;s Site">Alian&#39;s site</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="Select Language">
+                    <i class="fa fa-globe fa-fw" aria-hidden="true"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/posts/paper/logecmem/" selected>English</option></select>
+                </a></div>
+    </div>
+</header><script type="text/javascript"
+async
+src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+tex2jax: {
+inlineMath: [['$','$'], ['\\(','\\)']],
+displayMath: [['$$','$$'], ['\[\[','\]\]']],
+processEscapes: true,
+processEnvironments: true,
+skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+TeX: { equationNumbers: { autoNumber: "AMS" },
+extensions: ["AMSmath.js", "AMSsymbols.js"] }
+}
+});
+
+MathJax.Hub.Queue(function() {
+
+
+
+var all = MathJax.Hub.getAllJax(), i;
+for(i = 0; i < all.length; i += 1) {
+all[i].SourceElement().parentNode.className += ' has-jax';
+}
+});
+</script>
+
+<style>
+code.has-jax {
+font: inherit;
+font-size: 100%;
+background: inherit;
+border: inherit;
+color: #515151;
+}
+</style>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">LogECMem</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Alian</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-12-21">2024-12-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;158 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;One minute&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#纠删码erasure-coding">纠删码(erasure coding)</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#基于奇偶校验日志的方案">基于奇偶校验日志的方案</a></li>
+    <li><a href="#快速单故障修复率对可靠性的影响">快速单故障修复率对可靠性的影响</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#基本请求">基本请求</a>
+      <ul>
+        <li><a href="#写">写</a></li>
+        <li><a href="#降级读">降级读</a></li>
+        <li><a href="#更新">更新</a></li>
+      </ul>
+    </li>
+    <li><a href="#多节点故障的修复">多节点故障的修复</a>
+      <ul>
+        <li><a href="#应用于单条带多块故障的plm">应用于单条带多块故障的PLM</a></li>
+      </ul>
+    </li>
+    <li><a href="#单节点修复利用日志节点的带宽加速">单节点修复(利用日志节点的带宽加速)</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="0阅读论文前的知识准备">0、阅读论文前的知识准备</h1>
+<h2 id="纠删码erasure-coding">纠删码(erasure coding)</h2>
+<ol>
+<li>
+<p>介绍：是一种数据保护技术，用于在数据存储或传输过程中通过添加冗余信息实现高可用性和容错能力。它通过对原始数据进行分片，并生成额外的校验信息，在部分数据丢失的情况下能够恢复完整的数据。</p>
+</li>
+<li>
+<p>Reed-Solomon(RS码)：RS码将原始数据视为有限域（伽罗瓦域）上的多项式，并在多个点上对该多项式进行求值，生成编码后的数据。参数 (n, k, m) 为 (总碎片数量，实际数据碎片数量，冗余碎片数量)。如果总碎片中出现了小于等于 m 个碎片的丢失，那么可以利用可逆矩阵运算还原出碎片。例如对于<br>
+$$
+c(x) = d_0 + d_1x + d_2x^2 + \cdots + d_5x^5
+$$</p>
+</li>
+</ol>
+<p>多项式次数为 5，对应实际的数据碎片数量 5，增加冗余信息使用 8 个点计算出 $c_(x)$ 作为传输或保存的总碎片，这样即使是丢失了不超过 3 个碎片，也可以用剩下点快速解方程求出系数(数据)</p>
+<div align="center">   
+<img src="/images/figure/纠删码多项式.png" width = 70% alt="纠删码多项式"/>
+</div>
+<h1 id="1解决的问题和方案概览">1、解决的问题和方案概览</h1>
+<p>内存键值存储在现代高性能计算（HPC）集群中面临的挑战，具体来说是<strong>提高更新的效率和快速的单点修复</strong>。传统的数据块更新方式是原地更新或全条数据带更新，分别面临网络传输高、占用内存大的问题。论文提出</p>
+<ul>
+<li>开发<strong>基于奇偶校验日志的方案</strong>来平衡更新和内存的成本 (对应不同冗余码在更新上的内存、传输开销问题)</li>
+<li>在低内存占用的情况下执行<strong>快速单故障修复的就地更新</strong>的 HybirdPL，并能<strong>利用奇偶性日志记录以及缓冲区日志记录</strong>进行快速更新</li>
+<li>在LogECMem之上设计了高效的修复方案，用于<strong>多故障修复</strong>，以减少基于最先进的奇偶校验日志修复方案的磁盘 IOs</li>
+</ul>
+<h2 id="基于奇偶校验日志的方案">基于奇偶校验日志的方案</h2>
+<p>现有的奇偶校验块更新方案有四种，分别是直接重建、就地更新、全条更新和奇偶记录。<br>
+直接重建需要传输所有的数据块，消耗网络传输；就地更新依赖于更新数据块的增量 $\Delta p$，通过读取奇偶校验块再计算完成就地更新。奇偶校验日志采用的方式是记录下每次$\Delta p = p&rsquo;_i - p_i$，不进行修改原奇偶校验块，需要读取时统一读取所有的增量 $\Delta p$ (利用了增量的可叠加)</p>
+<div align = "center">
+<img src="/images/figure/奇偶更新模式.png" width=70% alt="奇偶更新模式">
+</div>
+<p>全条带更新方案在更新轻量级的工作负载（update-light workload）时，大多数更新的条带（stripe）只包含一个新的数据块，这意味着<strong>在重新计算奇偶校验块时需要检索大量的活跃未变数据块</strong>，这会导致大量的数据传输。在更新轻量级的工作负载中，全条带更新的内存开销仅比原地更新（in-place update）高出 5%，却带来非常多的额外内存开销</p>
+<h2 id="快速单故障修复率对可靠性的影响">快速单故障修复率对可靠性的影响</h2>
+<p>通过结合原地更新和奇偶校验日志记录，平衡更新性能和内存成本，同时保持高效的单节点修复性能。在 HybirdPL 架构中采用一个奇偶校验块，以保证快速的单点修复。</p>
+<h1 id="2hybirdpl-架构目标">2、HybirdPL 架构、目标</h1>
+<div align = "center">
+<img src="/images/figure/hybirdpl架构.png" width=70% alt="hybird架构">
+</div>  
+<p>hybirdPL 的目标有三个，分别是：</p>
+<ul>
+<li>低内存开销：HybridPL 通过对<strong>数据块进行就地更新</strong>来降低内存开销(直接对待更新数据块进行覆盖)</li>
+<li>高效更新：HybridPL 对非异或奇偶校验块执行<strong>奇偶校验日志记录</strong>，并利用日志节点中奇偶校验增量的缓冲区日志记录来加速更新</li>
+<li>高效的单故障修复：HybridPL 在DRAM节点中保留 XOR 奇偶校验块，保证快速的单点修复</li>
+</ul>
+<blockquote>
+<p>单点修复体现在只保留一个 <strong>异或奇偶校验块</strong>，当发生一个数据块出现错误时，快速 <strong>$D_i = D_1 xor D_2 xor &hellip; xor D_k$<strong>计算并覆盖，提高先前提到的可靠性
+这里的校验块功能是不一样的，一个是异或的，非常快速的计算，其余的校验块负责</strong>奇偶校验日志记录</strong></p>
+</blockquote>
+<p>高效更新：HybridPL 将奇偶校验增量存储到日志设备中即可更新奇偶校验块，对于<u>日志设备传输速率慢的问题</u>，提出解决方案：</p>
+<ul>
+<li>HybridPL中的代理也会将数据块的增量发送到所有日志节点</li>
+<li>日志节点计算出奇偶校验增量，写入 DRAM-based 缓冲区(减少IO操作)</li>
+<li>同时利用多个数据块更新对同一奇偶校验块的影响叠加性，也可以合并更新</li>
+<li>这些增量随后被异步的刷新到日志节点上</li>
+</ul>
+<h1 id="3logecmem-设计">3、LogECMem 设计</h1>
+<h2 id="基本请求">基本请求</h2>
+<div align = "center">
+<img src="/images/figure/logecm请求.png" width=70% alt="logecm处理请求">
+</div>
+<h3 id="写">写</h3>
+<p>代理（Proxy）将写入操作中对象的键（key）映射到对象索引中的一个元素。这个元素包含了以下信息：</p>
+<ul>
+<li>Stripe ID：一个唯一的标识符，用于识别对象所属的纠删码条带（stripe）。</li>
+<li>序列号：数据块在stripe内的序列号，这有助于追踪数据块的更新顺序。</li>
+<li>偏移量（Offset）：对象在数据块中的起始位置。</li>
+<li>长度（Length）：对象数据的长度。</li>
+</ul>
+<p>代理根据写请求对象中的键存储到 DRAM 的节点队列当中，当 k 个节点队列中均存在数据块时，这 k 个数据块和奇偶校验码通过条带(stripe)ID关联到一起。
+XOR 校验码直接被存放到 DRAM 节点中，而日志节点先被存放到缓冲区中(<em>为了合并相同条带的奇偶校验增量更新</em>)</p>
+<h3 id="降级读">降级读</h3>
+<p>正常读取失败的对象，触发解码降级读。LogECMem 首先通过查找对象索引获得条带ID，数据块的序列号，偏移量和长度，通过带条带ID的条带索引以及<strong>异或奇偶校验块</strong>收集该条带 k-1 数据块的所有包含对象来重建，
+这里用到了单个 XOR 校验码快速单点修复，修复后再次重新读取。</p>
+<h3 id="更新">更新</h3>
+<ol>
+<li>获取对象信息：代理从对象索引中获取要更新对象的Stripe ID、序列号、偏移量和长度。</li>
+<li>检索旧数据：代理检索包含旧数据块$D_{1}$和对应的XOR奇偶校验块$P_{1}$。</li>
+<li>计算更新差值：代理计算旧数据块$D_{1}$和新数据块$D_{1}^{\prime}$之间的差值$\Delta D_{1}$。</li>
+<li>更新数据块：代理将$D_{1}$替换为$D_{1}^{\prime}$,并计算新的XOR奇偶校验块$P_{1}^{\prime}$。</li>
+<li>发送更新差值：代理将$\Delta D_{1}$发送到存储非XOR奇偶校验块的日志节点$P_{2}$和$P_{3}$。</li>
+<li>计算并存储奇偶校验块更新$:P_{2}$和$P_{3}$节点接收到$\Delta D_{1}$后，计算新的奇偶校验块更新差值$\Delta P_{2}$和$\Delta P_3$,并将它们存储在缓冲区中。</li>
+</ol>
+<p>若在每个日志节点的缓冲区中经常有多个相同条带的奇偶校验增量，可以通过合并增量的方式来保存到一个块当中，LogECMem可以在日志节点更新时减少磁盘io。</p>
+<h2 id="多节点故障的修复">多节点故障的修复</h2>
+<p>在多点修复中，<strong>需要读取和重组多个数据块和奇偶校验块以重建丢失的数据</strong>，提高读取数据块和奇偶校验块/增量的速度是提升性能的关键。</p>
+<h3 id="应用于单条带多块故障的plm">应用于单条带多块故障的PLM</h3>
+<p>为数据校验块预留一段连续的空间，增量更新保存在原数据空间内，以便快速的读取增量进行修复。随之而来的是更新写入增量时随机IO变多问题。提出了两种改进 PLR 的方法：</p>
+<ol>
+<li><strong>PL</strong>：它在计算最新的奇偶校验块时将奇偶校验增量保留在旧的奇偶校验块旁边，以减少磁盘查找。</li>
+<li><strong>PLR-m</strong>：将内存中的增量进行线性合并，缺点是仍然受限于内存的大小。</li>
+<li><strong>PLM</strong>：采用延迟合并策略，先将<strong>奇偶校验增量写入一个连续的磁盘空间</strong>，然后在需要时再将它们合并，合并完成后写入日志节点当中，这种方法允许更多的增量被合并。</li>
+</ol>
+<div align = "center">
+<img src="/images/figure/单条带多节点.png" width=70%>
+</div>
+<h2 id="单节点修复利用日志节点的带宽加速">单节点修复(利用日志节点的带宽加速)</h2>
+<p>日志辅助节点修复方法是从每一个条带上选取一个日志节点，一个磁盘IO读取所有奇偶校验增量的旧奇偶校验块，并重新计算最新的奇偶校验块，以参与修复故障节点的丢失块。
+如果是日志节点发生了故障，那么同样需要从一个可用的日志节点重新获得非异或奇偶校验块。</p>
+<h1 id="4总结">4、总结</h1>
+<p>改进工作的方法：<br>
+(1) 基于合并的缓冲区日志记录（§4.3），使奇偶校验增量能够在经典缓冲区日志记录方法[42]中合并；<br>
+(2) 合并奇偶校验日志记录，即PLM（§5.2），比最先进的方案PLR[16]具有更好的更新和修复性能；<br>
+(3) 日志辅助节点修复，利用内存和磁盘节点（§5.3），比仅使用内存节点获得更好的节点修复性能</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-12-21</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://localhost:1313/posts/paper/logecmem/" data-title="LogECMem" data-hashtags="数据存储"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://localhost:1313/posts/paper/logecmem/" data-hashtag="数据存储"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://localhost:1313/posts/paper/logecmem/" data-title="LogECMem"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://localhost:1313/posts/paper/logecmem/" data-title="LogECMem"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://localhost:1313/posts/paper/logecmem/" data-title="LogECMem"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/">数据存储</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/tmp/wait/" class="prev" rel="prev" title="Nul"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Nul</a>
+            <a href="/posts/paper/hydrarpc/" class="next" rel="next" title="HydraRPC">HydraRPC<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.124.1">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Alian</a></span></div>
+    
+        
+        <script async src=" //busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js "></script>
+    
+
+    
+        
+            <section>
+                
+                    <span id="busuanzi_container_value_site_pv"><i class="far fa-eye fa-fw"></i>
+                        
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+
+                
+                    &nbsp;|&nbsp;              
+                
+
+                
+                    <span id="busuanzi_container_value_site_uv"><i class="fa fa-user"></i>
+                        
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+            </section>
+        
+
+        
+        
+    
+
+</div>
+    </footer>
+    <script type="text/javascript"
+async
+src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+tex2jax: {
+inlineMath: [['$','$'], ['\\(','\\)']],
+displayMath: [['$$','$$'], ['\[\[','\]\]']],
+processEscapes: true,
+processEnvironments: true,
+skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+TeX: { equationNumbers: { autoNumber: "AMS" },
+extensions: ["AMSmath.js", "AMSsymbols.js"] }
+}
+});
+
+MathJax.Hub.Queue(function() {
+
+
+
+var all = MathJax.Hub.getAllJax(), i;
+for(i = 0; i < all.length; i += 1) {
+all[i].SourceElement().parentNode.className += ' has-jax';
+}
+});
+</script>
+
+<style>
+code.has-jax {
+font: inherit;
+font-size: 100%;
+background: inherit;
+border: inherit;
+color: #515151;
+}
+</style></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>CXL SHM - Alian&#39;s Site</title><meta name="Description" content=""><meta property="og:title" content="CXL SHM" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/posts/paper/cxl-shm/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-12-21T15:33:32+08:00" />
+<meta property="article:modified_time" content="2024-12-21T15:33:32+08:00" /><meta property="og:site_name" content="My cool site" />
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="CXL SHM"/>
+<meta name="twitter:description" content=""/>
+<meta name="application-name" content="My cool site">
+<meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/images/web_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://localhost:1313/posts/paper/cxl-shm/" /><link rel="prev" href="http://localhost:1313/posts/paper/hydrarpc/" /><link rel="next" href="http://localhost:1313/posts/memories/high_school/ref2/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "CXL SHM",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/localhost:1313\/posts\/paper\/cxl-shm\/"
+        },"genre": "posts","keywords": "数据存储","wordcount":  232 ,
+        "url": "http:\/\/localhost:1313\/posts\/paper\/cxl-shm\/","datePublished": "2024-12-21T15:33:32+08:00","dateModified": "2024-12-21T15:33:32+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Alian"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Alian&#39;s Site">Alian&#39;s site</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a><a href="javascript:void(0);" class="menu-item language" title="Select Language">
+                    <i class="fa fa-globe" aria-hidden="true"></i>                      
+                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/posts/paper/cxl-shm/" selected>English</option></select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Alian&#39;s Site">Alian&#39;s site</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="Select Language">
+                    <i class="fa fa-globe fa-fw" aria-hidden="true"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/posts/paper/cxl-shm/" selected>English</option></select>
+                </a></div>
+    </div>
+</header><script type="text/javascript"
+async
+src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+tex2jax: {
+inlineMath: [['$','$'], ['\\(','\\)']],
+displayMath: [['$$','$$'], ['\[\[','\]\]']],
+processEscapes: true,
+processEnvironments: true,
+skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+TeX: { equationNumbers: { autoNumber: "AMS" },
+extensions: ["AMSmath.js", "AMSsymbols.js"] }
+}
+});
+
+MathJax.Hub.Queue(function() {
+
+
+
+var all = MathJax.Hub.getAllJax(), i;
+for(i = 0; i < all.length; i += 1) {
+all[i].SourceElement().parentNode.className += ' has-jax';
+}
+});
+</script>
+
+<style>
+code.has-jax {
+font: inherit;
+font-size: 100%;
+background: inherit;
+border: inherit;
+color: #515151;
+}
+</style>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">CXL SHM</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Alian</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-12-21">2024-12-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;232 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#接口">接口</a></li>
+    <li><a href="#内存布局">内存布局</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#故障检测">故障检测</a></li>
+    <li><a href="#故障恢复执行">故障恢复执行</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#环境和测试">环境和测试</a></li>
+    <li><a href="#表现">表现</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="0背景知识">0、背景知识</h1>
+<p>DSM（Distributed Shared Memory）:分布式共享内存的核心思想是将物理上分散的内存空间虚拟化，使得不同机器上的进程能够像访问本地内存一样访问远程节点上的内存。</p>
+<ul>
+<li>通过软件的支持，将不同节点的内存合并成一个统一的逻辑内存空间。这样，程序员可以直接访问分布在各个节点上的内存，就像访问本地内存一样。</li>
+<li>为了确保不同节点之间对共享内存的访问是正确的，DSM系统需要确保<strong>内存一致性</strong>。</li>
+</ul>
+<hr>
+<p>Hazard Era算法：是一种主要应用于并发编程中的内存管理算法，尤其是在<strong>无锁</strong>数据结构和并发垃圾回收方面，常用于多线程环境中管理内存回收。
+它的核心思想是<strong>通过 “危险指针”（hazard pointers）来避免内存泄漏和悬空指针（dangling pointer）的问题</strong>，同时支持高效的并发内存回收。</p>
+<ol>
+<li>危险指针（Hazard Pointers）：允许线程标记它们正在访问的对象，这样其他线程就可以知道某个对象当前被访问，不能被回收，
+使得其他线程不会错误地访问已被删除或正在删除的数据。</li>
+<li>危害时期（Hazard Era）：为了防止在并发环境中出现垃圾回收（GC）误操作（例如一个线程正在访问对象，但另一个线程已经删除了该对象），
+Hazard Era 引入了<strong>时期（era）<strong>的概念。每个线程持有一个“当前时期”（current era），它表示线程最近操作的内存周期。在某个时期内，
+某个线程可能会访问多个对象，并且</strong>所有对象的生命周期都会被标记为属于该时期</strong>。当回收内存时，<strong>只有在确认没有线程在访问某个对象时</strong>，才会回收它。</li>
+</ol>
+<hr>
+<ul>
+<li>RPC(Remote Procedure Call，远程过程调用) 是一种计算机通信协议，它使得一个程序能够调用另一个程序（通常运行在不同的计算机上）的函数或过程，就像调用本地函数一样。传统的传值(Pass by value)调用方将参数值通过序列化（Serialization）转换成可以跨网络传输的格式，传递给远程的被调用方。返回值也需要反序列化。这带来了序列化和网络开销。</li>
+<li>幂等操作（Idempotent Operation）是指无论操作被执行一次还是多次，<strong>产生的结果都是相同的</strong>(保证一致性)。这种特性对于分布式系统和容错设计尤为重要，因为在网络故障或系统崩溃的情况下，可能会重试某些操作。</li>
+</ul>
+<h1 id="1问题背景和解决方案">1、问题背景和解决方案</h1>
+<p>论文中提出分布式共享内存（DSM）系统在<strong>部分失败（例如客户端或机器崩溃）的情况下的内存管理问题</strong>。传统DSM系统通常需要程序员手动管理内存生命周期，这对复杂的应用场景（如微服务和分布式系统）来说是一大挑战，因为这种情况下可能会导致<em>内存泄漏、双重释放和野指针</em>问题。此外，<strong>现有的容错方法通常是阻塞式的，难以应对延迟敏感的请求。</strong></p>
+<p>本文提出的 CXL-SHM 是一个<strong>基于引用计数的自动化分布式内存管理系统</strong>，用于解决分布式共享内存（DSM）在部分失败场景下的内存管理难题。其设计特点有</p>
+<ul>
+<li><strong>内存管理</strong>：通过一种基于时代的非阻塞算法，解决了因客户端崩溃导致的内存泄漏、双重释放和野指针问题。</li>
+<li><strong>容错能力</strong>：能够在参与客户端发生部分失败（如进程或机器崩溃）时正常运行，无需阻塞其他客户端。</li>
+</ul>
+<h1 id="2cxl-shm-overview">2、CXL-SHM overview</h1>
+<div align = "center">
+<img src="/images/figure/cxl-shm.png" width=90%>
+</div>
+<h2 id="接口">接口</h2>
+<p><strong>cxl_malloc</strong>：创建一个 root_ref()，用于容忍故障。支持部分失败的容忍，它不是线程安全的，需要CXL-SHM 提供的 API 传递引用。
+<strong>cxl_send_to</strong>: 显式地将 CXLRef 对象发送到另一个线程<br>
+<strong>csl_receive_from</strong>: 接收 CXLRef 对象，这个过程会确保引用计数被正确地更新，从而维护内存对象的生命周期</p>
+<h2 id="内存布局">内存布局</h2>
+<p>Arena：整个共享内存池的顶层结构，负责管理所有的内存段。<br>
+Segment：在 arena 中分配的独占内存区域，每个线程会从arena中分配一个独占的segment。<br>
+Page：每个 segment 进一步划分为多个页，每个页用于分配特定大小类的内存对象。<br>
+Block：每个页内包含多个固定大小的内存块，用于实际的内存对象分配</p>
+<blockquote>
+<p><strong>每个页内的内存块以链表的形式组织，页的元数据中包含指向第一个空闲块的指针。这样，分配和释放内存块的操作可以在页内进行</strong></p>
+</blockquote>
+<h1 id="部分故障弹性自动内存管理">部分故障弹性自动内存管理</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="mf">1.</span> <span class="kt">void</span> <span class="nf">AttachReference</span><span class="p">(</span><span class="n">Client</span> <span class="n">client</span><span class="p">,</span> <span class="n">Addr</span> <span class="o">*</span><span class="n">ref</span><span class="p">,</span> <span class="n">Block</span> <span class="o">*</span><span class="n">refed</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="mf">2.</span> <span class="k">do</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="mf">1.</span> <span class="n">saved</span> <span class="o">=</span> <span class="n">refed</span><span class="o">-&gt;</span><span class="n">header</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="mf">2.</span> <span class="n">saw_cid</span><span class="p">,</span> <span class="n">saw_era</span> <span class="o">=</span> <span class="n">saved</span><span class="p">.</span><span class="n">lcid</span><span class="p">,</span> <span class="n">saved</span><span class="p">.</span><span class="n">lera</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="mf">3.</span> <span class="k">if</span> <span class="p">(</span><span class="n">Era</span><span class="p">[</span><span class="n">client</span><span class="p">.</span><span class="n">cid</span><span class="p">][</span><span class="n">saw_cid</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">saw_era</span><span class="p">)</span>      <span class="c1">// 更新 Era 矩阵，标记 client “看见”了上一个客户端的提交，同步各个客户端之间的操作状态
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="mf">4.</span>      <span class="n">Era</span><span class="p">[</span><span class="n">client</span><span class="p">.</span><span class="n">cid</span><span class="p">][</span><span class="n">saw_cid</span><span class="p">]</span> <span class="o">=</span> <span class="n">saw_era</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="mf">5.</span> <span class="n">cur_era</span> <span class="o">=</span> <span class="n">Era</span><span class="p">[</span><span class="n">client</span><span class="p">.</span><span class="n">cid</span><span class="p">][</span><span class="n">client</span><span class="p">.</span><span class="n">cid</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">   <span class="mf">6.</span> <span class="n">client</span><span class="p">.</span><span class="n">redo</span> <span class="o">=</span> <span class="p">{</span><span class="n">Attach</span><span class="p">,</span><span class="n">cur_era</span><span class="p">,</span><span class="n">ref</span><span class="p">,</span><span class="n">refed</span><span class="p">,</span><span class="n">saved</span><span class="p">.</span><span class="n">ref_cnt</span><span class="p">};</span>      <span class="c1">// 执行重做日志，客户端本地进行
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="mf">7.</span> <span class="n">newh</span> <span class="o">=</span> <span class="nf">Header</span><span class="p">(</span><span class="n">client</span><span class="p">.</span><span class="n">cid</span><span class="p">,</span> <span class="n">cur_era</span><span class="p">,</span> <span class="n">saved</span><span class="p">.</span><span class="n">ref_cnt</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>         <span class="c1">// 修改头部，事务提交点 Modifyrefcnt 是判断重做的关键
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="mf">8.</span>  <span class="p">}</span> <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">refed</span><span class="o">-&gt;</span><span class="n">header</span><span class="p">.</span><span class="nf">compare_and_exchange</span><span class="p">(</span><span class="n">saved</span><span class="p">,</span> <span class="n">newh</span><span class="p">));</span>  <span class="c1">// 原子指令确保只有一个并发线程会执行
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="mf">9.</span>  <span class="o">*</span><span class="n">ref</span> <span class="o">=</span> <span class="n">refed</span><span class="p">;</span>        <span class="c1">// Modifyref
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="mf">10.</span> <span class="n">Era</span><span class="p">[</span><span class="n">client</span><span class="p">.</span><span class="n">cid</span><span class="p">][</span><span class="n">client</span><span class="p">.</span><span class="n">cid</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="mf">3.</span>  <span class="p">}</span>
+</span></span></code></pre></div><p>这是 CXL-SHM 中的分布式引用计数维护中的引用附加操作，每一个客户端通过目标对象的当前头部更新状态，使得所有相关联的客户端能够同步信息，并且把本地提交的信息更新到 header 中。那么如果部分客户端出现故障的情况呢？</p>
+<p>分为故障检测和故障恢复执行两个步骤：</p>
+<h2 id="故障检测">故障检测</h2>
+<p>崩溃后的恢复由一个独立的恢复服务对每一个客户端的重做日志(Redo Log)进行检测，根据操作类型 attach，当前时代，目标引用指针和对象，当前读取到的引用计数来判断哪个客户端出现了崩溃。</p>
+<h2 id="故障恢复执行">故障恢复执行</h2>
+<div align = "center">
+<img src="/images/figure/cxlobj-header.png" width=70%>
+</div>
+<p>恢复服务检查以下两个条件，判断是否需要重做操作：</p>
+<ul>
+<li>条件 1：目标对象的头部 lcid 和 lera 与崩溃客户端的重做日志匹配。<br>
+如果匹配，说明 ModifyRefCnt 已执行，但 ModifyRef 未完成，需要重做 ModifyRef。</li>
+<li>条件 2：比较客户端的本地时代与其他客户端所观察到的时代。<br>
+如果 <code>Era[i][i] &lt;= max(Era[j][i])</code>（其中 j ≠ i），说明其他客户端观察到了崩溃客户端的 ModifyRefCnt 操作，因此也需要重做 ModifyRef。</li>
+</ul>
+<p>注意：</p>
+<ol>
+<li>每个引用指针应该只由一个编写器拥有（并因此被修改）。这种单写入器多读取器并发模型确保在写入器失败后不会修改引用的值，因此是ModifyRef的幂等性。</li>
+<li>ModifyRefCnt 的执行需要保证一次性成功，一旦成功，不可再重做。故使用源自指令 CAS</li>
+<li>根据事务的 <strong>幂等性</strong> 划分为两个阶段，通过 Modifyrefcnt 提交状态可以判断事务是否完成</li>
+</ol>
+<h1 id="cxl-shm-的实现">CXL-SHM 的实现</h1>
+<p>CXL-SHM 内存分配CXLobj 顺序应该是<strong>分配 RootRef</strong>(分布式引用的起点，用于记录本地引用的状态，并存储指向实际数据对象（CXLObj）的偏移指针)、<strong>分配实际数据对象</strong>(CXLobj 包含lcid、lera)、<strong>建立 RootRef 与 CXLObj 之间的链接</strong>、CAS 增加引用计数。顺序不能够改变，考虑到在任何环节客户端崩溃的情况，如果先分配了 cxlobj，在连接的过程崩溃，会导致 rootref 没有指向的实际内存块，内存泄漏；反之先链接，分配数据块崩溃，那么就会出现野指针。</p>
+<p>CXL-SHM 使用了两层引用计数机制：</p>
+<ol>
+<li><strong>在同一线程内</strong>，克隆或销毁一个对象的引用只会修改 RootRef 对象的 ref_cnt，不需要使用原子指令或刷新操作，仅在本地修改引用计数</li>
+<li><strong>跨进程或跨机器</strong>，会创建新的 RootRef 对象，这意味着引用计数会在 CXLObj 的头部进行更新，而这些更新通常会被原子操作（例如 CAS）所封装</li>
+</ol>
+<h1 id="实验">实验</h1>
+<h2 id="环境和测试">环境和测试</h2>
+<ul>
+<li>硬件技术：CXL技术，特别是 CXL 3.0 版本，它支持内存共享。</li>
+<li>测试平台：由两个计算节点组成的CXL基础的RDSM（可部分故障恢复的分布式共享内存）测试平台，共享一个外部CXL内存设备。</li>
+<li>微基准测试：用于评估 CXL-SHM 的效率，包括<strong>内存分配和释放操作</strong>的性能。</li>
+<li>端到端应用：通过实际应用来展示 CXL-SHM 构建高效分布式应用的简单性和灵活性，例如基于引用传递的RPC框架和共享一切的分布式键值存储。</li>
+</ul>
+<h2 id="表现">表现</h2>
+<ul>
+<li>与现有技术比较：与mimalloc和jemalloc等现代易失性内存分配器相比，CXL-SHM的性能<strong>大约低一个数量级</strong>，这主要是由于CXL-SHM需要额外的内存栅栏和缓存刷新操作。</li>
+<li>恢复性能：CXL-SHM的恢复过程能够以每秒<strong>约2350万个对象</strong>的速度从客户端故障中恢复，远快于基于垃圾收集的持久内存分配器。</li>
+<li>RPC框架：CXL-RPC 的性能比基于 RDMA 的 RPC <strong>高出3.83至4.62倍</strong>，因为它避免了序列化、反序列化和网络传输的开销。</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-12-21</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://localhost:1313/posts/paper/cxl-shm/" data-title="CXL SHM" data-hashtags="数据存储"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://localhost:1313/posts/paper/cxl-shm/" data-hashtag="数据存储"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://localhost:1313/posts/paper/cxl-shm/" data-title="CXL SHM"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://localhost:1313/posts/paper/cxl-shm/" data-title="CXL SHM"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://localhost:1313/posts/paper/cxl-shm/" data-title="CXL SHM"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/">数据存储</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/paper/hydrarpc/" class="prev" rel="prev" title="HydraRPC"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>HydraRPC</a>
+            <a href="/posts/memories/high_school/ref2/" class="next" rel="next" title="适时怀念（二）">适时怀念（二）<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.124.1">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Alian</a></span></div>
+    
+        
+        <script async src=" //busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js "></script>
+    
+
+    
+        
+            <section>
+                
+                    <span id="busuanzi_container_value_site_pv"><i class="far fa-eye fa-fw"></i>
+                        
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+
+                
+                    &nbsp;|&nbsp;              
+                
+
+                
+                    <span id="busuanzi_container_value_site_uv"><i class="fa fa-user"></i>
+                        
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+            </section>
+        
+
+        
+        
+    
+
+</div>
+    </footer>
+    <script type="text/javascript"
+async
+src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+tex2jax: {
+inlineMath: [['$','$'], ['\\(','\\)']],
+displayMath: [['$$','$$'], ['\[\[','\]\]']],
+processEscapes: true,
+processEnvironments: true,
+skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+TeX: { equationNumbers: { autoNumber: "AMS" },
+extensions: ["AMSmath.js", "AMSsymbols.js"] }
+}
+});
+
+MathJax.Hub.Queue(function() {
+
+
+
+var all = MathJax.Hub.getAllJax(), i;
+for(i = 0; i < all.length; i += 1) {
+all[i].SourceElement().parentNode.className += ' has-jax';
+}
+});
+</script>
+
+<style>
+code.has-jax {
+font: inherit;
+font-size: 100%;
+background: inherit;
+border: inherit;
+color: #515151;
+}
+</style></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

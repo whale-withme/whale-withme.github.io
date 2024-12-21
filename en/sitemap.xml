@@ -5,7 +5,7 @@
             <loc>http://localhost:1313/posts/slips_docs/%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/</loc><lastmod>2024-07-18T10:02:17&#43;08:00</lastmod></url><url>
             <loc>http://localhost:1313/posts/memories/high_school/ref1/</loc><lastmod>2024-07-14T19:22:20&#43;08:00</lastmod></url><url>
             <loc>http://localhost:1313/posts/memories/high_school/ref2/</loc><lastmod>2024-07-14T19:39:26&#43;08:00</lastmod></url><url>
-            <loc>http://localhost:1313/</loc><lastmod>2024-11-05T23:40:45&#43;08:00</lastmod><xhtml:link
+            <loc>http://localhost:1313/</loc><lastmod>2024-12-21T15:33:32&#43;08:00</lastmod><xhtml:link
                         rel="alternate"
                         hreflang="zh-cn"
                         href="http://localhost:1313/zh-cn/"
@@ -14,10 +14,9 @@
                     hreflang="en"
                     href="http://localhost:1313/"
                     /></url><url>
-            <loc>http://localhost:1313/tags/os/</loc><lastmod>2024-11-05T23:40:45&#43;08:00</lastmod></url><url>
-            <loc>http://localhost:1313/posts/</loc><lastmod>2024-11-05T23:40:45&#43;08:00</lastmod></url><url>
-            <loc>http://localhost:1313/posts/os/ch3/</loc><lastmod>2024-11-05T23:40:45&#43;08:00</lastmod></url><url>
-            <loc>http://localhost:1313/tags/</loc><lastmod>2024-11-05T23:40:45&#43;08:00</lastmod><xhtml:link
+            <loc>http://localhost:1313/posts/paper/cxl-shm/</loc><lastmod>2024-12-21T15:33:32&#43;08:00</lastmod></url><url>
+            <loc>http://localhost:1313/posts/</loc><lastmod>2024-12-21T15:33:32&#43;08:00</lastmod></url><url>
+            <loc>http://localhost:1313/tags/</loc><lastmod>2024-12-21T15:33:32&#43;08:00</lastmod><xhtml:link
                         rel="alternate"
                         hreflang="zh-cn"
                         href="http://localhost:1313/zh-cn/tags/"
@@ -26,6 +25,12 @@
                     hreflang="en"
                     href="http://localhost:1313/tags/"
                     /></url><url>
+            <loc>http://localhost:1313/tags/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/</loc><lastmod>2024-12-21T15:33:32&#43;08:00</lastmod></url><url>
+            <loc>http://localhost:1313/posts/paper/hydrarpc/</loc><lastmod>2024-12-21T15:33:19&#43;08:00</lastmod></url><url>
+            <loc>http://localhost:1313/posts/paper/logecmem/</loc><lastmod>2024-12-21T15:33:10&#43;08:00</lastmod></url><url>
+            <loc>http://localhost:1313/posts/tmp/wait/</loc><lastmod>2024-12-07T19:18:54&#43;08:00</lastmod></url><url>
+            <loc>http://localhost:1313/tags/os/</loc><lastmod>2024-11-05T23:40:45&#43;08:00</lastmod></url><url>
+            <loc>http://localhost:1313/posts/os/ch3/</loc><lastmod>2024-11-05T23:40:45&#43;08:00</lastmod></url><url>
             <loc>http://localhost:1313/posts/paper/trafficanlysis/</loc><lastmod>2024-09-06T19:23:17&#43;08:00</lastmod></url><url>
             <loc>http://localhost:1313/posts/ml/analysis_for_botnet_rnn/</loc><lastmod>2024-07-29T09:46:38&#43;08:00</lastmod></url><url>
             <loc>http://localhost:1313/posts/ml/svm/</loc><lastmod>2024-07-24T10:06:17&#43;08:00</lastmod></url><url>

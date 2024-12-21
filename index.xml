@@ -4,7 +4,7 @@
         <link>http://localhost:1313/</link>
         <description>Alian&#39;s Site</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>huamu298@gmail.com (Alian)</managingEditor>
-            <webMaster>huamu298@gmail.com (Alian)</webMaster><lastBuildDate>Tue, 05 Nov 2024 23:40:45 &#43;0800</lastBuildDate>
+            <webMaster>huamu298@gmail.com (Alian)</webMaster><lastBuildDate>Sat, 21 Dec 2024 15:33:32 &#43;0800</lastBuildDate>
             <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
         <item>
     <title>Slips架构与使用方法</title>
@@ -31,6 +31,40 @@
     <description><![CDATA[我在合肥八中的三年时间]]></description>
 </item>
 <item>
+    <title>CXL SHM</title>
+    <link>http://localhost:1313/posts/paper/cxl-shm/</link>
+    <pubDate>Sat, 21 Dec 2024 15:33:32 &#43;0800</pubDate>
+    <author>Alian</author>
+    <guid>http://localhost:1313/posts/paper/cxl-shm/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>HydraRPC</title>
+    <link>http://localhost:1313/posts/paper/hydrarpc/</link>
+    <pubDate>Sat, 21 Dec 2024 15:33:19 &#43;0800</pubDate>
+    <author>Alian</author>
+    <guid>http://localhost:1313/posts/paper/hydrarpc/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>LogECMem</title>
+    <link>http://localhost:1313/posts/paper/logecmem/</link>
+    <pubDate>Sat, 21 Dec 2024 15:33:10 &#43;0800</pubDate>
+    <author>Alian</author>
+    <guid>http://localhost:1313/posts/paper/logecmem/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>Nul</title>
+    <link>http://localhost:1313/posts/tmp/wait/</link>
+    <pubDate>Sat, 07 Dec 2024 19:18:54 &#43;0800</pubDate>
+    <author>Alian</author>
+    <guid>http://localhost:1313/posts/tmp/wait/</guid>
+    <description><![CDATA[连着三天分别进行算法考试、下午的 awd 比赛和明天的 csp 考试，心情总是被搞得很差。当然这不是全部，还有四五门的实验和报告堆积在期末月， 时间被占用的也是七零八碎。每一次考试结束都有后悔没做好的感觉，已经尝了很长的一段时间这种滋味。我在想，这种让我很不舒服的感觉是怎么产生的， 以前是没得选，我必须按照老师、成绩排名照着做，标准的尺子才能量好。我想了想能让我觉得快乐的因素，一是 “得到” ，这部分大多是自我从外界主动或者被动的获取； 二是 “肯定” ， 由内出发对自己人格的自足。我想我可能已经被 “驯化” 了，普遍实行的标准刻在心里成了尺子，偏离普世意义的 “好” 会给我带来不安和焦虑，那种自我的肯定越来越少。 可能自己已经被禁锢住了，逃脱是一件很困难的事，对我来说。
+除开上课和实验课的时间，其余的时间我都在干什么呢？肯定的我有花在社交、视频、娱乐上面，不是全部，我可以说 “学习” 的时间和这些加起来的差不多。现在这种懊恼的情绪让我觉得自己 付出的实在是非常少的回报，我得到非常少量的快乐，甚至带来愤怒和自我的怀疑。
+=========== 走在图书馆回宿舍的路上，我又想到，可能是现在的我没有可以给自己依靠的。现在，加权、竞赛、获奖这些看上去风光的部分，都是在依赖标准，越是从中汲取到 “成就感”， 也就被困得越深（在不合适的环境之下）。所以呢，我有什么可做的？我的空间在哪里 我对 “学习” 是否付出足够的时间 ]]></description>
+</item>
+<item>
     <title>Rust 操作系统笔记 chapter3</title>
     <link>http://localhost:1313/posts/os/ch3/</link>
     <pubDate>Tue, 05 Nov 2024 23:40:45 &#43;0800</pubDate>
@@ -53,38 +87,6 @@
     <author>Alian</author>
     <guid>http://localhost:1313/posts/ml/analysis_for_botnet_rnn/</guid>
     <description><![CDATA[slips提出的rnn模型评估分析]]></description>
-</item>
-<item>
-    <title>SVM</title>
-    <link>http://localhost:1313/posts/ml/svm/</link>
-    <pubDate>Wed, 24 Jul 2024 10:06:17 &#43;0800</pubDate>
-    <author>Alian</author>
-    <guid>http://localhost:1313/posts/ml/svm/</guid>
-    <description><![CDATA[在线学习算法与支持向量机(SVM)]]></description>
-</item>
-<item>
-    <title>Metasploit工具</title>
-    <link>http://localhost:1313/posts/skill/metasploit/</link>
-    <pubDate>Mon, 22 Jul 2024 09:15:46 &#43;0800</pubDate>
-    <author>Alian</author>
-    <guid>http://localhost:1313/posts/skill/metasploit/</guid>
-    <description><![CDATA[metasploit]]></description>
-</item>
-<item>
-    <title>Linux</title>
-    <link>http://localhost:1313/posts/config/linux/</link>
-    <pubDate>Thu, 18 Jul 2024 11:24:49 &#43;0800</pubDate>
-    <author>Alian</author>
-    <guid>http://localhost:1313/posts/config/linux/</guid>
-    <description><![CDATA[记录使用linux的一些工具和技巧]]></description>
-</item>
-<item>
-    <title>Docker</title>
-    <link>http://localhost:1313/posts/config/docker/</link>
-    <pubDate>Mon, 15 Jul 2024 20:18:24 &#43;0800</pubDate>
-    <author>Alian</author>
-    <guid>http://localhost:1313/posts/config/docker/</guid>
-    <description><![CDATA[docker 环境部署和常用命令]]></description>
 </item>
 </channel>
 </rss>

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>HydraRPC - Alian&#39;s Site</title><meta name="Description" content=""><meta property="og:title" content="HydraRPC" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/posts/paper/hydrarpc/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-12-21T15:33:19+08:00" />
+<meta property="article:modified_time" content="2024-12-21T15:33:19+08:00" /><meta property="og:site_name" content="My cool site" />
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="HydraRPC"/>
+<meta name="twitter:description" content=""/>
+<meta name="application-name" content="My cool site">
+<meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/images/web_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://localhost:1313/posts/paper/hydrarpc/" /><link rel="prev" href="http://localhost:1313/posts/paper/logecmem/" /><link rel="next" href="http://localhost:1313/posts/paper/cxl-shm/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "HydraRPC",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/localhost:1313\/posts\/paper\/hydrarpc\/"
+        },"genre": "posts","keywords": "数据存储","wordcount":  216 ,
+        "url": "http:\/\/localhost:1313\/posts\/paper\/hydrarpc\/","datePublished": "2024-12-21T15:33:19+08:00","dateModified": "2024-12-21T15:33:19+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Alian"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Alian&#39;s Site">Alian&#39;s site</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a><a href="javascript:void(0);" class="menu-item language" title="Select Language">
+                    <i class="fa fa-globe" aria-hidden="true"></i>                      
+                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/posts/paper/hydrarpc/" selected>English</option></select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Alian&#39;s Site">Alian&#39;s site</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="Select Language">
+                    <i class="fa fa-globe fa-fw" aria-hidden="true"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/posts/paper/hydrarpc/" selected>English</option></select>
+                </a></div>
+    </div>
+</header><script type="text/javascript"
+async
+src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+tex2jax: {
+inlineMath: [['$','$'], ['\\(','\\)']],
+displayMath: [['$$','$$'], ['\[\[','\]\]']],
+processEscapes: true,
+processEnvironments: true,
+skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+TeX: { equationNumbers: { autoNumber: "AMS" },
+extensions: ["AMSmath.js", "AMSsymbols.js"] }
+}
+});
+
+MathJax.Hub.Queue(function() {
+
+
+
+var all = MathJax.Hub.getAllJax(), i;
+for(i = 0; i < all.length; i += 1) {
+all[i].SourceElement().parentNode.className += ' has-jax';
+}
+});
+</script>
+
+<style>
+code.has-jax {
+font: inherit;
+font-size: 100%;
+background: inherit;
+border: inherit;
+color: #515151;
+}
+</style>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">HydraRPC</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Alian</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-12-21">2024-12-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;216 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#绕过缓存的内存共享">绕过缓存的内存共享</a></li>
+    <li><a href="#优化的轮询机制">优化的轮询机制</a></li>
+    <li><a href="#消息队列">消息队列</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#环境和测试方法">环境和测试方法</a></li>
+    <li><a href="#表现">表现</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="0introduction">0、Introduction</h1>
+<p><strong>How to manage CXL HDM while using it in the RPC scenario?</strong><br>
+<strong>How to design the control plane of RPC ?</strong></p>
+<ul>
+<li>什么是 RPC？</li>
+</ul>
+<blockquote>
+<p>RPC 是一种分布式系统中的基础技术，它通过允许函数在远程服务器上执行，如同本地调用一样，从而简化了客户端和服务器之间的交互。</p>
+</blockquote>
+<ul>
+<li>RPC 在使用过程中遇到什么问题？</li>
+</ul>
+<blockquote>
+<p>客户机需要将函数名、参数等信息封装成一个消息，然后通过网络传输协议（如TCP、UDP等）将这个消息发送到远程主机。过程中会遇到<strong>网络通信延迟</strong>、<strong>数据传输时的序列化和反序列化</strong>、<strong>数据复制</strong> 以及<strong>网络和硬件层的拥塞</strong></p>
+<ol>
+<li>网络通信延迟：每个 RPC 请求通常涉及两个消息或 RDMA 操作，比正常的内存访问速度慢10倍以上</li>
+<li>数据复制：传统的 RPC  通常采用值传递，参数数据的复制，只传递引用可以减少传输的开销</li>
+<li>可扩展性：多个 RPC 连接需要建立各自的缓冲区，而且缓冲区共享应该限制在同一服务器内。然而，不均衡的 RPC 连接负载可能导致高内存占用和较差的服务质量。</li>
+</ol>
+</blockquote>
+<ul>
+<li>CXL 是怎么解决这个问题的？内存共享怎么做到的？</li>
+</ul>
+<blockquote>
+<p>CXL 通过直接内存访问（DMA）和缓存一致性机制，消除了数据在不同设备间传输的需求，减少了网络带宽和延迟的瓶颈。CXL 允许多个主机和设备共享一块物理内存区域。
+多主机硬件一致性：这种模型要求跟踪每个缓存行的主机一致性状态，需要硬件设备支持，一旦数据更新，就要用过缓存一致性协议进行全局共享；软件管理的一致性通过特定机制来建立缓存行的所有权</p>
+</blockquote>
+<p>原文：<em>Firstly, the traditional object store architecture requires clients to communicate with the server over the network, leading to performance bottlenecks, especially for lowlatency workloads. In contrast, CXL HDM <em><strong>avoids involving the network</strong></em>. Second, CXL.mem <em><strong>provides byte-addressable access, enabling the creation of dynamic data structures with link pointers and allowing in-place updates</strong></em>. This eliminates the need for (de)serialization, resulting in improved performance.</em></p>
+<blockquote>
+<p>首先，传统的对象存储架构要求客户端通过网络与服务器通信，这会导致性能瓶颈，特别是对于低延迟的工作负载。相比之下，CXL HDM <em><strong>避免了涉及网络</strong></em>。其次，CXL.mem <em><strong>提供了字节级寻址访问，使得可以创建带有链接指针的动态数据结构，并允许就地更新</strong></em>。这消除了对（反）序列化的需求，从而提高了性能。</p>
+</blockquote>
+<h1 id="hydra-设计">Hydra 设计</h1>
+<div align = "center">
+<img src="/images/figure/hydrarpc架构.png" width=70%>
+</div>
+## 数据控制平面  
+<p>服务器端：</p>
+<ol>
+<li>
+<p>轮询请求消息队列：服务器不断轮询请求消息队列的尾部，检查是否有新的请求到达。该请求消息队列由客户端添加请求条目，并通过标志位通知服务器请求的到达。</p>
+</li>
+<li>
+<p>获取请求数据：当服务器发现有新的请求时，它读取请求条目的<strong>偏移量</strong>，<strong>定位到共享内存中存储的请求数据</strong>。由于使用的是共享内存，服务器可以直接访问这些数据，而不需要额外的内存复制。</p>
+</li>
+<li>
+<p>执行请求：服务器根据请求数据执行操作。这是执行阶段的一部分，<strong>在“运行到完成”原则下，服务器在同一轮询过程中执行完该请求</strong>（会在一个轮询过程中持续完成请求的任务）。如果请求是轻量级的，服务器可以直接在内存中修改数据，而不需要额外的上下文切换或内存拷贝。</p>
+</li>
+<li>
+<p>准备响应数据：如果请求的响应数据已经准备好，服务器会<strong>将响应数据写入共享内存中的预分配内存区域，供客户端读取</strong>。</p>
+</li>
+<li>
+<p>加入响应消息队列：服务器将响应数据的条目附加到响应消息队列中，表示响应已准备好等待客户端处理。</p>
+</li>
+</ol>
+<p>客户端：</p>
+<ol>
+<li>
+<p>客户端首先将用户定义的请求数据写入数据区域中的预分配内存，该内存对齐到缓存行</p>
+</li>
+<li>
+<p>轮询响应消息队列：<strong>客户端在发送请求后，不会等待响应，而是继续执行其他任务</strong>。它会轮询自己的响应消息队列，检查是否有来自服务器的响应到达。</p>
+</li>
+<li>
+<p>获取响应数据：当服务器完成请求的处理并将响应数据写入预分配的内存区域时，客户端轮询响应消息队列，获取响应条目。如果响应数据已经准备好，客户端读取共享内存中的响应数据。</p>
+</li>
+<li>
+<p>处理响应：客户端根据接收到的响应数据进行进一步处理，例如更新状态或执行其他操作。</p>
+</li>
+<li>
+<p>确认响应：客户端在确认收到响应后，RPC 过程完成。它可能发送一个确认信号给服务器，表示该请求已经完成处理</p>
+</li>
+</ol>
+<h2 id="绕过缓存的内存共享">绕过缓存的内存共享</h2>
+<p>MTRR 和 非时序访问两种方式。</p>
+<h2 id="优化的轮询机制">优化的轮询机制</h2>
+<p>机制：CPU 通过<strong>读取请求/响应条目的到达标志（arrival flag）来检测新消息</strong>。当发现到达标志有效时，CPU 开始处理该请求或响应。<br>
+问题：轮询可能导致不必要的工作，CPU 会多次读取并验证到达标志，即便数据尚未更新。<br>
+优化：HydraRPC 利用了专为 Intel 处理器设计的两种指令：<code>monitor</code> 和 <code>mwait</code></p>
+<ul>
+<li>使用 <code>monitor</code> 指令监控环形缓冲区中的特定缓存行</li>
+<li>执行 <code>mwait</code> 指令将 CPU 暂停以节省功耗</li>
+<li>当另一方修改了被监控的数据时，CPU 被唤醒并开始处理请求或响应</li>
+</ul>
+<h2 id="消息队列">消息队列</h2>
+<p>消息队列的内存分配采用固定大小的内存池，简化管理，且客户端和服务端共同拥有消息队列，当一台物理机器与另一台物理机器之间存在多个连接时，多个连接可以共享一个消息队列。
+队列同时使用了滑动窗口来管理，通过维护一个动态调整的窗口来限制在<strong>任意时刻发送但未确认的请求或数据的数量</strong>。窗口的大小表示可以同时未确认的请求的上限。</p>
+<p>类似于 TCP 协议，HydraRPC 用滑动窗口限制了请求数量的上限，只有当服务端依次取出请求进行处理，生成对应的响应消息，并将其写入消息队列才会通知窗口进行移动，新的客户端请求才会进入消息队列中。</p>
+<h1 id="实验">实验</h1>
+<h2 id="环境和测试方法">环境和测试方法</h2>
+<ul>
+<li>平台：基于Intel Agilex I-Series FPGA和Archer City平台</li>
+<li>硬件架构：FPGA设计允许通过多个CXL链接访问完全相同的内存，并且CXL HDM像直接插入主板的DDR内存一样被主机平台缓存。</li>
+<li>软件配置：使用CXL 1.1+驱动，使用 daxctl 工具将CXL HDM初始化为 <code>devdax</code> （设备直接访问）模式，允许通过 mmap 映射 dax 设备来使用 <code>Load/Store</code> 指令访问CXL HDM</li>
+<li>基准测试：选择 mRPC、gRPC和一个内部的基于 RDMA 的 RPC 作为性能比较的基线。</li>
+<li>请求/响应大小：通过改变字节数组的长度来调整RPC的大小。</li>
+</ul>
+<h2 id="表现">表现</h2>
+<ul>
+<li>吞吐量：HydraRPC 在一对一场景中实现了620 KOPS的吞吐量，比 mRPC 和基于 RDMA 的 RPC <strong>高出1.6和3.1倍</strong>。当连接数增加到96时，峰值吞吐量达到49MOPS。</li>
+<li>延迟：HydraRPC 的平均延迟为1.47微秒，比 mRPC 快5.17倍，P99尾部延迟快<strong>4.16倍</strong>。</li>
+<li>CPU开销：在最大吞吐量场景下，服务器几乎保持 100% 的CPU利用率。在低请求率场景下，HydraRPC 的 CPU 使用率约为 <strong>45%</strong>，比忙轮询的情况占用更少的CPU资源。</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-12-21</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://localhost:1313/posts/paper/hydrarpc/" data-title="HydraRPC" data-hashtags="数据存储"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://localhost:1313/posts/paper/hydrarpc/" data-hashtag="数据存储"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://localhost:1313/posts/paper/hydrarpc/" data-title="HydraRPC"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://localhost:1313/posts/paper/hydrarpc/" data-title="HydraRPC"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://localhost:1313/posts/paper/hydrarpc/" data-title="HydraRPC"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/">数据存储</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/paper/logecmem/" class="prev" rel="prev" title="LogECMem"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>LogECMem</a>
+            <a href="/posts/paper/cxl-shm/" class="next" rel="next" title="CXL SHM">CXL SHM<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.124.1">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Alian</a></span></div>
+    
+        
+        <script async src=" //busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js "></script>
+    
+
+    
+        
+            <section>
+                
+                    <span id="busuanzi_container_value_site_pv"><i class="far fa-eye fa-fw"></i>
+                        
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+
+                
+                    &nbsp;|&nbsp;              
+                
+
+                
+                    <span id="busuanzi_container_value_site_uv"><i class="fa fa-user"></i>
+                        
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+            </section>
+        
+
+        
+        
+    
+
+</div>
+    </footer>
+    <script type="text/javascript"
+async
+src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+tex2jax: {
+inlineMath: [['$','$'], ['\\(','\\)']],
+displayMath: [['$$','$$'], ['\[\[','\]\]']],
+processEscapes: true,
+processEnvironments: true,
+skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+TeX: { equationNumbers: { autoNumber: "AMS" },
+extensions: ["AMSmath.js", "AMSsymbols.js"] }
+}
+});
+
+MathJax.Hub.Queue(function() {
+
+
+
+var all = MathJax.Hub.getAllJax(), i;
+for(i = 0; i < all.length; i += 1) {
+all[i].SourceElement().parentNode.className += ' has-jax';
+}
+});
+</script>
+
+<style>
+code.has-jax {
+font: inherit;
+font-size: 100%;
+background: inherit;
+border: inherit;
+color: #515151;
+}
+</style></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

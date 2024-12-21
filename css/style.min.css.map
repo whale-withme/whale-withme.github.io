@@ -1,7 +1,7 @@
 {
 	"version": 3,
 	"file": "style.min.css",
-	"sourceRoot": "D:/EnhanceYzc/Project/blog/Alian_Blog",
+	"sourceRoot": "D:/yzc/Project/blog/Alian_Blog",
 	"sources": [
 		"assets/css/style.scss",
 		"themes/LoveIt/assets/lib/normalize/normalize.css",
