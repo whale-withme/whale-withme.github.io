@@ -1,0 +1,854 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/avatar.jpg">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="yzc">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="java并发">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JAVA并发编程">
+<meta property="og:url" content="http://whale-withme.github.io/JAVA%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="java并发">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://whale-withme.github.io/java%E5%B9%B6%E5%8F%91/1be332e11035cabc8d148c96ce1e3ebb.png">
+<meta property="og:image" content="http://whale-withme.github.io/java%E5%B9%B6%E5%8F%91/3719561120dd8ae5a63442180fd55b47.png">
+<meta property="og:image" content="http://whale-withme.github.io/java%E5%B9%B6%E5%8F%91/21a0fecd208e7a0cba8bfa5f7504e99b.png">
+<meta property="og:image" content="http://whale-withme.github.io/java%E5%B9%B6%E5%8F%91/1ae14f5a19438c6dc6affa445446cd64.png">
+<meta property="article:published_time" content="2025-05-13T07:54:24.000Z">
+<meta property="article:modified_time" content="2025-05-13T08:18:27.395Z">
+<meta property="article:author" content="yzc">
+<meta property="article:tag" content="并发">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://whale-withme.github.io/java%E5%B9%B6%E5%8F%91/1be332e11035cabc8d148c96ce1e3ebb.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>JAVA并发编程 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"whale-withme.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>yzc</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">JAVA并发编程</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-05-13 15:54" pubdate>
+          2025年5月13日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          19 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">JAVA并发编程</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="多线程初探：线程产生、同步、原理"><a href="#多线程初探：线程产生、同步、原理" class="headerlink" title="多线程初探：线程产生、同步、原理"></a>多线程初探：线程产生、同步、原理</h1><p>提交到线程池的可以是：</p>
+<ul>
+<li><strong>实现了  <code>Runnable</code>  接口的任务</strong></li>
+<li><strong>实现了  <code>Callable</code>  接口的任务</strong></li>
+<li><strong><code>FutureTask</code>  类型的任务</strong><br>而 FutureTask 既可以作为 Runnable 被线程执行，又可以作为 Future 得到 Callable 的返回值。用于异步计算？因为可以之后再 get() 线程的结果.</li>
+</ul>
+<p><code>object.wait()</code> 必须在 <code>synchronized</code> 方法中使用，<strong>会自动放弃锁</strong>，直到别的线程 <code>notify</code> 才能进入 <code>RUNNABLE</code> 状态，等待线程调度。<br><code>object.sleep()</code> 并不会放弃锁<br><img src="/java%E5%B9%B6%E5%8F%91/1be332e11035cabc8d148c96ce1e3ebb.png" srcset="/img/loading.gif" lazyload><br>线程组的数据结构</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ThreadGroup</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Thread</span>.UncaughtExceptionHandler &#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> ThreadGroup parent; <span class="hljs-comment">// 父亲ThreadGroup</span><br>    String name; <span class="hljs-comment">// ThreadGroup 的名称</span><br>    <span class="hljs-type">int</span> maxPriority; <span class="hljs-comment">// 最大优先级</span><br>    <span class="hljs-type">boolean</span> destroyed; <span class="hljs-comment">// 是否被销毁</span><br>    <span class="hljs-type">boolean</span> daemon; <span class="hljs-comment">// 是否守护线程</span><br>    <span class="hljs-type">boolean</span> vmAllowSuspension; <span class="hljs-comment">// 是否可以中断</span><br><br>    <span class="hljs-type">int</span> <span class="hljs-variable">nUnstartedThreads</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; <span class="hljs-comment">// 还未启动的线程</span><br>    <span class="hljs-type">int</span> nthreads; <span class="hljs-comment">// ThreadGroup中线程数目</span><br>    Thread threads[]; <span class="hljs-comment">// ThreadGroup中的线程</span><br><br>    <span class="hljs-type">int</span> ngroups; <span class="hljs-comment">// 线程组数目</span><br>    ThreadGroup groups[]; <span class="hljs-comment">// 线程组数组</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>一个进程创建的所有线程，都是共享一个内存空间的；cpu 切换任务时机是在指令级，不在语言级别。同时还需要考虑编译器优化，指令重排对多线程访问有序性的影响。</li>
+<li>多线程编程出现并发错误的源头在于：<strong>可见性问题</strong>（cpu 缓存是的不同线程读取到了未更新的数据）、<strong>有序性问题</strong>（编译器优化使得在不同时间片切换，线程访问错误）</li>
+<li>Happens-Before 规则：<strong>前面一个操作的结果对后续操作是可见的</strong>（这里指的都是对于共享变量的操作，是可见的）</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 有趣的双重检查创建单例代码</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Singleton</span> &#123;<br>  <span class="hljs-keyword">static</span> Singleton instance;<br>  <span class="hljs-keyword">static</span> Singleton <span class="hljs-title function_">getInstance</span><span class="hljs-params">()</span>&#123;<br>    <span class="hljs-keyword">if</span> (instance == <span class="hljs-literal">null</span>) &#123;<br>      <span class="hljs-keyword">synchronized</span>(Singleton.class) &#123;<br>        <span class="hljs-keyword">if</span> (instance == <span class="hljs-literal">null</span>)<br>          instance = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Singleton</span>();<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> instance;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>😭 指令重排（有序性问题）可能会导致顺序 分配内存（memory &#x3D; allocate()）、将 instance 指向这块内存（instance &#x3D; memory）、 初始化对象（调用构造方法）。这导致其他线程可能访问了未初始化完全的变量。Java 使用了 volatile：禁止指令重排序 解决此问题。</p>
+<blockquote>
+<p>[!note] volatile 关键字怎么解决并发中的经典问题<br><strong>禁止线程用自己的缓存，使得线程对变量的修改可以让所有的线程可见！和禁止指令重排，解决有序性问题</strong></p>
+</blockquote>
+<p>🤔JVM 会等待工作线程全部结束之后才会停止主线程服务?<br>是的，JVM 确实会等待，但并不意味着主线程 main 也会等待，这就是我们需要 join 的原因。join 会让主线程阻塞从而等待子线程优先于主线程结束，执行逻辑正确；否则主线程可能中途结束执行到了后面的逻辑。</p>
+<p>同步原语 synchronized：</p>
+<ul>
+<li>static synchronized function（）会在类级别的上加锁，整个 JVM 只有一把锁。</li>
+<li>🤔 如何锁住其他对象呢？传递 object 对象作为参数，锁住 object。这也意味每次要锁住都必须传入相同的 object，会有难度</li>
+</ul>
+<p>线程池：<br><img src="/java%E5%B9%B6%E5%8F%91/3719561120dd8ae5a63442180fd55b47.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>关注 corePoolSize，线程池保证这部分线程始终能够接受任务，不会轻易回收。而 corePoolSize &lt;&#x3D; 线程数量&lt;&#x3D; MaxiumPoolSize 这部分非核心线程会在任务完成之后一段时间内被回收。</li>
+<li>如果 MaxiumPoolSize 设置非常大，或者 workQueue 是无界队列，拒绝策略将不会生效，永远堆不满。</li>
+<li>❌ 缓存（无线制队列和任务）、简单（只能一个）、定长线程池（core&#x3D;maxium）都太极端，自定义的可以。</li>
+</ul>
+<h1 id="并发同步：锁、线程本地"><a href="#并发同步：锁、线程本地" class="headerlink" title="并发同步：锁、线程本地"></a>并发同步：锁、线程本地</h1><p>⭐Lock 接口：<br>✅ 可重入锁：其本身含义是指 <strong>同一个线程可以多次获取已经持有的锁</strong><br>ReentrantLock 有 lock() 、trylock() 方法，其中 trylock() 有返回值 boolean，true 时获得锁进入，立即返回。等待时间内获取到锁，trylock( long time )是一段时间的自旋锁。❓ 是不是可以缓解死锁的出现呢<br>注意，finally 语句中都要将锁释放，lock.unlock( )。<br>公平性上，默认的都是非公平锁，意味着线程不一定按照到达锁的时间按顺序排队获得锁，而是按照策略选择一个队列中的线程执行。</p>
+<p>✅ 可重入读写锁：读锁是共享锁，多个线程可同时进入临界区；写锁是独占锁。<br>他们在公平性上，对于同一份资源，如果读锁在队列的头部，那么新的读线程可能会插队；反之，如果是写锁，那么读线程会排到队列的末尾。提高性能之举。<br><img src="/java%E5%B9%B6%E5%8F%91/21a0fecd208e7a0cba8bfa5f7504e99b.png" srcset="/img/loading.gif" lazyload><br>❓ 关于 reentrantlock 和 synchronized 关键字的对比</p>
+<table>
+<thead>
+<tr>
+<th>对比维度</th>
+<th><code>synchronized</code></th>
+<th><code>ReentrantLock</code></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>所在包</td>
+<td><code>java</code> 关键字，属于 JVM 语法级别</td>
+<td><code>java.util.concurrent.locks</code> 中的类</td>
+</tr>
+<tr>
+<td>加锁&#x2F;释放方式</td>
+<td>自动加锁、自动释放（异常也会自动释放）</td>
+<td>需要手动加锁 <code>lock()</code> 和释放 <code>unlock()</code>，要写在 finally</td>
+</tr>
+<tr>
+<td>可重入性</td>
+<td>✅ 是</td>
+<td>✅ 是</td>
+</tr>
+<tr>
+<td>公平锁支持</td>
+<td>❌ 不支持，默认非公平</td>
+<td>✅ 可设置为公平锁（先来先得）</td>
+</tr>
+<tr>
+<td>可中断锁</td>
+<td>❌ 不支持</td>
+<td>✅ 支持 <code>lockInterruptibly()</code></td>
+</tr>
+<tr>
+<td>尝试获取锁（不阻塞线程）</td>
+<td>❌ 不支持</td>
+<td>✅ 支持 <code>tryLock()</code></td>
+</tr>
+<tr>
+<td>是否支持条件变量</td>
+<td>❌ 不支持（只能用 <code>wait()/notify()</code>）</td>
+<td>✅ 支持 <code>Condition</code> 类，可实现多个等待队列</td>
+</tr>
+<tr>
+<td>性能（JDK1.6 之后）</td>
+<td>已优化，引入<strong>偏向锁&#x2F;轻量级锁</strong>，性能很好</td>
+<td>高并发下性能优秀，功能灵活</td>
+</tr>
+<tr>
+<td>可见性与原子性</td>
+<td>✅ 内置保证（由 JVM 实现）</td>
+<td>✅ 依赖底层实现，效果相同</td>
+</tr>
+<tr>
+<td>锁的粒度</td>
+<td>隐式对象级别</td>
+<td>灵活控制（可锁方法块、不同对象）</td>
+</tr>
+<tr>
+<td>使用难度</td>
+<td>✅ 简单，关键字一写就好</td>
+<td>⚠️ 稍复杂，需配合 try-finally 写法（finally 里面写上 unlock，防止并发错误）</td>
+</tr>
+<tr>
+<td>reentrantlock 更适合可中断、限时等待、多条件变量的场景，当然 synchronized 关键字已经优化的很好了</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h1 id="并发流程控制"><a href="#并发流程控制" class="headerlink" title="并发流程控制"></a>并发流程控制</h1><p>❓<strong>多个线程之间存在流程控制怎么办，考虑并发顺序和流程，而非并发安全问题！</strong></p>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>CountDownLatch</th>
+<th>CyclicBarrier</th>
+<th>Semaphore</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>等待机制</td>
+<td>等待 N 次 <code>countDown()</code></td>
+<td>等待 N 个线程 <code>await()</code></td>
+<td>获取 N 个许可才可进入</td>
+</tr>
+<tr>
+<td>可否重用</td>
+<td>❌ 不可重用</td>
+<td>✅ 可重用</td>
+<td>✅ 可重用</td>
+</tr>
+<tr>
+<td>回调功能（触发动作）</td>
+<td>❌ 没有</td>
+<td>✅ 有（barrier action）</td>
+<td>❌ 没有</td>
+</tr>
+<tr>
+<td>应用场景</td>
+<td>等待其他线程完成（等所有学生到了再开班会，只关心人数是否齐全）</td>
+<td>线程“集结点”，到达屏障点之后再统一执行任务。可以一环扣着一环</td>
+<td>控制并发访问，允许最多多少个线程同时进入临界区</td>
+</tr>
+<tr>
+<td>控制的是谁</td>
+<td>主线程等待子线程</td>
+<td>所有线程互相等待</td>
+<td>控制访问资源的线程数量</td>
+</tr>
+<tr>
+<td>实现原理</td>
+<td>AQS 共享锁</td>
+<td>AQS + 屏障机制</td>
+<td>AQS 共享锁 + 许可证信号量</td>
+</tr>
+<tr>
+<td>用法</td>
+<td>await( ) 和 countdown( )配合， await 用来等待</td>
+<td>await( )阻塞标记单个任务执行完毕，计数器-1 直到为 0 执行回调函数</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>✅CountDownLatch 适合协调多个线程完成某项任务（等待一组任务完成后再执行）：<br>使用 await( ) countdown( ) api 用于同步。当 count 减少到 0 之后 await 阻塞。主线程调用 <code>await()</code> 等待其他线程调用 <code>countDown()</code></p>
+<p>✅CyclicBarrier 适合多线程并行执行后统一汇总（后面还有统一的任务）：</p>
+<p>❌threadlocal？？</p>
+<ol>
+<li>线程隔离作用：每个线程都有着自己的资源，避免线程之间的共享导致并发不安全。另外实现类：threadlocal 的 getter、setter、remove 方法</li>
+<li>上下文特性，减少线程内同一个实例反复传递参数繁琐：<br><img src="/java%E5%B9%B6%E5%8F%91/1ae14f5a19438c6dc6affa445446cd64.png" srcset="/img/loading.gif" lazyload><br>threadlocal 内存泄漏问题？</li>
+</ol>
+<h1 id="CAS-原子操作"><a href="#CAS-原子操作" class="headerlink" title="CAS 原子操作"></a>CAS 原子操作</h1><p>CAS 基于乐观锁的思想实现，底层是硬件上的 compare and set，解决 “<strong>一个变量在多线程下原子修改</strong>” 问题。 涉及到 current value、expect value、set value，如果当前值和期望值相同，那么就会设置新的值。这个过程会保证自旋，设置自旋失败次数上限防止长时间占用锁。和悲观锁 synchroized reentrantLock 不同的是，cas 是多线程同时进入的，他们各自拿到内存的值，get compare if correct then set，而悲观锁确保在同一时间只能有一个线程拿到锁（非读锁、信号量）</p>
+<p>❓ 是不是自旋一定会带来并发性能下降？不一定，如果临界区很小，线程不是很多，频繁的切换线程浪费更多。</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>具体类</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Atomic* 基本类型原子类</td>
+<td>AtomicInteger、AtomicLong、AtomicBoolean</td>
+<td>基本类型的原子自增操作</td>
+</tr>
+<tr>
+<td>Atomic*Array 数组类型原子类</td>
+<td>AtomicIntegerArray、AtomicLongArray、AtomicReferenceArray</td>
+<td></td>
+</tr>
+<tr>
+<td>Atomic*Reference 引用类型原子类</td>
+<td>AtomicReference（只能保证引用对象原子更新，但是内部字段不保证）、AtomicStampedReference、AtomicMarkableReference</td>
+<td>不替换整个对象的条件下，对字段进行原子更新。字段必须是 volatile，保证内存可见</td>
+</tr>
+<tr>
+<td>Atomic*FieldUpdater 升级类型原子类</td>
+<td>AtomicIntegerfieldupdater、AtomicLongFieldUpdater、AtomicReferenceFieldUpdater</td>
+<td></td>
+</tr>
+<tr>
+<td>Adder 累加器</td>
+<td>LongAdder、DoubleAdder</td>
+<td>使用分段锁，维护 Cell 数组中每个 cell 增加的值最终累加</td>
+</tr>
+<tr>
+<td>Accumulator 积累器</td>
+<td>LongAccumulator、DoubleAccumulator</td>
+<td></td>
+</tr>
+</tbody></table>
+<div class="note note-info">
+            <p>分段&#x2F;分区来减少锁冲突，一种将资源拆成多段，每段各自加锁的并发策略。LongAdder 底层维护 cell 数组（根据当前的线程数确定数组的大小），每个线程只在各自的 cell 上累加，不会出现冲突。也是分治思想</p>
+          </div>
+
+
+<p><a target="_blank" rel="noopener" href="https://learn.lianglianglee.com/%e4%b8%93%e6%a0%8f/Java%20%e5%b9%b6%e5%8f%91%e7%bc%96%e7%a8%8b%2078%20%e8%ae%b2-%e5%ae%8c/39%20%e5%8e%9f%e5%ad%90%e7%b1%bb%e6%98%af%e5%a6%82%e4%bd%95%e5%88%a9%e7%94%a8%20CAS%20%e4%bf%9d%e8%af%81%e7%ba%bf%e7%a8%8b%e5%ae%89%e5%85%a8%e7%9a%84%ef%bc%9f.md">atomic API 接口参考</a></p>
+<h1 id="并发容器"><a href="#并发容器" class="headerlink" title="并发容器"></a>并发容器</h1>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/JAVA/" class="category-chain-item">JAVA</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%B9%B6%E5%8F%91/" class="print-no-link">#并发</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>JAVA并发编程</div>
+      <div>http://whale-withme.github.io/JAVA并发编程/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>yzc</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年5月13日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/raft/" title="raft">
+                        <span class="hidden-mobile">raft</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
