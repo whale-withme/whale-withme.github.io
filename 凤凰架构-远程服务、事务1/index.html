@@ -19,24 +19,24 @@
   <meta name="author" content="yzc">
   <meta name="keywords" content="">
   
-    <meta name="description" content="vm-ft 分布式解决非确定事件在主备物理机上的一致性问题">
+    <meta name="description" content="凤凰架构的远程服务介绍摘要，包括 RPC 和 REST风格，以及介绍事务如何实现ACID特性">
 <meta property="og:type" content="article">
-<meta property="og:title" content="VM-ft">
-<meta property="og:url" content="http://whale-withme.github.io/vm-ft/index.html">
+<meta property="og:title" content="凤凰架构-远程服务、事务1">
+<meta property="og:url" content="http://whale-withme.github.io/%E5%87%A4%E5%87%B0%E6%9E%B6%E6%9E%84-%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E3%80%81%E4%BA%8B%E5%8A%A11/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="vm-ft 分布式解决非确定事件在主备物理机上的一致性问题">
+<meta property="og:description" content="凤凰架构的远程服务介绍摘要，包括 RPC 和 REST风格，以及介绍事务如何实现ACID特性">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-05-13T03:55:11.000Z">
-<meta property="article:modified_time" content="2025-05-17T02:42:15.081Z">
+<meta property="article:published_time" content="2025-05-17T02:34:39.000Z">
+<meta property="article:modified_time" content="2025-05-17T02:43:59.251Z">
 <meta property="article:author" content="yzc">
-<meta property="article:tag" content="分布式算法与实现">
+<meta property="article:tag" content="架构">
 <meta name="twitter:card" content="summary_large_image">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>VM-ft - Hexo</title>
+  <title>凤凰架构-远程服务、事务1 - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -202,7 +202,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle">VM-ft</span>
+            <span id="subtitle">凤凰架构-远程服务、事务1</span>
           
         </div>
 
@@ -213,8 +213,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-05-13 11:55" pubdate>
-          2025年5月13日 中午
+        <time datetime="2025-05-17 10:34" pubdate>
+          2025年5月17日 上午
         </time>
       </span>
     
@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.1k 字
+          2.7k 字
         
       </span>
     
@@ -236,7 +236,7 @@
         
         
         
-          10 分钟
+          23 分钟
         
       </span>
     
@@ -282,19 +282,87 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">VM-ft</h1>
+            <h1 id="seo-header">凤凰架构-远程服务、事务1</h1>
             
             
               <div class="markdown-body">
                 
-                <p>首先可以看<a target="_blank" rel="noopener" href="https://tanxinyu.work/vm-ft-thesis/">tanxinyu 的论文笔记博客</a> 对整个论文有大致的了解。Vmware-ft 论文主要为了解决两台主备物理机之间针对非确定事件的一致性同步问题，并对机器状态接受做了问题简化，只关注外部不确定事件输入（这里特别指网络数据包的到达）、定时器中断和怪异指令。他的底层思想仍然是复制状态机模型：<strong>多个机器在相同的初始状态下，执行相同的输入，那么最后的状态一定是相同的</strong>。需要解决的问题是，这些非确定的事件怎么依赖一种 <strong>捕获——重放机制</strong>以确定的顺序和位置记录下来，并精确的在备机上重放，在多台机器上达成同步的一致性状态。可以说，vm-ft 是补充实际应用下，除确定性指令外实现复制状态机的解决方案。</p>
-<h3 id="A1：捕获—模拟中断—重放机制的工作原理"><a href="#A1：捕获—模拟中断—重放机制的工作原理" class="headerlink" title="A1：捕获—模拟中断—重放机制的工作原理"></a>A1：捕获—模拟中断—重放机制的工作原理</h3><p>这里有两个场景，分别是**<em>primary 的定时器中断和来自网卡的网络包数据中断</em>**，处理略有不同：</p>
+                <h1 id="远程服务"><a href="#远程服务" class="headerlink" title="远程服务"></a>远程服务</h1><h2 id="RPC-远程调用"><a href="#RPC-远程调用" class="headerlink" title="RPC 远程调用"></a>RPC 远程调用</h2><p>rpc 本质是 <strong><em>将本地方法调用的思路迁移到远程方法，同时为了解决异构机器之间的问题，需要设计不同的协议或者接口</em></strong>。</p>
+<h2 id="A1-：RPC-是怎么被提起的？它遇到什么困难？"><a href="#A1-：RPC-是怎么被提起的？它遇到什么困难？" class="headerlink" title="A1 ：RPC 是怎么被提起的？它遇到什么困难？"></a>A1 ：RPC 是怎么被提起的？它遇到什么困难？</h2><p>远程服务将计算机工作从单机扩展到网络，从本地延展到远程。不可避免地，如何在 caller, callee 不是同一进程空间的条件下仍然能够像普通调用函数一样执行。如果是本机，可以借助共享内存，让多个进程同时访问一个地址空间；跨机器的话，利用 socket 让函数参数经过网络协议栈，打包解包，计算校验和，维护序列号和应答号。<br>设计之初，rpc 还有很多的问题亟待解决：</p>
 <ul>
-<li>定时器中断：在运行了 Primary 虚机的物理服务器上，有一个定时器，这个定时器会计时，生成定时器中断并发送给 VMM（虚拟机监控）。VMM 会<strong>停止 Primary 虚机的指令执行，并记下当前的指令序号</strong>，然后<strong>在指令序号的位置插入伪造的模拟定时器中断</strong>，并恢复 Primary 虚机的运行。之后，VMM 将指令序号和定时器中断再发送给 Backup 虚机。虽然 Backup 虚机的 VMM 也可以从自己的物理定时器接收中断，但是它并没有将这些物理定时器中断传递给 Backup 虚机的 guest 操作系统，而是直接忽略它们。<strong>backup 接收到来自 primary 的伪造 log 中断，送入操作系统中</strong>。这样，就实现了从 primary 到 backup 的精确指令中断重放。</li>
-<li>网卡中断：一个网络数据包到达了 primary 机器，网卡会将网络数据包拷贝给 VMM 的内存， VMM 在接收到网卡中断后会停止 primary 机器。这时候他会同时 将 primary 机器上的指令、网络数据包发送给 backup， backup 拷贝数据包内容到内存，在相同的指令序号位置模拟一个网卡中断；网络数据包拷贝给 primary 内存，发送网卡中断。这就是 Bounce-Buffer 机制<br>可以看到，无论是定时器中断还是网络数据包，其本身的中断都是不确定的，vm-ft 提出用这种指令序列 + 捕获中断 + 重放的方式精准在主备机器上实现同步。</li>
+<li>跨机器之间的网络通信成本（rpc 不等于 ipc）</li>
+<li>进程间交换数据</li>
+<li>机器之间支持的不同指令集、不同编程语言<br>总的来说，需要解决三个基本问题：</li>
 </ul>
-<h3 id="A2：考虑容错机制，vm-ft-怎么解决宕机的不一致？"><a href="#A2：考虑容错机制，vm-ft-怎么解决宕机的不一致？" class="headerlink" title="A2：考虑容错机制，vm-ft 怎么解决宕机的不一致？"></a>A2：考虑容错机制，vm-ft 怎么解决宕机的不一致？</h3><p>问题背景：假设 Primary 生成了回复给客户端，但是之后立马崩溃了，或者因为网络不稳定，backup 没有收到网络包。primary 机向客户端回复后，backup 成为主机却没有上次的记录。<br>解决这个问题方法可以是等待 ack，即<strong>直到 Backup 虚机确认收到了相应的 Log 条目，Primary 虚机不允许生成任何输出</strong>。这里的核心思想是，确保在客户端看到对于请求的响应时，Backup 虚机一定也看到了对应的请求，或者说至少在 Backup 的 VMM 中缓存了这个请求。如果出现崩溃，那么主机不会收到 ack，自然也不会向客户端返回响应。<br>然而，这样是非常消耗性能的。更通常的做法是，备机维护一个 log 缓冲区，收集主机的网络包并依次确认，而这似乎并没有遵循 vm-ft 的输出控制</p>
-<h3 id="A3：vm-ft-主从切换仍然需要单点控制"><a href="#A3：vm-ft-主从切换仍然需要单点控制" class="headerlink" title="A3：vm-ft 主从切换仍然需要单点控制"></a>A3：vm-ft 主从切换仍然需要单点控制</h3><p>如果两个机器之间发生了网络故障，或者本身两台机器出现物理故障，在其中一个的视角，是：网络数据包不可达或者超时。这时候需要主从切换，向一个可信的第三方 test-and-set 求证。类似锁的功能，决定谁是主节点，用标志位 0&#x2F;1 来标识</p>
+<ol>
+<li>如何表示数据（序列化与反序列化，跨语言跨机器之间用约定好的中立数据格式传输：JSON XML）</li>
+<li>如何传递数据（应用层协议交换信息协议，解决类似超时、异常、安全、认证、事务等需求）</li>
+<li>如何表示方法（统一的跨语言标准，能够找到准确的 callee）</li>
+</ol>
+<div class="note note-tip">
+            <div class="note-title">小标题内容</div>
+            <div class="note-content">
+              <p><strong>总结</strong><br>TODO</p>
+
+            </div>
+          </div>
+
+
+<h2 id="REST-设计"><a href="#REST-设计" class="headerlink" title="REST 设计"></a>REST 设计</h2><p>REST 风格是一种面向资源编程思想，让开发者专注于抽象资源对应到 HTTP 协议的操作中，强调统一接口和面向资源而非服务或者动作，具有很强的可读性和统一性，但性能和处理逻辑上有欠缺。</p>
+<h2 id="A1-：如何确认一个系统是不是-REST-风格？"><a href="#A1-：如何确认一个系统是不是-REST-风格？" class="headerlink" title="A1 ：如何确认一个系统是不是 REST 风格？"></a>A1 ：如何确认一个系统是不是 REST 风格？</h2><p>REST 风格有如下特点：</p>
+<ul>
+<li>客户端无状态原则：“REST 希望服务器不要去负责维护状态，每一次从客户端发送的请求中，应包括所有的必要的上下文信息，会话信息也由客户端负责保存维护，服务端依据客户端传递的状态来执行业务处理逻辑，驱动整个应用的状态变迁。” 客户端把历史的状态信息隐藏到每次的请求（头部？）中，传递给服务端。大型的系统要求传递的状态可能是巨大的，所以服务端本地的状态缓存也有必要.</li>
+<li>与 Http 1.1 协议的的高度绑定：<strong>这两个的核心思想都是 “ 面向资源”</strong> ，设计了 GET POST PUT DELETE PUTCH 这样对资源的操作行为。<strong><em>把服务中的实体抽象出来成为一种资源，对资源进行设计统一的接口</em></strong></li>
+<li>建议：对资源的操作通过 ID 进行；通过返回消息的超文本驱动状态的转变，指向下一个操作的接口</li>
+<li>……</li>
+</ul>
+<h2 id="A2：REST-的争议？"><a href="#A2：REST-的争议？" class="headerlink" title="A2：REST 的争议？"></a>A2：REST 的争议？</h2><ul>
+<li><strong>资源粒度大小</strong>：REST 缺乏对资源进行“部分”和“批量”的处理能力：限制了资源的大小，每次请求返回的是资源对象的所有属性信息，可能并不需要这么多，然而 http 协议没有对请求资源的结构化描述，所以只能在 endpoint 后面加上参数或者表单上加上字段限制；</li>
+<li><strong>批量获取资源的能力</strong>：批量则是指如果对于一个重复性的 request 请求，为了避免大量的传输请求，服务端要设计一个批量的 ”资源“ （可能已经脱离了面向一个实体类型资源的讨论，而是**<em>抽象一种批量处理的动作，称之为”事务“ 的资源</em>**）来对这个批量的资源请求。</li>
+</ul>
+<h2 id="A3：对比一下-rpc，rest？"><a href="#A3：对比一下-rpc，rest？" class="headerlink" title="A3：对比一下 rpc，rest？"></a>A3：对比一下 rpc，rest？</h2><p>可以看到 rest 风格主要是<strong>关注资源怎么被高效地抽象出来，能够覆盖更多的操作，也就是更加的 restful 风格</strong>。它把设计的统一接口固定了，绑定的协议也固定了，HTTP 规范是优点也是缺点。开发者能够不用关心更多的细节、接口的繁琐；而 rpc 提供了更自由、更灵活的配置，当然它的代价也更大。</p>
+<h1 id="事务处理"><a href="#事务处理" class="headerlink" title="事务处理"></a>事务处理</h1><h2 id="本地事务"><a href="#本地事务" class="headerlink" title="本地事务"></a>本地事务</h2><h2 id="实现原子性和持久性"><a href="#实现原子性和持久性" class="headerlink" title="实现原子性和持久性"></a>实现原子性和持久性</h2><p>原子性指一个事务要么都成功，要么都失败，不存在中间状态；持久性指事务生效后，不会因为其他的原因导致修改失效。然而这和实际的磁盘读写和不符的，磁盘读写可能存在只写了一半出现崩溃的情况。所以我们需要辅助机制来帮助实现这两个目标。<br>“基于语义的恢复与隔离算法”ARIES 提出了日志辅助的方法，它的核心思想是，对每一个事务的读写都要经过日志，状态包括 start, commit, endlog 状态，<strong><em>读写数据要在事务 commit 之后才能进行原子性的读写</em></strong>，持久化则可以扫描日志异步持久化到磁盘以提高 IO。</p>
+<p>崩溃时间点可以分为：</p>
+<ul>
+<li><strong>未提交事务，写入后崩溃</strong>：程序还没修改完三个数据，但数据库已经将其中一个或两个数据的变动写入磁盘，此时出现崩溃，一旦重启之后，需要回滚撤销已修改的数据</li>
+<li><strong>已提交事务，写入前崩溃</strong>：程序已经修改完三个数据，但数据库还未将全部三个数据的变动都写入到磁盘，此时出现崩溃，一旦重启之后，根据日志继续把所有数据的改动写入磁盘</li>
+</ul>
+<p>Write-Ahead Logging 先将何时写入变动数据，按照事务提交时点为界，划分为 FORCE 和 STEAL 两类情况。</p>
+<ul>
+<li><strong>FORCE</strong>：当事务提交后，要求变动数据必须同时完成写入则称为 FORCE，如果不强制变动数据必须同时完成写入则称为 NO-FORCE。现实中绝大多数数据库采用的都是 NO-FORCE 策略，因为只要有了日志，变动数据随时可以持久化，从优化磁盘 I&#x2F;O 性能考虑，没有必要强制数据写入立即进行。</li>
+<li><strong>STEAL</strong>：在事务提交前，允许变动数据提前写入则称为 STEAL，不允许则称为 NO-STEAL。从优化磁盘 I&#x2F;O 性能考虑，允许数据提前写入，有利于利用空闲 I&#x2F;O 资源，也有利于节省数据库缓存区的内存。</li>
+</ul>
+<div class="note note-info">
+            
+            <div class="note-content">
+              <p><strong>例子分析</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs sql">[<span class="hljs-number">100</span>] CHECKPOINT <span class="hljs-keyword">start</span><br>[<span class="hljs-number">101</span>] T1 <span class="hljs-keyword">START</span><br>[<span class="hljs-number">102</span>] T1 <span class="hljs-keyword">UPDATE</span> A: <span class="hljs-number">100</span> <span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span> <span class="hljs-number">70</span>   <span class="hljs-comment">-- undo = 100, redo = 70</span><br>[<span class="hljs-number">103</span>] T1 <span class="hljs-keyword">UPDATE</span> B: <span class="hljs-number">50</span> <span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span> <span class="hljs-number">80</span>    <span class="hljs-comment">-- undo = 50,  redo = 80</span><br>[<span class="hljs-number">104</span>] T1 <span class="hljs-keyword">COMMIT</span><br><span class="hljs-comment">--- crash 发生在这里 ---</span><br>[<span class="hljs-number">105</span>] T1 <span class="hljs-keyword">END</span>                   <span class="hljs-comment">-- ❌ 未写入</span><br>[<span class="hljs-number">106</span>] T2 <span class="hljs-keyword">START</span><br>[<span class="hljs-number">107</span>] T2 <span class="hljs-keyword">UPDATE</span> A: <span class="hljs-number">70</span> <span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span> <span class="hljs-number">50</span>    <span class="hljs-comment">-- undo = 70, redo = 50</span><br></code></pre></td></tr></table></figure>
+
+<p>从上一次的 checkpoint 开始扫描，如果发现 commit 但未 end 日志，加入到 redo 日志，异步完成重做；如果发现 start 但是未 commit，加入到 undo log 撤销操作。</p>
+
+            </div>
+          </div>
+
+
+<p>WAL 崩溃恢复进行下面三个阶段的操作：</p>
+<ul>
+<li><strong>分析阶段</strong>（Analysis）：该阶段从最后一次检查点（Checkpoint，可理解为在这个点之前所有应该持久化的变动都已安全落盘）开始扫描日志，找出所有没有 End Record 的事务，组成待恢复的事务集合，这个集合至少会包括 Transaction Table 和 Dirty Page Table 两个组成部分。</li>
+<li><strong>重做阶段</strong>（Redo）：该阶段依据分析阶段中产生的待恢复的事务集合来重演历史（Repeat History），具体操作为：找出所有包含 Commit Record 的日志，将这些日志修改的数据写入磁盘，写入完成后在日志中增加一条 End Record，然后移除出待恢复事务集合。</li>
+<li><strong>回滚阶段</strong>（Undo）：该阶段处理经过分析、重做阶段后剩余的恢复事务集合，此时剩下的都是需要回滚的事务，它们被称为 Loser，根据 Undo Log 中的信息，将已经提前写入磁盘的信息重新改写回去，以达到回滚这些 Loser 事务的目的。</li>
+</ul>
+<h2 id="实现隔离性"><a href="#实现隔离性" class="headerlink" title="实现隔离性"></a>实现隔离性</h2><p>隔离性是要求不同事务的并发读写互相不干扰，一般使用加锁的方式实现隔离。</p>
+<ul>
+<li>写锁又称排他锁，如果数据有加写锁，就只有持有写锁的事务才能对数据进行写入操作，数据加持着写锁时，其他事务不能写入数据，也不能施加读锁</li>
+<li>读锁，多个事务可以对同一个数据添加多个读锁，数据被加上读锁后就不能再被加上写锁，所以其他事务不能对该数据进行写入，但仍然可以读取。</li>
+<li>范围锁，对一个范围加排他锁，<strong>不能在这个范围内修改、新增、删除数据</strong></li>
+</ul>
+<p>隔离分为 可串行化、可重复读、读已提交、读未提交 三个主要的级别，差别在于加锁的范围和时机不同，达到了不同的效果。本质还是依靠上面的三种类型的锁实现隔离。在思考下面几种隔离级别带来的问题时，要特别注意对象是不同的事务，在内部事务没有 commit 的情况下，锁是否还生效导致其他的事务会不会读&#x2F;写同一范围的数据，<em>而一个事务包含的 sql 语句是很多的</em>。</p>
+<ul>
+<li>可串行化：并发事务的读写可以等效为某一种串行的读写请求。对事务所有读、写的数据全都加上读锁、写锁和范围锁</li>
+<li>可重复读：对事务所涉及的数据加读锁和写锁，且一直持有至事务结束，但不再加范围锁。带来的问题是幻读，如果在两次范围读之间插入写，那么<strong>范围查询是不同的集合</strong>。MySQL 的引擎 Innodb 默认的隔离级别是可重复读，在只读事务的条件下可以避免幻读</li>
+<li>读已提交：对事务涉及的数据加的写锁会一直持续到事务结束，但<strong>加的读锁在查询操作完成后就马上会释放</strong>。带来了不可重复读问题，缺乏贯穿整个事务周期的读锁，无法禁止读取过的数据发生变化，在下一次读取可能会读到其他事务写的数据。</li>
+<li>读未提交：对事务涉及的数据只加写锁，会一直持续到事务结束，但<strong>完全不加读锁</strong>。意味着事务写后回滚，可能会有别的事务在其中读到了回滚前的数据，造成脏读。</li>
+</ul>
 
                 
               </div>
@@ -313,7 +381,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" class="category-chain-item">论文笔记</a>
+  <a href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" class="category-chain-item">技术笔记</a>
   
   
 
@@ -328,7 +396,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E7%AE%97%E6%B3%95%E4%B8%8E%E5%AE%9E%E7%8E%B0/" class="print-no-link">#分布式算法与实现</a>
+        <a href="/tags/%E6%9E%B6%E6%9E%84/" class="print-no-link">#架构</a>
       
     </div>
   
@@ -340,8 +408,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>VM-ft</div>
-      <div>http://whale-withme.github.io/vm-ft/</div>
+      <div>凤凰架构-远程服务、事务1</div>
+      <div>http://whale-withme.github.io/凤凰架构-远程服务、事务1/</div>
     </div>
     <div class="license-meta">
       
@@ -353,7 +421,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年5月13日</div>
+          <div>2025年5月17日</div>
         </div>
       
       
@@ -385,18 +453,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/raft/" title="Raft">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Raft</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/GFS/" title="GFS课堂笔记">
-                        <span class="hidden-mobile">GFS课堂笔记</span>
+                      <a href="/JAVA%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" title="Java并发编程">
+                        <span class="hidden-mobile">Java并发编程</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
