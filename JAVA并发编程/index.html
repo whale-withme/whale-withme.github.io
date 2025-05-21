@@ -19,21 +19,22 @@
   <meta name="author" content="yzc">
   <meta name="keywords" content="">
   
-    <meta name="description" content="img&#x2F;java并发">
+    <meta name="description" content="java并发接口，包括线程池、同步控制和流程控制">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java并发编程">
 <meta property="og:url" content="http://whale-withme.github.io/JAVA%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="img&#x2F;java并发">
+<meta property="og:description" content="java并发接口，包括线程池、同步控制和流程控制">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://whale-withme.github.io/img/java%E5%B9%B6%E5%8F%91/1be332e11035cabc8d148c96ce1e3ebb.png">
 <meta property="og:image" content="http://whale-withme.github.io/img/java%E5%B9%B6%E5%8F%91/3719561120dd8ae5a63442180fd55b47.png">
 <meta property="og:image" content="http://whale-withme.github.io/img/java%E5%B9%B6%E5%8F%91/21a0fecd208e7a0cba8bfa5f7504e99b.png">
 <meta property="og:image" content="http://whale-withme.github.io/img/java%E5%B9%B6%E5%8F%91/1ae14f5a19438c6dc6affa445446cd64.png">
 <meta property="article:published_time" content="2025-05-13T07:54:24.000Z">
-<meta property="article:modified_time" content="2025-05-17T02:41:52.481Z">
+<meta property="article:modified_time" content="2025-05-17T03:02:20.611Z">
 <meta property="article:author" content="yzc">
 <meta property="article:tag" content="并发">
+<meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://whale-withme.github.io/img/java%E5%B9%B6%E5%8F%91/1be332e11035cabc8d148c96ce1e3ebb.png">
   
@@ -201,7 +202,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('/img/index.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -241,7 +242,7 @@
         
         
         
-          19 分钟
+          20 分钟
         
       </span>
     
@@ -306,12 +307,17 @@
 <li>多线程编程出现并发错误的源头在于：<strong>可见性问题</strong>（cpu 缓存是的不同线程读取到了未更新的数据）、<strong>有序性问题</strong>（编译器优化使得在不同时间片切换，线程访问错误）</li>
 <li>Happens-Before 规则：<strong>前面一个操作的结果对后续操作是可见的</strong>（这里指的都是对于共享变量的操作，是可见的）</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 有趣的双重检查创建单例代码</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Singleton</span> &#123;<br>  <span class="hljs-keyword">static</span> Singleton instance;<br>  <span class="hljs-keyword">static</span> Singleton <span class="hljs-title function_">getInstance</span><span class="hljs-params">()</span>&#123;<br>    <span class="hljs-keyword">if</span> (instance == <span class="hljs-literal">null</span>) &#123;<br>      <span class="hljs-keyword">synchronized</span>(Singleton.class) &#123;<br>        <span class="hljs-keyword">if</span> (instance == <span class="hljs-literal">null</span>)<br>          instance = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Singleton</span>();<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> instance;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 有趣的双重检查创建单例代码</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Singleton</span> &#123;<br>  <span class="hljs-keyword">static</span> <span class="hljs-keyword">volatile</span> Singleton instance;  <span class="hljs-comment">// 加上volatile 禁止指令重排序才能创建合理的单例</span><br><br>  <span class="hljs-keyword">static</span> Singleton <span class="hljs-title function_">getInstance</span><span class="hljs-params">()</span>&#123;<br>    <span class="hljs-keyword">if</span> (instance == <span class="hljs-literal">null</span>) &#123;<br>      <span class="hljs-keyword">synchronized</span>(Singleton.class) &#123;<br>        <span class="hljs-keyword">if</span> (instance == <span class="hljs-literal">null</span>)<br>          instance = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Singleton</span>();<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> instance;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>😭 指令重排（有序性问题）可能会导致顺序 分配内存（memory &#x3D; allocate()）、将 instance 指向这块内存（instance &#x3D; memory）、 初始化对象（调用构造方法）。这导致其他线程可能访问了未初始化完全的变量。Java 使用了 volatile：禁止指令重排序 解决此问题。</p>
-<blockquote>
-<p>[!note] volatile 关键字怎么解决并发中的经典问题<br><strong>禁止线程用自己的缓存，使得线程对变量的修改可以让所有的线程可见！和禁止指令重排，解决有序性问题</strong></p>
-</blockquote>
+<p>😭 指令重排（有序性问题）可能会导致顺序 分配内存（memory &#x3D; allocate()）、将 instance 指向这块内存（instance &#x3D; memory）、 初始化对象（调用构造方法）。这导致其他线程可能访问了未初始化完全的变量。Java 使用了 volatile：禁止指令重排序 解决此问题。所以这个例子目前是可行的。</p>
+<div class="note note-info">
+            
+            <div class="note-content">
+              <p>volatile 关键字怎么解决并发中的经典问题<br><strong>禁止线程用自己的缓存，使得线程对变量的修改可以让所有的线程可见！和禁止指令重排，解决有序性问题</strong></p>
+
+            </div>
+          </div>  
+
 <p>🤔JVM 会等待工作线程全部结束之后才会停止主线程服务?<br>是的，JVM 确实会等待，但并不意味着主线程 main 也会等待，这就是我们需要 join 的原因。join 会让主线程阻塞从而等待子线程优先于主线程结束，执行逻辑正确；否则主线程可能中途结束执行到了后面的逻辑。</p>
 <p>同步原语 synchronized：</p>
 <ul>
@@ -540,6 +546,8 @@
       <i class="iconfont icon-tags"></i>
       
         <a href="/tags/%E5%B9%B6%E5%8F%91/" class="print-no-link">#并发</a>
+      
+        <a href="/tags/java/" class="print-no-link">#java</a>
       
     </div>
   
