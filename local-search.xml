@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>javaEE-1</title>
+    <link href="/javaEE-1/"/>
+    <url>/javaEE-1/</url>
+    
+    <content type="html"><![CDATA[<div class="note note-danger">                        <div class="note-content">              <p><em><strong>javaee课程来自听课的记录，用词口语，可能出现不少的错字</strong></em>  </p>            </div>          </div>  <h1 id="预备知识"><a href="#预备知识" class="headerlink" title="预备知识"></a>预备知识</h1><h2 id="url-servlet"><a href="#url-servlet" class="headerlink" title="url servlet"></a>url servlet</h2><p><img src="/img/javaee-1/f66e70f0bcccc28f5701a5eb04b3843e.png"><br>dns 查名服务类似于spring微服务里面的Nacos服务发现，也是一个服务对应的IP地址。不过它提供了更多的类似于负载均衡，动态上下线，查看健康状况等等的功能，更加智能。</p><p>HTTP或者https协议都是一问一答的形式，没有问就没有答，服务器没有保存上下文的信息。所有的内容都应该包含在request里面</p><p><img src="/img/javaee-1/cd19197089f1265f523746214bde383b.png"><br>符合javaee规范的servlet容器组件规范。服务端把请求request和响应发送到servlet基类，然后会调用service接口。HTTP servlet实现了这个基类就可以重写其中的doget dopost等等方法，这部分是自己的代码，把内容写到响应response， servlet再把这个响应送到前端服务器去响应渲染出一个页面。用的比较多的符合Java EE规范的servlet容器是tomcat，或者可以使用jetty。<br>使用规范的好处是，如果想要更换容器的话不需要再重新写这些接口的方法。</p><p><img src="/img/javaee-1/b7e3c80190a437e724b2706a17a58bfc.png"><br>servlet对象只有一个，每一个请求都会用一个单独的线程去跑这个对象没有属性，因为线程会共享对象的属性会造成冲突 。 read的过程就是TCP的数据包拼接，decode把接收到的网络数据包分成一个Java对象，computer是自己service方法的处理逻辑。<br>但是线程不能无限制地增长，会受到内存CPU的限制。可以事先用线程池，线程池就是一个限制了可以使用的最大线程数，多于这个最大容量就会等待；如果超过了限制的等待时间，那么就会被拒绝。同时还会在预先的时候分配一定的孵化线程，有需求的时候就拿出来用。<br>还需要分析任务是io密集型还是CPU密集型，如果是io密集型，那可以多开线程消耗内存会比较大，但是CPU用的不是很多；如果是CPU密集型，那么即使线程数开得很多CPU的上限也不能突破。</p><img src = "/img/javaee-1/92da6a8a3e095712b3a55d3022f3c21b.png" width = "400">  <h2 id="maven"><a href="#maven" class="headerlink" title="maven"></a>maven</h2><p>工程文件依赖的第三方jar包，以及提供中立的工具管理。</p><img src = "/img/javaee-1/42e885503482eccf3552c82a86eade07.png" width = "400">  <p>插件才是真正执行操作的</p><h1 id="领域建模思想"><a href="#领域建模思想" class="headerlink" title="领域建模思想"></a>领域建模思想</h1><p><img src="/img/javaee-1/40c183e6f64959811592ca77bdce9489.png"><br><strong>一个概念在不同的视角下可能会有不同的属性</strong>，衍生不同的概念<br>局部和整体的关系，如果修改了商品，那么销售的概念也可能会改变；商铺被禁止了，那么商品和销售都会联动的被禁止。这些概念之间还存在各种各样的关系一对一或者一对多、自己和自己的关系（捆绑一对多、相关商品）<br>这里商品和销售的概念非常密切，所以没有把下面销售的概念和上面商品实体的概念分割开。</p><h1 id="Mybatis"><a href="#Mybatis" class="headerlink" title="Mybatis"></a>Mybatis</h1><h1 id="Mysql原理"><a href="#Mysql原理" class="headerlink" title="Mysql原理"></a>Mysql原理</h1><p>关注的是大数据高并发的情况下Mysql里面的存储和逻辑结构：<br><img src="/img/javaee-1/9d705b796f53be1ed34a923043123919.png"></p><ul><li>在物理结构之下实际的存储是分为tablespace segment extent和page，需要关注的是page里面包含了实际的表数据结构， page directory可以根据要查找的主键进行二分查找快速查询。 page之间是一个双向链表的关系，page directory是单链表结构<br><img src="/img/javaee-1/7b32ecf3ea2ed7d5aeada6cb6af8779b.png"></li></ul><p>这里要做一个区分，在逻辑结构下索引的存储叶子节点存放了实际的记录，也就是page。但是在物理结构之下，索引同样存放在物理的page下，它的索引是每一个页的最小主键值。根据要查找的所主键，找到存放的页的号码，根据这个页的号码，去extent找到对应的页，page directory二分查找目标主键值。这也是为什么叫做聚簇索引，把索引值和实际的记录绑定在一起。</p><p>page directory是定长的，我们要让这个数量中和一下。如果page太小，那么磁盘读出来的数据转一圈也很少，会有寻道时间的损失。<br>从磁盘当中根据索引读出来记录也是一个page，这是磁盘转一圈读到的数据大小，把它放在内存之后会根据哈希索引保存key value下次要查询某一个主键直接去读对应的value就可以了<br>做辅助索引会产生比主键递增索引更多的插入分裂（因为辅助索引的插入都是随机的，大概率还是在中间插入）。所以仅在必要的外键上面做辅助索引，如果要查询特殊的名称的话，就不要在关系型数据库里面做。<em>这里也注意，如果要做查询的话一定要有索引</em><br><img src="/img/javaee-1/62a4bc19c4aa64f817701f67037670a4.png"><br>中间插入节点可能会使节点分裂，设置主键自增在最后插入数据才是减少分裂的最好插入方式，只会影响最后一页<br>删除节点更麻烦，它可能是中间某一层的分割节点。需要重新合并，实际上做的是逻辑的删除不是物理的删除</p><p>这个图还是比较清楚的，把创建readview和update记录的db_trx_id进行比较就可以实现读问题<img src="/img/javaee-1/56c714d1b2e27b8c55617d3337b9e589.png"><br>mvcc多并发版本读，解决了多个事务开启下的读问题，但是不能解决写，写还是互斥的。undolog链历史记录在所有的依赖事务结束之后会被删除，在创建记录的事务被提交之后打上history标记。</p><h1 id="spring-微服务"><a href="#spring-微服务" class="headerlink" title="spring 微服务"></a>spring 微服务</h1><h2 id="原则"><a href="#原则" class="headerlink" title="原则"></a>原则</h2><p><img src="/img/javaee-1/188eeea25d2023d81a7e656781c4807d.png"><br>单一职责：一个微服务解决一个问题，但实际业务开发采用了<strong>一个领域之间的松散耦合程度</strong>来判断是不是可以聚合成一个微服务。<br>松散耦合：采用轻量级通信（RESTful API 调用服务之间的功能）<br>独立存在：独立数据结构和数据库，每一个微服务都可以有自己的数据库（Mysql，Oracle……），甚至redis</p><p>为什么不一个微服务只用两张表或者三张表？<br>对象之间没有办法关联了，面向对象发挥不出威力，职责不能分配给对象，最后是面向功能设计（也就是微服务的单一职责，减少协作）。相对地使用领域建模ddd</p><img src = "/img/javaee-1/2408ef7b9fd4e2b5b806064c327dc8bf.png" width = "400">  <p>各个模块之间采用RESTful API方式（严格保证单向通知，不能出现双向调用）或者使用消息通知机制（RabbitMQ……）来实现通讯</p><p><img src="/img/javaee-1/f774373bc6f00ce7212bcae3af0635ca.png">  </p><ul><li>集中配置：同一个服务的配置文件只放在一个集中的机器上面，其他相同服务机器只需要根据这个机器的application.yaml文件改配置。包括生产的配置文件里面都有密码，要把配置文件放在集中配置的机器上面，不能公开；以及定时刷新更换配置</li><li>客户透明：服务之间的调用要发现、上线，不能采用IP的方式，需要有一个透明的管理，只需要服务模块的名字就可以</li><li>负载均衡和容错：返回服务负载比较小的机器</li></ul><h2 id="服务发现-网关"><a href="#服务发现-网关" class="headerlink" title="服务发现 网关"></a>服务发现 网关</h2><p>集中配置Nacos：先去读spring cloud bootstrap 找到Nacos的地址，然后从上面选择application.yaml来更换本地配置<br><img src = '/img/javaee-1/bed377f1cc72522dbf951ea35abaf840.png' alt = '' width = "400"><br>客户端再把自己的方法注册到Nacos集群之后，同时也拉下了上面的所有的服务IP地址，作为自己的客户端缓存。同时还会有心跳机制客户端不断向Nacos发送心跳表明自己的服务是正常的，同时Nacos返回新的服务供客户端更新。客户端用最简单的轮询或者随机实现动态负载均衡，这也是在客户端做的。</p><p><img src="/img/javaee-1/d329f74e180430faf8e6fe1fc3beaeab.png"><br>微服务里面所有的接口都通过API网关来向外暴露，防止攻击，便于管理</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>技术笔记</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>java</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>书影音随记</title>
     <link href="/%E4%B9%A6%E5%BD%B1%E9%9F%B3%E9%9A%8F%E8%AE%B0/"/>
     <url>/%E4%B9%A6%E5%BD%B1%E9%9F%B3%E9%9A%8F%E8%AE%B0/</url>
