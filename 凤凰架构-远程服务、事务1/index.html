@@ -342,7 +342,7 @@
 </ul>
 <h2 id="A2：REST-的争议？"><a href="#A2：REST-的争议？" class="headerlink" title="A2：REST 的争议？"></a>A2：REST 的争议？</h2><ul>
 <li><strong>资源粒度大小</strong>：REST 缺乏对资源进行“部分”和“批量”的处理能力：限制了资源的大小，每次请求返回的是资源对象的所有属性信息，可能并不需要这么多，然而 http 协议没有对请求资源的结构化描述，所以只能在 endpoint 后面加上参数或者表单上加上字段限制；</li>
-<li><strong>批量获取资源的能力</strong>：批量则是指如果对于一个重复性的 request 请求，为了避免大量的传输请求，服务端要设计一个批量的 ”资源“ （可能已经脱离了面向一个实体类型资源的讨论，而是**<em>抽象一种批量处理的动作，称之为”事务“ 的资源</em>**）来对这个批量的资源请求。</li>
+<li><strong>批量获取资源的能力</strong>：批量则是指如果对于一个重复性的 request 请求，为了避免大量的传输请求，服务端要设计一个批量的 ”资源“ （可能已经脱离了面向一个实体类型资源的讨论，而是 <strong><em>抽象一种批量处理的动作，称之为”事务“ 的资源</em></strong> ）来对这个批量的资源请求。</li>
 </ul>
 <h2 id="A3：对比一下-rpc，rest？"><a href="#A3：对比一下-rpc，rest？" class="headerlink" title="A3：对比一下 rpc，rest？"></a>A3：对比一下 rpc，rest？</h2><p>可以看到 rest 风格主要是<strong>关注资源怎么被高效地抽象出来，能够覆盖更多的操作，也就是更加的 restful 风格</strong>。它把设计的统一接口固定了，绑定的协议也固定了，HTTP 规范是优点也是缺点。开发者能够不用关心更多的细节、接口的繁琐；而 rpc 提供了更自由、更灵活的配置，当然它的代价也更大。</p>
 <h1 id="事务处理"><a href="#事务处理" class="headerlink" title="事务处理"></a>事务处理</h1><h2 id="本地事务"><a href="#本地事务" class="headerlink" title="本地事务"></a>本地事务</h2><h2 id="实现原子性和持久性"><a href="#实现原子性和持久性" class="headerlink" title="实现原子性和持久性"></a>实现原子性和持久性</h2><p>原子性指一个事务要么都成功，要么都失败，不存在中间状态；持久性指事务生效后，不会因为其他的原因导致修改失效。然而这和实际的磁盘读写和不符的，磁盘读写可能存在只写了一半出现崩溃的情况。所以我们需要辅助机制来帮助实现这两个目标。<br>“基于语义的恢复与隔离算法”ARIES 提出了日志辅助的方法，它的核心思想是，对每一个事务的读写都要经过日志，状态包括 start, commit, endlog 状态，<strong><em>读写数据要在事务 commit 之后才能进行原子性的读写</em></strong>，持久化则可以扫描日志异步持久化到磁盘以提高 IO。</p>
@@ -407,6 +407,20 @@
         
   <a href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" class="category-chain-item">技术笔记</a>
   
+  
+    <span>></span>
+    
+  <a href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" class="category-chain-item">系统设计</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%87%A4%E5%87%B0%E6%9E%B6%E6%9E%84/" class="category-chain-item">凤凰架构</a>
+  
+  
+
+  
+
   
 
       </span>
