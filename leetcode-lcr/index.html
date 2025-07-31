@@ -27,7 +27,7 @@
 <meta property="og:description" content="leetcode剑指offer 做题笔记">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-07-11T14:38:28.000Z">
-<meta property="article:modified_time" content="2025-07-11T14:49:12.807Z">
+<meta property="article:modified_time" content="2025-07-31T13:01:04.803Z">
 <meta property="article:author" content="yzc">
 <meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary_large_image">
@@ -249,7 +249,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          675 字
+          1.1k 字
         
       </span>
     
@@ -260,7 +260,7 @@
         
         
         
-          6 分钟
+          9 分钟
         
       </span>
     
@@ -327,12 +327,26 @@
 <div class="note note-info">
             
             <div class="note-content">
-              <p>字符串保存处理——数组<br>用位运算把每一个字母位标记下来，字符串中出现字母为 1，否则为 0. 相对哈希表保存字符串更简单高效。  </p>
+              <p><strong>字符串保存处理——数组</strong><br>用位运算把每一个字母位标记下来，字符串中出现字母为 1，否则为 0. 相对哈希表保存字符串更简单高效。</p>
 
             </div>
           </div>
 
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++)&#123;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">char</span> ch: words[i])&#123;<br>		mask[i] |= (<span class="hljs-number">1</span> &lt;&lt; ch - <span class="hljs-string">&#x27;a&#x27;</span>);<br>	&#125;<br>&#125;<br><br><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++)&#123;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j = i<span class="hljs-number">+1</span>; j &lt; n; j++)&#123;<br>		<span class="hljs-keyword">if</span>(!(mask[i] &amp; mask[j]))<br>			maxlen = <span class="hljs-built_in">max</span>(maxlen, (<span class="hljs-type">int</span>)(words[i].<span class="hljs-built_in">length</span>() * words[j].<span class="hljs-built_in">length</span>()));<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="滑动窗口"><a href="#滑动窗口" class="headerlink" title="滑动窗口"></a>滑动窗口</h1><div class="note note-info">
+            
+            <div class="note-content">
+              <p><strong>怎么用好滑动窗口来对序列提取目标子数组？</strong><br>窗口一般符合 “<strong>右边界每次迭代向右移动，左边界只在满足特定条件下尝试多次移动</strong>” ，这样一个模型对应的题目情况是：子序列为满足目标条件，for 循环不断向前；每次迭代中检查是否满足条件 T，如果满足，则 while 循环内不断前进左边界。</p>
+
+            </div>
+          </div>
+
+<p>这个模型一般针对 “子序列窗口一般需要较长才满足及其变种问题” ，也就是右边界尝试先移动一段距离，eg：找到数组中大于某一个数的所有子序列。</p>
+<h2 id="长度最小的子数组"><a href="#长度最小的子数组" class="headerlink" title="长度最小的子数组"></a>长度最小的子数组</h2><p>给定一个含有 <code>n</code> 个正整数的数组和一个正整数 <code>target</code> <strong>。</strong><br>找出该数组中满足其和 <code>≥ target</code> 的长度最小的 <strong>连续子数组</strong> <code>[numsl, numsl+1, ..., numsr-1, numsr]</code> ，并返回其长度。**如果不存在符合条件的子数组，返回 <code>0</code> 。</p>
+<p>这道题是典型的滑动窗口例题，窗口有指针在不满足条件时不断向右移，一旦发现满足条件，在当次右指针位置不断移动左指针直到收缩到边界情况。题目的条件刚好是大于等于，也是窗口的典例。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">for</span>(left = <span class="hljs-number">0</span>, right = <span class="hljs-number">0</span>; right &lt; n; right++)&#123;<br>	sum += nums[right];<br><br>	<span class="hljs-keyword">while</span>(sum &gt;= target)&#123;<br>		minLen = <span class="hljs-built_in">min</span>(minLen, right-left<span class="hljs-number">+1</span>);<br>		sum -= nums[left];<br>		left++;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="和为-K-的子数组"><a href="#和为-K-的子数组" class="headerlink" title="和为 K 的子数组"></a>和为 K 的子数组</h2>
                 
               </div>
             
