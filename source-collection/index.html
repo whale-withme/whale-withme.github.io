@@ -19,28 +19,24 @@
   <meta name="author" content="yzc">
   <meta name="keywords" content="">
   
-    <meta name="description" content="GFS分布式算法实现，多副本的chunk server 管理">
+    <meta name="description" content="计算机技术、论文解读等">
 <meta property="og:type" content="article">
-<meta property="og:title" content="GFS课堂笔记">
-<meta property="og:url" content="http://whale-withme.github.io/GFS/index.html">
+<meta property="og:title" content="收集优秀的创作者">
+<meta property="og:url" content="http://whale-withme.github.io/source-collection/index.html">
 <meta property="og:site_name" content="yzc">
-<meta property="og:description" content="GFS分布式算法实现，多副本的chunk server 管理">
+<meta property="og:description" content="计算机技术、论文解读等">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://whale-withme.github.io/img/gfs/ceec5785d9432faf3f9ebf3c565a1838.png">
-<meta property="og:image" content="http://whale-withme.github.io/img/gfs/51e6890f9b4daaf2696a633b7a0077e9.png">
-<meta property="og:image" content="http://whale-withme.github.io/img/gfs/ff47e22fe31d77dec98cc0a6f62fda87.png">
-<meta property="article:published_time" content="2025-05-13T03:17:51.000Z">
-<meta property="article:modified_time" content="2025-05-13T12:21:36.226Z">
+<meta property="article:published_time" content="2025-05-09T13:16:26.825Z">
+<meta property="article:modified_time" content="2025-09-16T12:45:09.999Z">
 <meta property="article:author" content="yzc">
-<meta property="article:tag" content="分布式算法与实现">
+<meta property="article:tag" content="收集">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://whale-withme.github.io/img/gfs/ceec5785d9432faf3f9ebf3c565a1838.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>GFS课堂笔记 - yzc</title>
+  <title>收集优秀的创作者 - yzc</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -230,7 +226,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="GFS课堂笔记"></span>
+            <span id="subtitle" data-typed-text="收集优秀的创作者"></span>
           
         </div>
 
@@ -241,8 +237,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-05-13 11:17" pubdate>
-          2025年5月13日 上午
+        <time datetime="2025-05-09 21:16" pubdate>
+          2025年5月9日 晚上
         </time>
       </span>
     
@@ -253,7 +249,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.5k 字
+          424 字
         
       </span>
     
@@ -264,7 +260,7 @@
         
         
         
-          22 分钟
+          4 分钟
         
       </span>
     
@@ -310,81 +306,22 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">GFS课堂笔记</h1>
+            <h1 id="seo-header">收集优秀的创作者</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="GFS"><a href="#GFS" class="headerlink" title="GFS"></a>GFS</h2><p>分布式目标是为了提升性能，同时机器过多可能会带来大量不定时出现的故障，因此需要有容错和监控系统。解决故障的方法是创建副本，那么又带来多个副本之间可能出现的不一致问题。</p>
-<p>GFS 设计需要解决一些问题</p>
-<h2 id="文件怎么分散存储在多个服务器当中？"><a href="#文件怎么分散存储在多个服务器当中？" class="headerlink" title="文件怎么分散存储在多个服务器当中？"></a>文件怎么分散存储在多个服务器当中？</h2><p>分割成 64MB 大小的 chunk 存储在不同机器下面，一个文件内容可能需要占用多个 chunk（gfs 设计准备 GB 级大小文件）。这个数字偏大，是为了减少 master 节点存储 chunk 信息，查询时尽量在少的 chunk 完成减少网络传输代价。</p>
-<p>✅GFS 保证单点 master，原因是<strong>控制流和数据流分离</strong>，client 仅从 master 获取 chunk 的元数据信息，并不直接进行数据交互，这一点放在 chunkserver 与 client 中。另外，master 只持久化 file and chunk namespace、file 和 chunk id 的映射关系，至于 chunk 在哪个 server 当中并没有保存，因为可以和 chunkserver 通信得到一个 chunkserver 的所有 chunk 信息。</p>
-<h2 id="❓-服务器发生故障怎么保证文件不损坏不丢失？"><a href="#❓-服务器发生故障怎么保证文件不损坏不丢失？" class="headerlink" title="❓ 服务器发生故障怎么保证文件不损坏不丢失？"></a>❓ 服务器发生故障怎么保证文件不损坏不丢失？</h2><p>（<strong>高可用问题</strong>，在宕机之后仍能保证向外提供服务）<br><strong><em>master 的高可用</em></strong>：master 和 元数据的高可用是一致的，采用主备复制的模式。master 更新&#x2F;增加 namespace 或 改变映射关系首先写入日志，再将 wal 从 priamry master 发送到备用 master，直到备用 master 确认之后再更改主 master 的内存。而要识别 master 宕机需要共识算法。<br><strong><em>chunk server 的高可用</em></strong>：通过 master 维持副本数量和副本之间的一致，并不遵循物理上 chunk server 主备一致性。GFS 设定只有三个 chunk 副本都保存了信息才算是写入完成，如果出现某个 chunkserver 宕机，还剩下两个副本可用。同时 master 可以在其他的 chunkserver 上新建副本，维持副本数目。</p>
-<blockquote>
-<p>另外，master 需要将 chunk server 版本号保存起来，因为一旦 master 宕机，那么仅根据 chunk server 自己的版本号并不能确定哪个 server 是保存最新副本的安全 server</p>
-</blockquote>
-<div class="note note-info">
-            
-            <div class="note-content">
-              <p>“当 Master 重启时，无论如何都需要与所有的 Chunk 服务器进行通信，因为 Master 需要确定哪个 Chunk 服务器存了哪个 Chunk。你可能会想到，Master 可以将所有 Chunk 服务器上的 Chunk 版本号汇总，找出里面的最大值作为最新的版本号。如果所有持有 Chunk 的服务器都响应了，那么这种方法是没有问题的。但是存在一种风险，当 Master 节点重启时，可能部分 Chunk 服务器离线或者失联或者自己也在重启，从而不能响应 Master 节点的请求。所以，Master 节点可能只能获取到持有旧副本的 Chunk 服务器的响应，而持有最新副本的 Chunk 服务器还没有完成重启，或者还是离线状态（这个时候 Master 能找到的 Chunk 最大版本明显不对）</p>
-<p>因为 Master 从磁盘存储的数据知道 Chunk 对应的最新版本，Master 节点会整合具有最新版本 Chunk 的服务器。每个 Chunk 服务器会记住本地存储 Chunk 对应的版本号，当 Chunk 服务器向 Master 汇报时，就可以说，我有这个 Chunk 的这个版本。而 Master 节点就可以忽略哪些版本号与已知版本不匹配的 Chunk 服务器。<br>”</p>
-
-            </div>
-          </div>
-
-<h2 id="❓primary-chunk-有什么用？"><a href="#❓primary-chunk-有什么用？" class="headerlink" title="❓primary chunk 有什么用？"></a>❓primary chunk 有什么用？</h2><p>控制流的顺序由其决定，租约期限内决定其他副本写入 chunk 顺序，避免同时副本写入的顺序不对。依然还是控制流的主备关系，client 还是正常发送所有的数据给副本，只是主备关系决定了写入的顺序。</p>
-<h2 id="🤔GFS-读写流程"><a href="#🤔GFS-读写流程" class="headerlink" title="🤔GFS 读写流程"></a>🤔GFS 读写流程</h2><p><img src="/img/gfs/ceec5785d9432faf3f9ebf3c565a1838.png" srcset="/img/loading.gif" lazyload><br>流水线式数据传输可以节省大量的网络传输，不用再从客户端指定传输到主 chunkserver，那样的话主 chunkserver 需要给多个 replica 发送数据，网络带宽将成为性能瓶颈。<strong>控制流分离，client 仍然需要向主 chunkserver 发送写入顺序信息</strong>，等待所有副本接收到数据后，主 chunk server 决定顺序写入。<br>推荐使用追加的方式写入文件，也是 GFS 在文件写入可以接受 “重复写入数据，但是数据不能错误” 的想法。</p>
-<h2 id="🤔-那么一致性模型的要点是什么呢？"><a href="#🤔-那么一致性模型的要点是什么呢？" class="headerlink" title="🤔 那么一致性模型的要点是什么呢？"></a>🤔 那么一致性模型的要点是什么呢？</h2><p><img src="/img/gfs/51e6890f9b4daaf2696a633b7a0077e9.png" srcset="/img/loading.gif" lazyload></p>
-<div class="note note-info">
-            
-            <div class="note-content">
-              <p>如果是全局的改写，一次修改可能涉及到多个 chunk，GFS 并没有全局 chunk 的概念，只能保证相同 chunk 副本之间的写入是一致的（这是由数据流和控制流分离保证的，控制流决定了写入的顺序，在上面已经有介绍）；而在多个改写的 chunk 之间，并发的写操作对不同的 chunk 来自 S1 S2 S3 可能不同。<strong><em>不同 chunk 对改写的顺序不能保证相同</em></strong></p>
-
-            </div>
-          </div>
-
-
-<div class="note note-info">
-            
-            <div class="note-content">
-              <p><img src="/img/gfs/ff47e22fe31d77dec98cc0a6f62fda87.png" srcset="/img/loading.gif" lazyload><br>优点很明显：1. 减少内存占用空间，大部分 chunk 并不会修改，快照和原文件的 chunk 是公用的；2. 快速的快照机制，停止写入的时间很短暂，因为只需要将源数据拷贝给快照文件，增加引用计数即可</p>
-
-            </div>
-          </div>
-
-
-<h2 id="GFS-一些课堂问题"><a href="#GFS-一些课堂问题" class="headerlink" title="GFS 一些课堂问题"></a>GFS 一些课堂问题</h2><div class="note note-info">
-            
-            <div class="note-content">
-              <p><strong>可不可以通过版本号来判断副本是否有之前追加的数据？</strong>  </p>
-<p>Robert 教授：所有的 Secondary 都有相同的版本号。版本号只会在 Master 指定一个新 Primary 时才会改变。通常只有在原 Primary 发生故障了，才会指定一个新的 Primary。所以，副本（参与写操作的 Primary 和 Secondary）都有相同的版本号，<strong>你没法通过版本号来判断它们是否一样，或许它们就是不一样的（取决于数据追加成功与否）</strong>。</p>
-<p>这么做的理由是，当 Primary 回复“no”给客户端时，客户端知道写入失败了，之后客户端的 GFS 库会重新发起追加数据的请求，直到最后成功追加数据。成功了之后，追加的数据会在所有的副本中相同位置存在。在那之前，追加的数据只会在部分副本中存在。（注：挂掉的副本没有接收到数据，master 也可以通过 checksum 来判断）<br>总结：<strong>版本号不是判断写入是否成功的工具，版本号是用来区分是否错过了换主，通过检查内容&#x2F;校验等方式以及比较版本标记哪些 chunk 是陈旧的。</strong> 😁 客户端重试，并且期望之后能正常工作。并不会立即解决错误的问题<br>如果 Secondary 服务器挂了，Master 节点可以发现并更新 Primary 和 Secondary 的集合，之后再增加版本号。但是这些都是之后才会发生</p>
-
-            </div>
-          </div>
-
-
-<div class="note note-info">
-            
-            <div class="note-content">
-              <p><strong>如果 master 发现 primary 挂了怎么办？</strong>  </p>
-<p>Robert 教授：可以这么回答这个问题。在某个时间点，Master 指定了一个 Primary，之后 Master 会一直通过定期的 ping 来检查它是否还存活。因为如果它挂了，Master 需要选择一个新的 Primary。Master 发送了一些 ping 给 Primary，并且 Primary 没有回应，你可能会认为 Master 会在那个时间立刻指定一个新的 Primary。但事实是，这是一个错误的想法。为什么是一个错误的想法呢？因为可能是网络的原因导致 ping 没有成功，所以有可能 Primary 还活着，但是网络的原因导致 ping 失败了。❗ 但同时，Primary 还可以与客户端交互，如果 Master 为 Chunk 指定了一个新的 Primary，那么就会同时有两个 Primary 处理写请求，这两个 Primary 不知道彼此的存在，会分别处理不同的写请求，最终会导致有两个不同的数据拷贝。这被称为脑裂（split-brain）。</p>
-<p>脑裂是一种非常重要的概念，我们会在之后的课程中再次介绍它（详见 6.1），它通常是由网络分区引起的。比如说，Master 无法与 Primary 通信，但是 Primary 又可以与客户端通信，这就是一种网络分区问题。网络故障是这类分布式存储系统中最难处理的问题之一。</p>
-<p>所以，我们想要避免错误的为同一个 Chunk 指定两个 Primary 的可能性。Master 采取的方式是，<strong><em>当指定一个 Primary 时，为它分配一个租约，Primary 只在租约内有效。Master 和 Primary 都会知道并记住租约有多长，当租约过期了，Primary 会停止响应客户端请求，它会忽略或者拒绝客户端请求。</em></strong> 因此，如果 Master 不能与 Primary 通信，并且想要指定一个新的 Primary 时，Master 会等到前一个 Primary 的租约到期。这意味着，Master 什么也不会做，只是等待租约到期。租约到期之后，可以确保旧的 Primary 停止了它的角色，这时 Master 可以安全的指定一个新的 Primary 而不用担心出现这种可怕的脑裂的情况。</p>
-
-            </div>
-          </div>
-
-
-<div class="note note-info">
-            
-            <div class="note-content">
-              <p><strong>为什么立即指定一个新的 Primary 是坏的设计？</strong>  </p>
-<p>因为客户端会通过缓存提高效率，客户端会在短时间缓存 Primary 的身份信息（这样，客户端就不用每次都会向 Master 请求 Primary 信息）。即使没有缓存，也可能出现这种情况，客户端向 Master 节点查询 Primary 信息，Master 会将 Primary 信息返回，这条消息在网络中传播。之后 Master 如果发现 Primary 出现故障，并且立刻指定一个新的 Primary，同时向新的 Primary 发消息说，你是 Primary。Master 节点之后会向其他查询 Primary 的客户端返回这个新的 Primary。<strong>而前一个 Primary 的查询还在传递过程中，前一个客户端收到的还是旧的 Primary 的信息。如果没有其他的更聪明的一些机制，前一个客户端是没办法知道收到的 Primary 已经过时了。</strong> 如果前一个客户端执行写文件，那么就会与后来的客户端产生两个冲突的副本。</p>
-
-            </div>
-          </div>
-
+                <h1 id="解读系列：心理学、成长、历史、政治"><a href="#解读系列：心理学、成长、历史、政治" class="headerlink" title="解读系列：心理学、成长、历史、政治"></a>解读系列：心理学、成长、历史、政治</h1><p><a target="_blank" rel="noopener" href="https://space.bilibili.com/302299393">张志浩在剥柚</a>：“不做影视解说，只做过度解读”<br><a target="_blank" rel="noopener" href="https://space.bilibili.com/262513?spm_id_from=333.337.0.0">学长表示理解</a>：辩手和心理咨询师的身份让 up 在社会现象和个体心理方面关注细微，是我很喜欢的一位博主。</p>
+<h1 id="论文分析系列：分布式、机器学习……"><a href="#论文分析系列：分布式、机器学习……" class="headerlink" title="论文分析系列：分布式、机器学习……"></a>论文分析系列：分布式、机器学习……</h1><p><a target="_blank" rel="noopener" href="https://space.bilibili.com/61981458?spm_id_from=333.337.0.0">戌米的论文笔记</a>：论文讲解特别细致，表述清晰<br><a target="_blank" rel="noopener" href="https://space.bilibili.com/1567748478?spm_id_from=333.337.0.0">跟李沐学AI</a>：AI<br><a target="_blank" rel="noopener" href="https://tanxinyu.work/">tanxinyu’s blog</a>：数据库、分布式系统</p>
+<h1 id="技术系列："><a href="#技术系列：" class="headerlink" title="技术系列："></a>技术系列：</h1><p><a target="_blank" rel="noopener" href="https://icyfenix.cn/">凤凰架构</a>：目前读到的最棒的架构书，兼具核心原理和技术细节，条理非常清楚<br><a target="_blank" rel="noopener" href="http://nil.csail.mit.edu/6.824/2021/index.html">MIT 6.824</a>：网红课，分布式系统的课程材料和实验对本人的兴趣启蒙帮助很大<br><a target="_blank" rel="noopener" href="https://space.bilibili.com/689233562?spm_id_from=333.337.search-card.all.click">厦门大学的JavaEE课程</a><br><a target="_blank" rel="noopener" href="https://space.bilibili.com/1324259795/lists">硬核课堂</a>：AI-infra、系统设计、源码类. <a target="_blank" rel="noopener" href="https://hardcore.feishu.cn/wiki/wikcn9i4sfdTkxVX0DYrMMbNBpd">这里</a>是飞书文档集合<br><a target="_blank" rel="noopener" href="https://bytebytego.com/">ByteByteGo</a>：科普技术风格的教程，图示很清晰易读<br><a target="_blank" rel="noopener" href="https://tech.codelc.com/">lcomplete技术分享</a>：周刊和一些心得分享<br><a target="_blank" rel="noopener" href="https://www.pdai.tech/">Java全栈技术</a>：从Java基础、算法到框架、架构技术栈<br><a target="_blank" rel="noopener" href="https://freegeektime.com/posts/100006701/">极客时间：Java核心技术精讲</a><br><a target="_blank" rel="noopener" href="https://pphc.lvwenhan.com/">PPHC 高并发的哲学原理</a></p>
+<h2 id="技术博主"><a href="#技术博主" class="headerlink" title="技术博主"></a>技术博主</h2><p><a target="_blank" rel="noopener" href="https://space.bilibili.com/7968519?spm_id_from=333.337.0.0">学Java的生生</a>：Java源码分析，手写系列，设计模式系列……<br><a target="_blank" rel="noopener" href="https://space.bilibili.com/3493077649983936?spm_id_from=333.1387.follow.user_card.click">_王帅真</a>：技术分享，后端的专栏很用心。<a target="_blank" rel="noopener" href="https://blog.qizong007.top/">这里</a>是他的博客网站，做了很多总结和有深度的思考<br><a target="_blank" rel="noopener" href="https://space.bilibili.com/392470114?spm_id_from=333.1387.follow.user_card.click">架构驿站</a>：spring、消息队列、Mysql 进阶课……<br>面经 &amp; 八股文  </p>
+<ul>
+<li>Mysql: <a target="_blank" rel="noopener" href="https://freegeektime.com/posts/100020801/">实战45讲</a>、</li>
+<li>Java: <a target="_blank" rel="noopener" href="https://freegeektime.com/posts/100039001/">设计之美</a>、<a target="_blank" rel="noopener" href="https://github.com/TangBean/understanding-the-jvm">JVM笔记</a></li>
+<li>架构: <a target="_blank" rel="noopener" href="https://learning-guide.gitbook.io/system-design-interview">Alex xu系统设计面试</a></li>
+</ul>
+<h1 id="偏好"><a href="#偏好" class="headerlink" title="偏好"></a>偏好</h1><p><a target="_blank" rel="noopener" href="https://space.bilibili.com/1384025112?spm_id_from=333.337.0.0">华农狮山长跑队</a><br><a target="_blank" rel="noopener" href="https://space.bilibili.com/602553583?spm_id_from=333.337.0.0">贾一凡_F</a><br><a target="_blank" rel="noopener" href="https://space.bilibili.com/1575688490?spm_id_from=333.337.0.0">CLS同学</a><br><a target="_blank" rel="noopener" href="https://space.bilibili.com/7226269?spm_id_from=333.337.0.0">麦片是只小金毛</a></p>
+<h1 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h1><p><a href="">代码大全</a><br><a target="_blank" rel="noopener" href="https://datawhalechina.github.io/happy-llm/#/">DataWhale: Happy-LLM</a><br><a target="_blank" rel="noopener" href="https://space.bilibili.com/1369507485/lists/615109?type=season">推荐系统公开课</a></p>
 
                 
               </div>
@@ -403,7 +340,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" class="category-chain-item">论文笔记</a>
+  <a href="/categories/WLB/" class="category-chain-item">WLB</a>
   
   
 
@@ -418,7 +355,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E7%AE%97%E6%B3%95%E4%B8%8E%E5%AE%9E%E7%8E%B0/" class="print-no-link">#分布式算法与实现</a>
+        <a href="/tags/%E6%94%B6%E9%9B%86/" class="print-no-link">#收集</a>
       
     </div>
   
@@ -430,8 +367,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>GFS课堂笔记</div>
-      <div>http://whale-withme.github.io/GFS/</div>
+      <div>收集优秀的创作者</div>
+      <div>http://whale-withme.github.io/source-collection/</div>
     </div>
     <div class="license-meta">
       
@@ -443,7 +380,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年5月13日</div>
+          <div>2025年5月9日</div>
         </div>
       
       
@@ -475,21 +412,15 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/vm-ft/" title="VM-ft">
+                      <a href="/GFS/" title="GFS课堂笔记">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">VM-ft</span>
+                        <span class="hidden-mobile">GFS课堂笔记</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
-                    
-                      <a href="/source-collection/" title="收集优秀的创作者">
-                        <span class="hidden-mobile">收集优秀的创作者</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
                     
                   </article>
                 </div>
